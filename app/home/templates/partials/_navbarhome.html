@@ -1,27 +1,26 @@
-<nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
-    <a href="" class="text-decoration-none d-block d-lg-none">
-        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
-    </a>
-    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-        <div class="navbar-nav mr-auto py-0">
-            <a href="{{url_for('home_blueprint.route_default')}}" class="nav-item nav-link active">Home</a>
-            <a href="{{url_for('home_blueprint.shop_page')}}" class="nav-item nav-link">Shop</a>
-            <a href="{{url_for('home_blueprint.shopDetail_page')}}" class="nav-item nav-link">Shop Detail</a>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                <div class="dropdown-menu rounded-0 m-0">
-                    <a href="{{url_for('home_blueprint.shopCart_page')}}" class="dropdown-item">Shopping Cart</a>
-                    <a href="{{url_for('home_blueprint.checkout_page')}}" class="dropdown-item">Checkout</a>
-                </div>
-            </div>
-            <a href="{{url_for('home_blueprint.contact_page')}}" class="nav-item nav-link">Contact</a>
-        </div>
-        <div class="navbar-nav ml-auto py-0">
-            <a href="{{url_for('admin_blueprint.admin_login')}}" class="nav-item nav-link">Login</a>
-            <a href="{{url_for('admin_blueprint.admin_register')}}" class="nav-item nav-link">Register</a>
-        </div>
-    </div>
-</nav>
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top" >
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+				<a class="navbar-brand" href="index.html"><img src="../static/images/logo.png" alt="Progressus HTML5 template"></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">More Pages <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="sidebar-left.html">Left Sidebar</a></li>
+							<li class="active"><a href="sidebar-right.html">Right Sidebar</a></li>
+						</ul>
+					</li>
+					<li><a href="contact.html">Contact</a></li>
+					<li><a class="btn" href="{{url_for('home_blueprint.signin_page')}}">Login</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div> 
+	<!-- /.navbar -->
