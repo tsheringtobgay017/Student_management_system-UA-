@@ -27,7 +27,7 @@
 
 <body class="home">
 	<!-- Fixed navbar -->
-	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+	<div class="navbar navbar-inverse navbar-fixed-top" >
 		<div class="container">
 			<div class="navbar-header">
 				<!-- Button for smallest screens -->
@@ -46,7 +46,7 @@
 						</ul>
 					</li>
 					<li><a href="contact.html">Contact</a></li>
-					<li><a class="btn" href="signin.html">SIGN IN / SIGN UP</a></li>
+					<li><a class="btn" href="{{url_for('home_blueprint.signin_page')}}">Login</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>

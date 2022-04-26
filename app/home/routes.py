@@ -6,9 +6,9 @@ from app.home import blueprint
 def route_default():
     return render_template('index.html')
 
-@blueprint.route('/shop-detail')
-def shop_page():
-    return render_template('shop.html')
+@blueprint.route('/signin')
+def signin_page():
+    return render_template('signin.html')
 
 
 @blueprint.route('/shop-detail-info')
