@@ -3,7 +3,7 @@
 /*******************************/
 .navbar-inverse {
 	border-radius: 0;
-	background: rgb(26 78 129 / 80%);
+	background: rgb(85 171 255 / 80%);
 	border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 	min-height: 100px;
 	padding-top: 25px;
@@ -66,7 +66,7 @@
 .navbar-nav .dropdown-menu {
 	left: -5px;
 	font-size: 13px;
-	background-color: rgb(29 95 133 / 70%);
+	background-color: rgb(85 171 255 / 80%);
 	border: 0px none;
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
