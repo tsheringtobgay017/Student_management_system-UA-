@@ -11,9 +11,9 @@ def signin_page():
     return render_template('signin.html')
 
 
-@blueprint.route('/shop-detail-info')
-def shopDetail_page():
-    return render_template('detail.html')
+@blueprint.route('/enroll_student_detail')
+def enroll_page():
+    return render_template('enroll_student.html')
 
 
 @blueprint.route('/cart-info')
