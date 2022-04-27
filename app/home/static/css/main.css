@@ -115,9 +115,6 @@
 	margin-bottom: 20px;
 }
 
-.h-body {}
-
-
 /* Typography */
 h1,
 h2,
@@ -213,7 +210,6 @@ img.pull-left {
 }
 
 /* Main content block */
-.maincontent {}
 
 /* Sidebars */
 .sidebar {
@@ -236,10 +232,10 @@ img.pull-left {
 
 /* Footer */
 .footer1 {
-	background: #232323;
+	background: #e7e7e7bd;
 	padding: 30px 0 0 0;
 	font-size: 12px;
-	color: #999;
+	color: rgb(0, 0, 0);
 }
 
 .footer1 a {
