@@ -25,9 +25,10 @@
 }
 
 #head .tagline {
-	color: rgb(255, 255, 255);;
+	color: rgb(255, 255, 255);
+	;
 	margin-bottom: 25px;
-	
+
 }
 
 #head .tagline a {
@@ -235,7 +236,7 @@ img.pull-left {
 
 /* Footer */
 .footer1 {
-	background: #f0f3f5;
+	background: #232323;
 	padding: 30px 0 0 0;
 	font-size: 12px;
 	color: #999;
