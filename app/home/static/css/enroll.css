@@ -1,16 +1,12 @@
 
 /* registration */
-/* Custom page footer */
-.footer {
-	padding-top: 19px;
-	color: #777;
-	border-top: 1px solid #e5e5e5;
-  }
-  
+
+
   /* Customize container */
   @media (min-width: 768px) {
-	.container {
-	  max-width: 730px;
+	.well {
+		max-width: 730px;
+		margin-left: 195px;
 	}
   }
   .container-narrow > hr {
@@ -39,7 +35,8 @@
   @media screen and (min-width: 768px) {
 	/* Remove the padding we set earlier */
 	.header,
-	.marketing {
+	.marketing
+	{
 	  padding-right: 0;
 	  padding-left: 0;
 	}
