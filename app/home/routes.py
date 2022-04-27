@@ -1,5 +1,6 @@
 from flask import render_template
 from app.home import blueprint
+from app.home.service import store_student_details, get_dzo_list
 
 
 @blueprint.route('/')
@@ -11,22 +12,34 @@ def signin_page():
     return render_template('signin.html')
 
 
-@blueprint.route('/enroll_student_detail')
+@blueprint.route('/enroll-student-detail')
 def enroll_page():
     return render_template('enroll_student.html')
 
-
-@blueprint.route('/cart-info')
-def shopCart_page():
-    return render_template('cart.html')
-
-
-@blueprint.route('/checkout-info')
-def checkout_page():
-    return render_template('checkout.html')
+# Route to store student detail
+@blueprint.route('/store-student-info', methods=['POST'])
+def store_studentInfo_page():
+    return store_student_details()
 
 
-@blueprint.route('/contact-info')
-def contact_page():
-    return render_template('contact.html')
+# Route to fetch dzongkhag list
+@blueprint.route("/get-dzo-list", methods=["GET", "POST"])
+def get_dzo():
+    return get_dzo_list()
+
+
+# # Route to fetch gewog list
+# @blueprint.route("/get-gewog-list", methods=["GET", "POST"])
+# def get_gewog():
+#     return get_gewog()
+
+
+# # Route to fetch village list
+# @blueprint.route("/get-village-list", methods=["GET", "POST"])
+# def get_village():
+#     return get_village()
+
+
+
+
 

@@ -239,7 +239,7 @@ img.pull-left {
 }
 
 .footer1 a {
-	color: #ccc;
+	color: rgb(0, 0, 0);
 }
 
 .footer1 a:hover {
@@ -253,7 +253,7 @@ img.pull-left {
 .footer1 .widget-title {
 	font-size: 17px;
 	font-weight: bold;
-	color: #ccc;
+	color: rgb(0, 0, 0);
 	margin: 0 0 20px;
 }
 

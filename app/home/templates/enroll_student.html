@@ -4,6 +4,7 @@
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}
 
+
 {% endblock stylesheets %}
 
 {% block content %}
@@ -16,62 +17,178 @@
 	<h1 class="well" style="font-family: 'Neuton', serif; text-align: center;">REGISTER WITH UGYEN ACADEMY</h1>
 	<div class="col-lg-12 well">
 		<div class="row">
-			<form>
-				<div class="col-sm-12">
-					<div class="row">
-						<div class="col-sm-6 form-group">
+			<form method="POST" id="registration_form" action="" enctype="multipart/form-data">
+				
+				<div class="bg-primary" style="height: 24px;">Student's Personal Detail<span class="text-danger">
+						*</span></div>
+				<!-- student's detail -->
+				<div class="student">
+					<div class="row col-sm-12">
+						<div class="col-sm-4 form-group">
+							<label>CID</label>
+							<input type="text" placeholder="Enter CID" class="form-control" name="cid" id="cid">
+						</div>
+						<div class="col-sm-4 form-group">
 							<label>First Name</label>
-							<input type="text" placeholder="Enter First Name Here.." class="form-control">
+							<input type="text" placeholder="Enter Last Name" class="form-control" name="first_name"
+								id="first_name">
 						</div>
-						<div class="col-sm-6 form-group">
+
+						<div class="col-sm-4 form-group">
 							<label>Last Name</label>
-							<input type="text" placeholder="Enter Last Name Here.." class="form-control">
+							<input type="text" placeholder="Enter Last Name" class="form-control" name="last_name"
+								id="last_name">
 						</div>
 					</div>
-					<div class="form-group">
-						<label>Address</label>
-						<textarea placeholder="Enter Address Here.." rows="3" class="form-control"></textarea>
-					</div>
-					<div class="row">
+					<div class="row col-sm-12">
 						<div class="col-sm-4 form-group">
-							<label>City</label>
-							<input type="text" placeholder="Enter City Name Here.." class="form-control">
+							<label>DOB</label>
+							<input type="date" placeholder="Enter DOB" class="form-control" name="dob" id="dob">
 						</div>
 						<div class="col-sm-4 form-group">
-							<label>State</label>
-							<input type="text" placeholder="Enter State Name Here.." class="form-control">
+							<label>Email Address</label>
+							<input type="email" placeholder="Enter email" class="form-control" name="email" id="email">
 						</div>
 						<div class="col-sm-4 form-group">
-							<label>Zip</label>
-							<input type="text" placeholder="Enter Zip Code Here.." class="form-control">
+							<label>Phone Number</label>
+							<input type="text" placeholder="Enter Phone Number" class="form-control" name="phone_number"
+								id="phone_number">
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-sm-6 form-group">
-							<label>Title</label>
-							<input type="text" placeholder="Enter Designation Here.." class="form-control">
+					<div class="row col-lg-12">
+						<div class="col-sm-4 form-group">
+							<label>Dzongkhag</label>
+							<input type="text" placeholder="Enter Dzongkhag " class="form-control" name="dzongkhag2"
+								id="dzongkhag2">
 						</div>
-						<div class="col-sm-6 form-group">
-							<label>Company</label>
-							<input type="text" placeholder="Enter Company Name Here.." class="form-control">
+						<div class="col-sm-4 form-group">
+							<label>Gewog</label>
+							<input type="text" placeholder="Enter Gewog " class="form-control" name="gewog2" id="gewog2">
 						</div>
-					</div>
-					<div class="form-group">
-						<label>Phone Number</label>
-						<input type="text" placeholder="Enter Phone Number Here.." class="form-control">
-					</div>
-					<div class="form-group">
-						<label>Email Address</label>
-						<input type="text" placeholder="Enter Email Address Here.." class="form-control">
-					</div>
-					<div class="form-group">
-						<label>Website</label>
-						<input type="text" placeholder="Enter Website Name Here.." class="form-control">
-					</div>
-					<div class="button-center">
-						<button type="button" class="btn btn-lg btn-info">Submit</button>
+						<div class="col-sm-4 form-group">
+							<label>Village</label>
+							<input type="text" placeholder="Enter Village " class="form-control" name="village2"
+								id="village2">
+						</div>
 					</div>
 				</div>
+
+
+				<!-- ends student's details -->
+
+				<!-- Academic details -->
+				<div class="bg-primary one" style="height: 24px; margin-top: 220px;">Academic Detail<span
+						class="text-danger"> *</span></div>
+
+				<div class="row">
+					<div class="col-sm-4 form-group">
+						<label>Index Number</label>
+						<input type="text" placeholder="Enter Index Number" class="form-control" name="index_number"
+							id="index_number">
+					</div>
+
+
+					<div class="col-sm-4 form-group">
+						<label>Previous School</label>
+						<input type="text" placeholder="Enter Previous School Name" class="form-control"
+							name="Previous_school" id="Previous_school">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<label for="stream" class="pull-left form-label">Stream</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-check form-check-inline">
+								<label for="employment_status">Arts </label>
+								<input class="form-check-input" type="radio" name="arts" id="arts" value="Arts">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-check form-check-inline">
+								<label for="employment_status">Commerce </label>
+								<input class="form-check-input" type="radio" name="employment_status" id="Self-Employed"
+									value="Self-Employed">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-check form-check-inline">
+								<label for="employment_status">Science </label>
+								<input class="form-check-input" type="radio" name="employment_status" id="un-employed"
+									value="un-employed">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Academic detail end -->
+
+				<div class="bg-primary one" style="height: 24px; margin-top: 2px;">Parent's/gaurdian's Detail<span
+						class="text-danger"> *</span></div>
+				<div class="row">
+					<div class="col-sm-4 form-group">
+						<label>CID</label>
+						<input type="text" placeholder="Enter Parent/gaurdian's CID" class="form-control"
+							name="parent_cid" id="parent_cid">
+					</div>
+					<div class="col-sm-4 form-group">
+						<label>Name</label>
+						<input type="text" placeholder="Enter Parent/gaurdian Name" class="form-control"
+							name="parent_name" id="parent_name">
+					</div>
+
+					<div class="col-sm-4 form-group">
+						<label>Phone Number</label>
+						<input type="text" placeholder="Enter Parent's Number" class="form-control" name="parent_number"
+							id="parent_number">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 form-group">
+						<label>Email Address</label>
+						<input type="email" placeholder="Enter Parent's Email" class="form-control" name="parent_email"
+							id="parent_email">
+					</div>
+				</div>
+
+				<div class="bg-primary one" style="height: 24px; margin-top: 2px;">Present Address Detail<span
+						class="text-danger"> *</span></div>
+				<div class="row">
+					<div class="row col-lg-12">
+						<div class="col-sm-4 form-group">
+							<label for="dzongkhag" class="pull-left form-label">Dzongkhag </label>
+							<select class="form-control form-select" name="dzongkhag" id="dzongkhag">
+								<option value="">---Select Dzongkhag---</option>
+								{% for row in dzo_List %}
+								<option value="{{ item.dzo_id }}"></option>
+								{% endfor %}
+
+							</select>
+						</div>
+						<div class="col-sm-4 form-group">
+							<label for="gewog" class="pull-left form-label">Gewog</label>
+							<select class="form-control form-select" id="gewog" name="gewog">
+								<option value="">---Select Gewog---</option>
+							</select>
+						</div>
+						<div class="col-sm-4 form-group">
+							<label for="village" class="pull-left form-label">Village</label>
+							<select class="form-control form-select" id="village" name="village">
+								<option value="">---Select Village---</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="button-center">
+					<button type="button" class="btn btn-sm btn-warning student_reg">Submit</button>
+				</div>
+
 			</form>
 		</div>
 	</div>
@@ -81,4 +198,89 @@
 
 <!-- Specific JS goes HERE -->
 {% block javascripts %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script>
+	// $(".student_reg").click(function () {
+	// 	var form = document.getElementById("registration_form");
+	// 	var data = new FormData(form);
+	// 	$.ajax({
+	// 		type: 'POST',
+	// 		url: '/store-student-info',
+	// 		data: data,
+	// 		processData: false,
+	// 		contentType: false,
+	// 		cache: false,
+	// 		beforeSend: function () {
+	// 			$(".loader").removeClass("loaded");
+	// 			$('#getOTP').prop('disabled', true);
+	// 		},
+	// 		success: function (res) {
+	// 			console.log(res)
+	// 			if (res === 'Error') {
+
+	// 			} else if (res === 'ServerError') {
+
+
+	// 			} else {
+
+
+	// 			}
+	// 		},
+	// 		error: function () {
+
+	// 		}
+	// 	});
+	// });
+
+	//------------------------Script for fetching gewog list-------------------------//
+	// $("#dzongkhag").on("click", function () {
+	// 	alert("hi")
+	// 	var gewog_id = $("#dzongkhag").val();
+	// 	$.ajax({
+	// 		url: "/get-gewog-list",
+	// 		method: "POST",
+	// 		data: { type: 'Gewog', gewog_id: gewog_id },
+	// 		dataType: "json",
+	// 		success: function (data) {
+	// 			console.log("A",data)
+	// 			var list = data.gewogList;
+	// 			var html = "<option value=''>---Select Gewog---</option>";
+	// 			for (var count = 0; count < list.length; count++) {
+	// 				html += "<option value='" + list[count].gewog_id + "'>" + list[count].gewog_name + "</option>"
+	// 			}
+	// 			$("#gewog").html(html);
+	// 		},
+	// 		error: function () {
+	// 			alert('error');
+	// 		}
+	// 	});
+	// })
+	//-------------------------script ends-----------------------------------//
+
+	//--------------------------Script for fetching village list-------------------//
+	// $("#gewog").on("change", function () {
+	// 	var village_id = $("#gewog").val();
+	// 	$.ajax({
+	// 		url: "/get-village-list",
+	// 		method: "POST",
+	// 		data: { type: 'village', village_id: village_id },
+	// 		dataType: "json",
+	// 		success: function (data) {
+	// 			var list = data.villageList
+	// 			var html = "<option value=''>---Select Village---</option>";
+	// 			for (var count = 0; count < list.length; count++) {
+	// 				html += "<option value='" + list[count].village_id + "'>" + list[count].village_name + "</option>"
+	// 			}
+
+	// 			$("#village").html(html);
+	// 		},
+	// 		error: function () {
+	// 			alert('error');
+	// 		}
+	// 	});
+	// })
+//-------------------------------Script ends--------------------------------//
+</script>
 {% endblock javascripts %}
