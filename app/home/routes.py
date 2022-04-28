@@ -1,6 +1,6 @@
 from flask import render_template
 from app.home import blueprint
-from app.home.service import store_student_details, get_dzo_list
+from app.home.service import store_student_details, get_dzo_list, get_gewog, get_village
 
 
 @blueprint.route('/')
@@ -28,16 +28,16 @@ def get_dzo():
     return get_dzo_list()
 
 
-# # Route to fetch gewog list
-# @blueprint.route("/get-gewog-list", methods=["GET", "POST"])
-# def get_gewog():
-#     return get_gewog()
+# Route to fetch gewog list
+@blueprint.route("/get-gewog-list", methods=["GET", "POST"])
+def get_gewog():
+    return get_gewog()
 
 
-# # Route to fetch village list
-# @blueprint.route("/get-village-list", methods=["GET", "POST"])
-# def get_village():
-#     return get_village()
+# Route to fetch village list
+@blueprint.route("/get-village-list", methods=["GET", "POST"])
+def get_village():
+    return get_village()
 
 
 

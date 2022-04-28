@@ -3,7 +3,8 @@
 {% block title %} Student Management System {% endblock title %}
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}
-
+<link href="../static/vendor/formValidation/tachyons.min.css" type="text/css" rel="stylesheet" />
+<link href="../static/vendor/formValidation/formValidation.min.css" type="text/css" rel="stylesheet" />
 
 {% endblock stylesheets %}
 
@@ -18,7 +19,7 @@
 	<div class="col-lg-12 well">
 		<div class="row">
 			<form method="POST" id="registration_form" action="" enctype="multipart/form-data">
-				
+
 				<div class="bg-primary" style="height: 24px;">Student's Personal Detail<span class="text-danger">
 						*</span></div>
 				<!-- student's detail -->
@@ -58,17 +59,18 @@
 					<div class="row col-lg-12">
 						<div class="col-sm-4 form-group">
 							<label>Dzongkhag</label>
-							<input type="text" placeholder="Enter Dzongkhag " class="form-control" name="dzongkhag2"
-								id="dzongkhag2">
+							<input type="text" placeholder="Enter Dzongkhag " class="form-control"
+								name="permanent_dzongkhag" id="permanent_dzongkhag">
 						</div>
 						<div class="col-sm-4 form-group">
 							<label>Gewog</label>
-							<input type="text" placeholder="Enter Gewog " class="form-control" name="gewog2" id="gewog2">
+							<input type="text" placeholder="Enter Gewog " class="form-control" name="permanent_gewog"
+								id="permanent_gewog">
 						</div>
 						<div class="col-sm-4 form-group">
 							<label>Village</label>
-							<input type="text" placeholder="Enter Village " class="form-control" name="village2"
-								id="village2">
+							<input type="text" placeholder="Enter Village " class="form-control"
+								name="permanent_village" id="permanent_village">
 						</div>
 					</div>
 				</div>
@@ -77,7 +79,7 @@
 				<!-- ends student's details -->
 
 				<!-- Academic details -->
-				<div class="bg-primary one" style="height: 24px; margin-top: 220px;">Academic Detail<span
+				<div class="bg-primary one" style="height: 24px; margin-top: 259px;">Academic Detail<span
 						class="text-danger"> *</span></div>
 
 				<div class="row">
@@ -159,24 +161,24 @@
 				<div class="row">
 					<div class="row col-lg-12">
 						<div class="col-sm-4 form-group">
-							<label for="dzongkhag" class="pull-left form-label">Dzongkhag </label>
-							<select class="form-control form-select" name="dzongkhag" id="dzongkhag">
+							<label for="present_dzongkhag" class="pull-left form-label">Dzongkhag </label>
+							<select class="form-control form-select" name="present_dzongkhag" id="present_dzongkhag">
 								<option value="">---Select Dzongkhag---</option>
 								{% for row in dzo_List %}
-								<option value="{{ item.dzo_id }}"></option>
+								<option value="{{ row.dzo_id }}">{{ row.dzo_name }}</option>
 								{% endfor %}
 
 							</select>
 						</div>
 						<div class="col-sm-4 form-group">
-							<label for="gewog" class="pull-left form-label">Gewog</label>
-							<select class="form-control form-select" id="gewog" name="gewog">
+							<label for="present_gewog" class="pull-left form-label">Gewog</label>
+							<select class="form-control form-select" id="present_gewog" name="present_gewog">
 								<option value="">---Select Gewog---</option>
 							</select>
 						</div>
 						<div class="col-sm-4 form-group">
-							<label for="village" class="pull-left form-label">Village</label>
-							<select class="form-control form-select" id="village" name="village">
+							<label for="present_village" class="pull-left form-label">Village</label>
+							<select class="form-control form-select" id="present_village" name="present_village">
 								<option value="">---Select Village---</option>
 							</select>
 						</div>
@@ -186,7 +188,7 @@
 
 
 				<div class="button-center">
-					<button type="button" class="btn btn-sm btn-warning student_reg">Submit</button>
+					<button type="submit" class="btn btn-sm btn-warning student_reg">Submit</button>
 				</div>
 
 			</form>
@@ -198,89 +200,89 @@
 
 <!-- Specific JS goes HERE -->
 {% block javascripts %}
+<script src="../static/vendor/formValidation/es6-shim.min.js"></script>
+<script src="../static/vendor/formValidation/formValidation.min.js"></script>
+<script src="../static/vendor/formValidation/Bootstrap.min.js"></script>
+<script src="../static/vendor/formValidation/Tachyons.min.js"></script>
+<script src="../static/js/enroll_student_validation.js"></script>
 
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script>
-	// $(".student_reg").click(function () {
-	// 	var form = document.getElementById("registration_form");
-	// 	var data = new FormData(form);
-	// 	$.ajax({
-	// 		type: 'POST',
-	// 		url: '/store-student-info',
-	// 		data: data,
-	// 		processData: false,
-	// 		contentType: false,
-	// 		cache: false,
-	// 		beforeSend: function () {
-	// 			$(".loader").removeClass("loaded");
-	// 			$('#getOTP').prop('disabled', true);
-	// 		},
-	// 		success: function (res) {
-	// 			console.log(res)
-	// 			if (res === 'Error') {
+	function studentDetail() { 
+		var form = document.getElementById("registration_form");
+		var data = new FormData(form);
+		$.ajax({
+			type: 'POST',
+			url: '/store-student-info',
+			data: data,
+			processData: false,
+			contentType: false,
+			cache: false,
 
-	// 			} else if (res === 'ServerError') {
-
-
-	// 			} else {
-
-
-	// 			}
-	// 		},
-	// 		error: function () {
-
-	// 		}
-	// 	});
-	// });
+			success: function (res) {
+				swal("Information successfully submitted", "Click Ok to continue", "success")
+					.then(function () {
+						window.location = ""
+					})
+			},
+			error: function () {
+				swal("Infomation submission failed", "Click Ok to continue", "error")
+					.then(function () {
+						window.location = ""
+					})
+			}
+		});
+	};
 
 	//------------------------Script for fetching gewog list-------------------------//
-	// $("#dzongkhag").on("click", function () {
-	// 	alert("hi")
-	// 	var gewog_id = $("#dzongkhag").val();
-	// 	$.ajax({
-	// 		url: "/get-gewog-list",
-	// 		method: "POST",
-	// 		data: { type: 'Gewog', gewog_id: gewog_id },
-	// 		dataType: "json",
-	// 		success: function (data) {
-	// 			console.log("A",data)
-	// 			var list = data.gewogList;
-	// 			var html = "<option value=''>---Select Gewog---</option>";
-	// 			for (var count = 0; count < list.length; count++) {
-	// 				html += "<option value='" + list[count].gewog_id + "'>" + list[count].gewog_name + "</option>"
-	// 			}
-	// 			$("#gewog").html(html);
-	// 		},
-	// 		error: function () {
-	// 			alert('error');
-	// 		}
-	// 	});
-	// })
+	$("#dzongkhag").on("click", function () {
+		var gewog_id = $("#dzongkhag").val();
+		$.ajax({
+			url: "/get-gewog-list",
+			method: "POST",
+			data: { type: 'Gewog', gewog_id: gewog_id },
+			dataType: "json",
+			success: function (data) {
+				console.log("A", data)
+				var list = data.gewogList;
+				var html = "<option value=''>---Select Gewog---</option>";
+				for (var count = 0; count < list.length; count++) {
+					html += "<option value='" + list[count].gewog_id + "'>" + list[count].gewog_name + "</option>"
+				}
+				$("#gewog").html(html);
+			},
+			error: function () {
+				alert('error');
+			}
+		});
+	})
 	//-------------------------script ends-----------------------------------//
 
 	//--------------------------Script for fetching village list-------------------//
-	// $("#gewog").on("change", function () {
-	// 	var village_id = $("#gewog").val();
-	// 	$.ajax({
-	// 		url: "/get-village-list",
-	// 		method: "POST",
-	// 		data: { type: 'village', village_id: village_id },
-	// 		dataType: "json",
-	// 		success: function (data) {
-	// 			var list = data.villageList
-	// 			var html = "<option value=''>---Select Village---</option>";
-	// 			for (var count = 0; count < list.length; count++) {
-	// 				html += "<option value='" + list[count].village_id + "'>" + list[count].village_name + "</option>"
-	// 			}
+	$("#gewog").on("change", function () {
+		var village_id = $("#gewog").val();
+		$.ajax({
+			url: "/get-village-list",
+			method: "POST",
+			data: { type: 'village', village_id: village_id },
+			dataType: "json",
+			success: function (data) {
+				var list = data.villageList
+				var html = "<option value=''>---Select Village---</option>";
+				for (var count = 0; count < list.length; count++) {
+					html += "<option value='" + list[count].village_id + "'>" + list[count].village_name + "</option>"
+				}
 
-	// 			$("#village").html(html);
-	// 		},
-	// 		error: function () {
-	// 			alert('error');
-	// 		}
-	// 	});
-	// })
+				$("#village").html(html);
+			},
+			error: function () {
+				alert('error');
+			}
+		});
+	})
 //-------------------------------Script ends--------------------------------//
 </script>
 {% endblock javascripts %}
