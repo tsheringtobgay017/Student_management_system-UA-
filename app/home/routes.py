@@ -1,6 +1,6 @@
 from flask import render_template
 from app.home import blueprint
-from app.home.service import store_student_details, get_dzo_list
+from app.home.service import  get_dzo_list
 
 
 @blueprint.route('/')
@@ -17,9 +17,9 @@ def enroll_page():
     return render_template('enroll_student.html')
 
 # Route to store student detail
-@blueprint.route('/store-student-info', methods=['POST'])
-def store_studentInfo_page():
-    return store_student_details()
+# @blueprint.route('/store-student-info', methods=['POST'])
+# def store_studentInfo_page():
+#     return store_student_details()
 
 
 # Route to fetch dzongkhag list

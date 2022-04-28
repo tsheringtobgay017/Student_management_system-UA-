@@ -4,41 +4,41 @@ import cv2
 import base64
 from flask import jsonify, request, render_template, url_for, redirect, session
 from sqlalchemy import create_engine
-from config import Config
+# from config import Config
 from datetime import datetime
 from uuid import uuid4
-from decouple import config
+# from decouple import config
 import requests
 from requests.structures import CaseInsensitiveDict
 import io
 
-engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
-connection = engine.connect()
+# engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
+# connection = engine.connect()
 
 # This is the route for storing student detials into tbl_student_reg 
-def store_student_details():
-    id = uuid4()
-    first_name = request.form.get("first_name")
-    last_name = request.form.get("last_name")
-    address = request.form.get("address")
-    created_at = datetime.now()
-    city = request.form.get('city')
-    state = request.form.get('state')
-    zip_code = request.form.get('zip_code')
-    title = request.form.get("title")
-    company = request.form.get("company")
-    phone_number = request.form.get("phone_number")
-    email_address = request.form.get("email_address")
-    website = request.form.get("website")
+# def store_student_details():
+#     id = uuid4()
+#     first_name = request.form.get("first_name")
+#     last_name = request.form.get("last_name")
+#     address = request.form.get("address")
+#     created_at = datetime.now()
+#     city = request.form.get('city')
+#     state = request.form.get('state')
+#     zip_code = request.form.get('zip_code')
+#     title = request.form.get("title")
+#     company = request.form.get("company")
+#     phone_number = request.form.get("phone_number")
+#     email_address = request.form.get("email_address")
+#     website = request.form.get("website")
 
 
-    engine.execute("INSERT INTO public.tbl_student_reg (id, first_name, last_name, address, city, state, zip_code, title, company, phone_number, email_address, website,"
-                   "created_at) "
-                   "VALUES ("
-                   "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-                   (id, first_name, last_name, address, city, state, zip_code, title, company, phone_number,email_address,  website,  created_at))
+#     engine.execute("INSERT INTO public.tbl_student_reg (id, first_name, last_name, address, city, state, zip_code, title, company, phone_number, email_address, website,"
+#                    "created_at) "
+#                    "VALUES ("
+#                    "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+#                    (id, first_name, last_name, address, city, state, zip_code, title, company, phone_number,email_address,  website,  created_at))
 
-    return "success"
+#     return "success"
 
 
 # Fetching Dzongkhag/gewog/village list from the database
