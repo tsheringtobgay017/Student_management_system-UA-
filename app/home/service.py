@@ -8,7 +8,7 @@ from torch import ge
 from config import Config
 from datetime import datetime
 from uuid import uuid4
-from decouple import config
+# from decouple import config
 import requests
 from requests.structures import CaseInsensitiveDict
 import io
