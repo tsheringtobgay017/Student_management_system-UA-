@@ -1,30 +1,30 @@
 
 from flask import Flask
 from app import create_app
-# from app import db
-# from decouple import config
+from app import db
+from decouple import config
 
-# from config import config_dict
+from config import config_dict
 
 # WARNING: Don't run with debug turned on in production!
-# DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = config('DEBUG', default=True, cast=bool)
 
-# # The configuration
-# get_config_mode = 'Debug' if DEBUG else 'Production'
+# The configuration
+get_config_mode = 'Debug' if DEBUG else 'Production'
 
-# try:
+try:
 
-#     # Load the configuration using the default values 
-#     app_config = config_dict[get_config_mode.capitalize()]
+    # Load the configuration using the default values 
+    app_config = config_dict[get_config_mode.capitalize()]
 
-# except KeyError:
-#     exit('Error: Invalid <config_mode>. Expected values [Debug, Production] ')
+except KeyError:
+    exit('Error: Invalid <config_mode>. Expected values [Debug, Production] ')
 
 app = create_app(__name__)
 
 
-# if DEBUG:
-#     app.logger.info('DBMS        = ' + app_config.SQLALCHEMY_DATABASE_URI)
+if DEBUG:
+    app.logger.info('DBMS        = ' + app_config.SQLALCHEMY_DATABASE_URI)
 
 if __name__ == '__main__':
     app.run()
