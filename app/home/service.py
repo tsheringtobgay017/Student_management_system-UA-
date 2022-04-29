@@ -44,7 +44,6 @@ def store_student_details():
 def get_dzo_list():
     dzongkhag = 'SELECT * FROM public.tbl_dzongkhag_list'
     dzo_List = connection.execute(dzongkhag).fetchall()
-    print(":::::",dzo_List)
 
     get_user_info = 'select * from public.tbl_dzongkhag_list as dl ' \
                     'inner join public.tbl_gewog_list as gl on dl.dzo_id = gl.dzo_id ' \
