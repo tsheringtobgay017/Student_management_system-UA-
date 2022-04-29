@@ -27,7 +27,7 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = '{}://{}:{}@{}:{}/{}'.format(
         config('DB_ENGINE', default='postgresql'),
         config('DB_USERNAME', default='postgre'),
-        config('DB_PASS', default='tobgyel@17'),
+        config('DB_PASS', default='secret'),
         config('DB_HOST', default='localhost'),
         config('DB_PORT', default=5432),
         config('DB_NAME', default='student_db')
