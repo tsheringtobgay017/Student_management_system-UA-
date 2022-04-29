@@ -20,6 +20,41 @@ const enrollfv = FormValidation.formValidation(enrollForm, {
                 },
             },
         },
+        dob: {
+            validators: {
+                notEmpty: {
+                    message: 'The DOB field is required',
+                },
+            },
+        },
+
+        email: {
+            validators: {
+                emailAddress: {
+                        message: 'The value is not a valid email address',
+                    },
+                notEmpty: {
+                    message: 'The email field is required',
+                },
+            },
+        },
+        phone_number: {
+            validators: {
+                notEmpty: {
+                    message: 'The email field is required',
+                },
+                stringLength: {
+                    min: 8,
+                    message: 'The Phone number must be 8 digits'
+                },
+                numeric: {
+                    message: 'The value is not a number',
+                    // The default separators
+                    thousandsSeparator: '',
+                    decimalSeparator: '.',
+                },
+            },
+        },
         first_name: {
             validators: {
                 notEmpty: {
@@ -51,6 +86,38 @@ const enrollfv = FormValidation.formValidation(enrollForm, {
                 }
             }
         },
+        
+        parent_cid: {
+            validators: {
+                notEmpty: {
+                    message: 'The CID field is required',
+                },
+                stringLength: {
+                    max: 11,
+                    message: 'The CID must be 11 characters'
+                },
+                numeric: {
+                    message: 'The value is not a number',
+                    // The default separators
+                    thousandsSeparator: '',
+                    decimalSeparator: '.',
+                },
+            }
+        },
+        parent_name: {
+            validators: {
+                notEmpty: {
+                    message: 'This field is required',
+                }
+            }
+        },
+        parent_number: {
+            validators: {
+                notEmpty: {
+                    message: 'This field is required',
+                }
+            }
+        },
 
     },
 
@@ -62,11 +129,10 @@ const enrollfv = FormValidation.formValidation(enrollForm, {
 
     },
 }).on('core.form.valid', function (e) {
-    alert("hi")
     studentDetail();
 
 }).on('core.form.invalid', function (e) {
-    swal("Validation Error", "Some required field are empty.", "error")
+    swal("Validation failed !!!", "Some required fields are empty", "error")
 });
 
 function studentDetail() { 
