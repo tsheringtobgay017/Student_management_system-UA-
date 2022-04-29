@@ -7,9 +7,9 @@
 {% endblock stylesheets %}
 
 {% block content %}
-<ol class="breadcrumb " >
-	<li><a href="{{url_for('home_blueprint.route_default')}}"><i class="fa fa-home"> Home</i></a></li>
-	<li class="active">Student Registration</li>
+<ol class="breadcrumb ">
+	<li><a href="{{url_for('home_blueprint.route_default')}}"><i class="fa fa-home" style="font-size: 15px;"> Home</i></a></li>
+	<li class="active" style="font-size: 13px;">Student Registration</li>
 </ol>
 <hr>
 <div class="container">
@@ -18,11 +18,12 @@
 		<div class="row">
 			<form method="POST" id="registration_form" action="" enctype="multipart/form-data">
 
-				<div class="bg-primary" style="height: 24px;">Student's Personal Detail<span class="text-danger">
+				<div class="p-1 mb-2 mt-3 bg-primary" style="font-weight: 500;
+				font-size: 13px">Student's Personal Detail<span class="text-danger">
 						*</span></div>
 				<!-- student's detail -->
 				<div class="student">
-					<div class="row col-sm-12">
+					<div class="row ">
 						<div class="col-sm-4 form-group">
 							<label>CID</label>
 							<input type="text" placeholder="Enter CID" class="form-control" name="cid" id="cid">
@@ -39,7 +40,7 @@
 								id="last_name">
 						</div>
 					</div>
-					<div class="row col-sm-12">
+					<div class="row">
 						<div class="col-sm-4 form-group">
 							<label>DOB</label>
 							<input type="date" placeholder="Enter DOB" class="form-control" name="dob" id="dob">
@@ -54,10 +55,11 @@
 								id="phone_number">
 						</div>
 					</div>
-					<div class="row col-lg-12">
+					<div class="row ">
 						<div class="col-sm-4 form-group">
 							<label for="permanent_dzongkhag" class="pull-left form-label">Dzongkhag </label>
-							<select class="form-control form-select" name="permanent_dzongkhag" id="permanent_dzongkhag">
+							<select class="form-control form-select" name="permanent_dzongkhag"
+								id="permanent_dzongkhag">
 								<option value="">---Select Dzongkhag---</option>
 								{% for row in dzo_List %}
 								<option value="{{ row.dzo_id }}">{{ row.dzo_name }}</option>
@@ -80,62 +82,62 @@
 					</div>
 				</div>
 
-
 				<!-- ends student's details -->
-
 				<!-- Academic details -->
-				<div class="bg-primary one" style="height: 24px; margin-top: 259px;">Academic Detail<span
-						class="text-danger"> *</span></div>
-
-				<div class="row">
-					<div class="col-sm-4 form-group">
-						<label>Index Number</label>
-						<input type="text" placeholder="Enter Index Number" class="form-control" name="index_number"
-							id="index_number">
-					</div>
-
-
-					<div class="col-sm-4 form-group">
-						<label>Previous School</label>
-						<input type="text" placeholder="Enter Previous School Name" class="form-control"
-							name="Previous_school" id="Previous_school">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-3">
-						<label for="stream" class="pull-left form-label">Stream</label>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="row">
-						<div class="col-md-4">
-							<div class="form-check form-check-inline">
-								<label for="employment_status">Arts </label>
-								<input class="form-check-input" type="radio" name="employment_status" id="arts"
-									value="Arts">
-							</div>
+				<div class="p-1 mb-2 mt-3 bg-primary" style="font-weight: 500;
+				font-size: 13px">Academic Detail<span class="text-danger">
+					*</span></div>
+				<div class="academic">
+					<div class="row ">
+						<div class="col-sm-4 form-group">
+							<label>Index Number</label>
+							<input type="text" placeholder="Enter Index Number" class="form-control" name="index_number"
+								id="index_number">
 						</div>
-						<div class="col-md-4">
-							<div class="form-check form-check-inline">
-								<label for="employment_status">Commerce </label>
-								<input class="form-check-input" type="radio" name="employment_status" id="Self-Employed"
-									value="Self-Employed">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-check form-check-inline">
-								<label for="employment_status">Science </label>
-								<input class="form-check-input" type="radio" name="employment_status" id="un-employed"
-									value="un-employed">
-							</div>
+
+
+						<div class="col-sm-4 form-group">
+							<label>Previous School</label>
+							<input type="text" placeholder="Enter Previous School Name" class="form-control"
+								name="Previous_school" id="Previous_school">
 						</div>
 					</div>
+					<div class="row ">
+						<div class="col-md-3">
+							<label for="stream" class="pull-left form-label">Stream</label>
+						</div>
+					</div>
+					<div class="form-group ">
+						<div class="row ">
+							<div class="col-md-4">
+								<div class="form-check form-check-inline">
+									<label for="employment_status">Arts </label>
+									<input class="form-check-input" type="radio" name="employment_status" id="arts"
+										value="Arts">
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-check form-check-inline">
+									<label for="employment_status">Commerce </label>
+									<input class="form-check-input" type="radio" name="employment_status"
+										id="Self-Employed" value="Self-Employed">
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-check form-check-inline">
+									<label for="employment_status">Science </label>
+									<input class="form-check-input" type="radio" name="employment_status"
+										id="un-employed" value="un-employed">
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-
 				<!-- Academic detail end -->
 
-				<div class="bg-primary one" style="height: 24px; margin-top: 2px;">Parent's/gaurdian's Detail<span
-						class="text-danger"> *</span></div>
+				<div class=" p-1 mb-2 mt-3 bg-primary" style="font-weight: 500;
+				font-size: 13px">Parent's/gaurdian's Detail<span class="text-danger"> *</span>
+				</div>
 				<div class="row">
 					<div class="col-sm-4 form-group">
 						<label>CID</label>
@@ -162,8 +164,8 @@
 					</div>
 				</div>
 
-				<div class="bg-primary one" style="height: 24px; margin-top: 2px;">Present Address Detail<span
-						class="text-danger"> *</span></div>
+				<div class=" p-1 mb-2 mt-3 bg-primary" style="font-weight: 500;
+				font-size: 13px">Present Address Detail<span class="text-danger"> *</span></div>
 				<div class="row">
 					<div class="row col-lg-12">
 						<div class="col-sm-4 form-group">
@@ -194,7 +196,10 @@
 
 
 				<div class="button-center">
-					<button type="submit" class="btn btn-sm btn-warning student_reg">Submit</button>
+					<button type="submit" class="btn btn-sm btn-warning student_reg" style="    color: white;
+					width: 101px;
+					height: 40px;
+					font-size: 16px;">Submit</button>
 				</div>
 
 			</form>

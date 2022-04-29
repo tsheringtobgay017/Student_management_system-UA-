@@ -17,6 +17,9 @@ def store_student_details():
     student_cid = request.form.get("cid")
     first_name = request.form.get("first_name")
     last_name = request.form.get("last_name")
+    dob = request.form.get("dob")
+    student_email = request.form.get("email")
+    student_phone_number = request.form.get("phone_number")
     student_dzongkhag = request.form.get("permanent_dzongkhag")
     student_gewog = request.form.get("permanent_gewog")
     student_village = request.form.get("permanent_village")
@@ -31,11 +34,11 @@ def store_student_details():
     
 
 
-    engine.execute("INSERT INTO public.tbl_students_personal_info (id, student_cid, first_name, last_name, student_dzongkhag, student_gewog, student_village, parent_cid,"
+    engine.execute("INSERT INTO public.tbl_students_personal_info (id, student_cid, first_name, last_name, dob, student_email, student_phone_number,  student_dzongkhag, student_gewog, student_village, parent_cid,"
                     "parent_full_name, parent_contact_number, parent_email, student_present_dzongkhag, student_present_gewog, student_present_village, created_at) "
                    "VALUES ("
-                   "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-                   (id, student_cid, first_name, last_name, student_dzongkhag, student_gewog, student_village, parent_cid, parent_full_name, parent_contact_number, parent_email,student_present_dzongkhag,  student_present_gewog, student_present_village,  created_at))
+                   "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s, %s)",
+                   (id, student_cid, first_name, last_name,dob, student_email, student_phone_number, student_dzongkhag, student_gewog, student_village, parent_cid, parent_full_name, parent_contact_number, parent_email,student_present_dzongkhag,  student_present_gewog, student_present_village,  created_at))
 
     return "success"
 
