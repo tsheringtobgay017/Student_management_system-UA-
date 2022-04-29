@@ -1,16 +1,11 @@
 import os
-import numpy as np
-import cv2
 import base64
 from flask import jsonify, request, render_template, url_for, redirect, session
 from sqlalchemy import create_engine
-from torch import ge
 from config import Config
 from datetime import datetime
 from uuid import uuid4
 # from decouple import config
-import requests
-from requests.structures import CaseInsensitiveDict
 import io
 
 engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
