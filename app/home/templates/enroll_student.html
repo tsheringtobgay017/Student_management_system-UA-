@@ -3,13 +3,11 @@
 {% block title %} Student Management System {% endblock title %}
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}
-<link href="../static/vendor/formValidation/tachyons.min.css" type="text/css" rel="stylesheet" />
-<link href="../static/vendor/formValidation/formValidation.min.css" type="text/css" rel="stylesheet" />
 
 {% endblock stylesheets %}
 
 {% block content %}
-<ol class="breadcrumb">
+<ol class="breadcrumb " >
 	<li><a href="{{url_for('home_blueprint.route_default')}}"><i class="fa fa-home"> Home</i></a></li>
 	<li class="active">Student Registration</li>
 </ol>
@@ -58,19 +56,26 @@
 					</div>
 					<div class="row col-lg-12">
 						<div class="col-sm-4 form-group">
-							<label>Dzongkhag</label>
-							<input type="text" placeholder="Enter Dzongkhag " class="form-control"
-								name="permanent_dzongkhag" id="permanent_dzongkhag">
+							<label for="permanent_dzongkhag" class="pull-left form-label">Dzongkhag </label>
+							<select class="form-control form-select" name="permanent_dzongkhag" id="permanent_dzongkhag">
+								<option value="">---Select Dzongkhag---</option>
+								{% for row in dzo_List %}
+								<option value="{{ row.dzo_id }}">{{ row.dzo_name }}</option>
+								{% endfor %}
+
+							</select>
 						</div>
 						<div class="col-sm-4 form-group">
-							<label>Gewog</label>
-							<input type="text" placeholder="Enter Gewog " class="form-control" name="permanent_gewog"
-								id="permanent_gewog">
+							<label for="permanent_gewog" class="pull-left form-label">Gewog</label>
+							<select class="form-control form-select" id="permanent_gewog" name="permanent_gewog">
+								<option value="">---Select Gewog---</option>
+							</select>
 						</div>
 						<div class="col-sm-4 form-group">
-							<label>Village</label>
-							<input type="text" placeholder="Enter Village " class="form-control"
-								name="permanent_village" id="permanent_village">
+							<label for="permanent_village" class="pull-left form-label">Gewog</label>
+							<select class="form-control form-select" id="permanent_village" name="permanent_village">
+								<option value="">---Select Village---</option>
+							</select>
 						</div>
 					</div>
 				</div>
@@ -106,7 +111,8 @@
 						<div class="col-md-4">
 							<div class="form-check form-check-inline">
 								<label for="employment_status">Arts </label>
-								<input class="form-check-input" type="radio" name="arts" id="arts" value="Arts">
+								<input class="form-check-input" type="radio" name="employment_status" id="arts"
+									value="Arts">
 							</div>
 						</div>
 						<div class="col-md-4">
@@ -200,89 +206,5 @@
 
 <!-- Specific JS goes HERE -->
 {% block javascripts %}
-<script src="../static/vendor/formValidation/es6-shim.min.js"></script>
-<script src="../static/vendor/formValidation/formValidation.min.js"></script>
-<script src="../static/vendor/formValidation/Bootstrap.min.js"></script>
-<script src="../static/vendor/formValidation/Tachyons.min.js"></script>
-<script src="../static/js/enroll_student_validation.js"></script>
 
-
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script>
-	function studentDetail() { 
-		var form = document.getElementById("registration_form");
-		var data = new FormData(form);
-		$.ajax({
-			type: 'POST',
-			url: '/store-student-info',
-			data: data,
-			processData: false,
-			contentType: false,
-			cache: false,
-
-			success: function (res) {
-				swal("Information successfully submitted", "Click Ok to continue", "success")
-					.then(function () {
-						window.location = ""
-					})
-			},
-			error: function () {
-				swal("Infomation submission failed", "Click Ok to continue", "error")
-					.then(function () {
-						window.location = ""
-					})
-			}
-		});
-	};
-
-	//------------------------Script for fetching gewog list-------------------------//
-	$("#dzongkhag").on("click", function () {
-		var gewog_id = $("#dzongkhag").val();
-		$.ajax({
-			url: "/get-gewog-list",
-			method: "POST",
-			data: { type: 'Gewog', gewog_id: gewog_id },
-			dataType: "json",
-			success: function (data) {
-				console.log("A", data)
-				var list = data.gewogList;
-				var html = "<option value=''>---Select Gewog---</option>";
-				for (var count = 0; count < list.length; count++) {
-					html += "<option value='" + list[count].gewog_id + "'>" + list[count].gewog_name + "</option>"
-				}
-				$("#gewog").html(html);
-			},
-			error: function () {
-				alert('error');
-			}
-		});
-	})
-	//-------------------------script ends-----------------------------------//
-
-	//--------------------------Script for fetching village list-------------------//
-	$("#gewog").on("change", function () {
-		var village_id = $("#gewog").val();
-		$.ajax({
-			url: "/get-village-list",
-			method: "POST",
-			data: { type: 'village', village_id: village_id },
-			dataType: "json",
-			success: function (data) {
-				var list = data.villageList
-				var html = "<option value=''>---Select Village---</option>";
-				for (var count = 0; count < list.length; count++) {
-					html += "<option value='" + list[count].village_id + "'>" + list[count].village_name + "</option>"
-				}
-
-				$("#village").html(html);
-			},
-			error: function () {
-				alert('error');
-			}
-		});
-	})
-//-------------------------------Script ends--------------------------------//
-</script>
 {% endblock javascripts %}
