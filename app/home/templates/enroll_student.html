@@ -8,7 +8,8 @@
 
 {% block content %}
 <ol class="breadcrumb ">
-	<li><a href="{{url_for('home_blueprint.route_default')}}"><i class="fa fa-home" style="font-size: 15px;"> Home</i></a></li>
+	<li><a href="{{url_for('home_blueprint.route_default')}}"><i class="fa fa-home" style="font-size: 15px;">
+				Home</i></a></li>
 	<li class="active" style="font-size: 13px;">Student Registration</li>
 </ol>
 <hr>
@@ -86,7 +87,7 @@
 				<!-- Academic details -->
 				<div class="p-1 mb-2 mt-3 bg-primary" style="font-weight: 500;
 				font-size: 13px">Academic Detail<span class="text-danger">
-					*</span></div>
+						*</span></div>
 				<div class="academic">
 					<div class="row ">
 						<div class="col-sm-4 form-group">
@@ -128,6 +129,18 @@
 									<label for="employment_status">Science </label>
 									<input class="form-check-input" type="radio" name="employment_status"
 										id="un-employed" value="un-employed">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="signature">
+						<hr class="my-4" />
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="phone" class="form-control-label">Signature</label>
+									<input type="file" class="dropify form-control rounded-2" name="signature"
+										id="signature" />
 								</div>
 							</div>
 						</div>

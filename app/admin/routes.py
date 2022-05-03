@@ -1,5 +1,6 @@
 from flask import render_template
 from app.admin import blueprint
+from app.admin.service import save_user_table
 
 
 @blueprint.route('/admin-dashboard')
@@ -7,14 +8,14 @@ def admin_dashboard():
     return render_template('admin.html')
 
 
-@blueprint.route('/admin-buttons')
+@blueprint.route('/admin-add-user')
 def admin_buttons():
-    return render_template('/pages/ui-features/buttons.html')
+    return render_template('/pages/user-management/add-new-user.html')
 
 
 @blueprint.route('/admin-dropdowns')
 def admin_dropdowns():
-    return render_template('/pages/ui-features/dropdowns.html')
+    return render_template('/pages/user-management/dropdowns.html')
 
 
 @blueprint.route('/admin-typography')
@@ -64,4 +65,10 @@ def admin_error_500():
 
 @blueprint.route('/admin-documentation')
 def admin_documentation():
-    return render_template('/pages/documentation/documentation.html')
+    return render_template('/pages/documentation/documentation.html'),
+
+
+# For storing admin details
+@blueprint.route("/save-user", methods=['POST'])
+def save_user():
+   return save_user_table()

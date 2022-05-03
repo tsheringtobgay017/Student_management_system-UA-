@@ -1,0 +1,118 @@
+{% extends 'layouts/admin_main.html' %}
+
+{% block title %} Dashboard For Bank Users {% endblock title %}
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+
+{% endblock stylesheets %}
+
+{% block content %}
+<!-- partial:../../partials/_navbar.html -->
+
+<!-- partial -->
+
+<!-- partial:../../partials/_settings-panel.html -->
+<!-- partial -->
+<!-- partial:../../partials/_sidebar.html -->
+
+<!-- partial -->
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card-body">
+               
+                 
+                     
+                          <form action="/users-management/save-user" id="user-form">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle">Create New User</h5>
+                            
+                          </div>
+                          <div class="modal-body">
+                              <div class="pl-lg-4">
+                                  <div class="row">
+                                      <div class="col-lg-6">
+                                          <div class="form-group">
+                                              <label class="form-control-label" for="username">Username</label>
+                                              <input type="text" name="username" id="username" class="form-control" placeholder="Username" autocomplete="off">
+                                          </div>
+                                      </div>
+                                      <div class="col-lg-6">
+                                          <div class="form-group">
+                                              <label class="form-control-label" for="email">Email address</label>
+                                              <input type="email" name="email" id="email" class="form-control" placeholder="email address" autocomplete="off">
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-lg-6">
+                                          <div class="form-group">
+                                              <label class="form-control-label" for="password">Password</label>
+                                              <input type="password" name="password" id="password" class="form-control" autocomplete="off">
+                                          </div>
+                                      </div>
+                                      <div class="col-lg-6">
+                                          <div class="form-group">
+                                              <label class="form-control-label" for="role">Role</label>
+                                              <select name="role" id="role" class="form-control">
+                                                  <option value="">Select Role</option>
+                                                  <option value="admin">Administrator</option>
+                                                  <option value="bank">Bank User</option>
+                                                  <option value="bank_manager">Bank Manager</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="row" id="bank_div" style="display: none;">
+                                      <div class="col-lg-6">
+                                          <div class="form-group">
+                                              <label class="form-control-label" for="bank_name">Select Bank</label>
+                                              <select name="bank_name" id="bank_name" class="form-control">
+                                                  <option value="">Select Bank</option>
+                                                  <option value="BOB">BOBL</option>
+                                                  <option value="BNB">BNBL</option>
+                                                  <option value="TBANK">T-Bank</option>
+                                                  <option value="DPNB">Druk PNBL</option>
+                                                  <option value="BDB">BDBL</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="modal-footer">
+                              
+                              <button type="button" id="save" class="btn btn-primary">Save</button>
+                          </div>
+                      </form>
+                      
+                 
+             
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:../../partials/_footer.html -->
+
+  <!-- partial -->
+</div>
+<!-- main-panel ends -->
+
+<!-- page-body-wrapper ends -->
+
+<!-- container-scroller -->
+<!-- plugins:js -->
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}
+{% endblock javascripts %}
