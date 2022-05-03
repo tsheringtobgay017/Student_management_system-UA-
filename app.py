@@ -1,10 +1,13 @@
 
-from flask import Flask
-from app import create_app
-from app import db
+from flask_migrate import Migrate
+from os import environ
+from sys import exit
 from decouple import config
+import logging
 
 from config import config_dict
+from app import create_app
+from app import db
 
 # WARNING: Don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
@@ -14,7 +17,7 @@ get_config_mode = 'Debug' if DEBUG else 'Production'
 
 try:
 
-    # Load the configuration using the default values 
+    # Load the configuration using the default values
     app_config = config_dict[get_config_mode.capitalize()]
 
 except KeyError:
@@ -24,6 +27,8 @@ app = create_app(__name__)
 
 
 if DEBUG:
+    app.logger.info('DEBUG       = ' + str(DEBUG))
+    app.logger.info('Environment = ' + get_config_mode)
     app.logger.info('DBMS        = ' + app_config.SQLALCHEMY_DATABASE_URI)
 
 if __name__ == '__main__':
