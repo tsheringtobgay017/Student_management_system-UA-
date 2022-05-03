@@ -11,7 +11,7 @@ import io
 engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
 connection = engine.connect()
 
-# This is the route for storing student detials into tbl_student_reg 
+# This is the route for storing student detials into tbl_student_personal_info 
 def store_student_details():
     id = uuid4()
     student_cid = request.form.get("cid")
@@ -39,6 +39,27 @@ def store_student_details():
                    "VALUES ("
                    "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s, %s)",
                    (id, student_cid, first_name, last_name,dob, student_email, student_phone_number, student_dzongkhag, student_gewog, student_village, parent_cid, parent_full_name, parent_contact_number, parent_email,student_present_dzongkhag,  student_present_gewog, student_present_village,  created_at))
+
+    return id
+
+
+# This is the route for storing student detials into tbl_academic_detail 
+def store_academic_details(id_personal):
+    id = uuid4()
+    index_number = request.form.get("index_number")
+    previous_school_name = request.form.get("previous_school")
+    stream = request.form.get("stream")
+    marksheet = request.form.get("marksheet")
+    supw_grade = request.form.get("supw")
+    percentage_obtained = request.form.get("percent")
+    created_at = datetime.now()
+    
+
+    engine.execute("INSERT INTO public.tbl_academic_detail (id, std_personal_info_id, index_number, previous_school_name, stream, marksheet, supw_grade, percentage_obtained,"
+                    "created_at) "
+                   "VALUES ("
+                   "%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+                   (id, id_personal, index_number, previous_school_name, stream, marksheet, supw_grade, percentage_obtained,  created_at))
 
     return "success"
 

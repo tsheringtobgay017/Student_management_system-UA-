@@ -3,7 +3,6 @@
 {% block title %} Student Management System {% endblock title %}
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}
-
 {% endblock stylesheets %}
 
 {% block content %}
@@ -100,7 +99,7 @@
 						<div class="col-sm-4 form-group">
 							<label>Previous School</label>
 							<input type="text" placeholder="Enter Previous School Name" class="form-control"
-								name="Previous_school" id="Previous_school">
+								name="previous_school" id="previous_school">
 						</div>
 					</div>
 					<div class="row ">
@@ -112,37 +111,49 @@
 						<div class="row ">
 							<div class="col-md-4">
 								<div class="form-check form-check-inline">
-									<label for="employment_status">Arts </label>
-									<input class="form-check-input" type="radio" name="employment_status" id="arts"
+									<label for="stream">Arts </label>
+									<input class="form-check-input" type="radio" name="stream" id="arts"
 										value="Arts">
 								</div>
 							</div>
 							<div class="col-md-4">
 								<div class="form-check form-check-inline">
-									<label for="employment_status">Commerce </label>
-									<input class="form-check-input" type="radio" name="employment_status"
-										id="Self-Employed" value="Self-Employed">
+									<label for="stream">Commerce </label>
+									<input class="form-check-input" type="radio" name="stream"
+										id="commerce" value="Commerce">
 								</div>
 							</div>
 							<div class="col-md-4">
 								<div class="form-check form-check-inline">
-									<label for="employment_status">Science </label>
-									<input class="form-check-input" type="radio" name="employment_status"
-										id="un-employed" value="un-employed">
+									<label for="stream">Science </label>
+									<input class="form-check-input" type="radio" name="stream"
+										id="science" value="Science">
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="signature">
-						<hr class="my-4" />
+					
+						<hr class="my-4" >
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="phone" class="form-control-label">Signature</label>
-									<input type="file" class="dropify form-control rounded-2" name="signature"
-										id="signature" />
+									<label for="phone" class="form-control-label">Marksheet</label>
+									<input type="file" class="dropify form-control rounded-2" name="marksheet"
+										id="marksheet" />
 								</div>
 							</div>
+						</div>
+						<div class="row">
+						<div class="col-sm-4 form-group">
+							<label>SUPW Grade</label>
+							<input type="text" placeholder="Enter supw grade" class="form-control" name="supw"
+								id="supw">
+						</div>
+
+						<div class="col-sm-4 form-group">
+							<label>Percentage</label>
+							<input type="text" placeholder="Enter percentage obtained" class="form-control" name="percent"
+								id="percent">
 						</div>
 					</div>
 				</div>

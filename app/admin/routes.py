@@ -1,6 +1,6 @@
-from flask import render_template
+from flask import render_template , jsonify
 from app.admin import blueprint
-from app.admin.service import save_user_table
+from app.admin.service import save_user_table, save_user_detail_table
 
 
 @blueprint.route('/admin-dashboard')
@@ -71,4 +71,12 @@ def admin_documentation():
 # For storing admin details
 @blueprint.route("/save-user", methods=['POST'])
 def save_user():
-   return save_user_table()
+    try:
+        user_id = save_user_table()
+        message = save_user_detail_table(user_id)
+        if (message == 'saved'):
+            return jsonify({"message": message}), 200
+        else:
+            return jsonify({"message": "error"}), 500
+    except:
+        return jsonify({"message": "error"}), 500
