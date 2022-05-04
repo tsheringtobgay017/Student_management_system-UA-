@@ -5,6 +5,7 @@ from sys import exit
 from decouple import config
 import logging
 
+
 from config import config_dict
 from app import create_app
 from app import db
@@ -24,6 +25,7 @@ except KeyError:
     exit('Error: Invalid <config_mode>. Expected values [Debug, Production] ')
 
 app = create_app(__name__)
+Migrate(app, db)
 
 
 if DEBUG:

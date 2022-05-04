@@ -1,4 +1,4 @@
-from flask import render_template , jsonify, request
+from flask import render_template, jsonify, request
 from flask_login import login_required
 from app.admin import blueprint
 from app.admin.service import save_user_table, save_user_detail_table, all_users, is_admin
@@ -14,9 +14,9 @@ def admin_buttons():
     return render_template('/pages/user-management/add-new-user.html')
 
 
-@blueprint.route('/admin-dropdowns')
+@blueprint.route('/admin-user-list')
 def admin_dropdowns():
-    return render_template('/pages/user-management/dropdowns.html')
+    return render_template('/pages/user-management/user-list.html')
 
 
 @blueprint.route('/admin-typography')
@@ -72,7 +72,7 @@ def admin_documentation():
 @blueprint.route('/users', methods=['POST'])
 def usersList():
     if(is_admin()):
-        users =all_users()
+        users = all_users()
     else:
         users = []
 

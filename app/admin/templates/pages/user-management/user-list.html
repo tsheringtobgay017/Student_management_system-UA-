@@ -37,19 +37,19 @@
                                 </tr>
                                 </thead>
                                 <tbody class="list">
-                                  {% for user in users %}
+                                 
                                       <tr>
                                           <th scope="row">
-                                              {{ loop.index }}
+                                           
                                           </th>
                                           <th scope="row">
-                                              {{ user.username }}
+                                           
                                           </th>
                                           <td class="budget">
-                                              {{ user.email}}
+                                            
                                           </td>
                                           <td class="budget">
-                                              {{ user.role }}
+                                            
                                           </td>
                                           
                                           <td class="text-right">
@@ -58,13 +58,11 @@
                                                       <i class="fas fa-ellipsis-v"></i>
                                                   </a>
                                                   <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                      <a class="dropdown-item" href="/user/{{ user.user_id }}">View</a>
-                                                      <a class="dropdown-item" href="javascript:void(0)" onclick="deleteUser('{{ user.user_id }}')">Delete</a>
-                                                  </div>
+                                                     
                                               </div>
                                           </td>
                                       </tr>
-                                  {% endfor %}
+                              
                                   </tbody>
                             </table>
 
@@ -121,8 +119,7 @@
                             '<i class="fas fa-ellipsis-v"></i>'+
                         '</a>'+
                         '<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">'+
-                            '<a class="dropdown-item" href="/user/'+full.id+'">View</a>'+
-                            '<a class="dropdown-item" href="javascript:void(0)" onclick="deleteUser('+full.id+')">Delete</a>'+
+                            
                         '</div>'+
                     '</div>'
                 }
