@@ -29,6 +29,11 @@ def admin_basic_elements():
     return render_template('/pages/forms/basic_elements.html')
 
 
+@blueprint.route('/admin-student-info')
+def admin_student_info():
+    return render_template('/pages/forms/studentinfo.html')
+
+
 @blueprint.route('/admin-basic-tables')
 def admin_basic_tables():
     return render_template('/pages/tables/basic-table.html')
