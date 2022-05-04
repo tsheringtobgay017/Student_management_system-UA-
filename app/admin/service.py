@@ -33,7 +33,7 @@ def save_user_detail_table(user_id):
                        (id, user_id, role, ip, browser, datetime.now()))
     return "saved"
 
-
+# for users search
 def all_users():
     draw = request.form.get('draw')
     row = request.form.get('start')
@@ -50,7 +50,6 @@ def all_users():
                 "AND U.id = UD.user_id LIMIT " + row_per_page + " OFFSET " + row + ""
 
     users = connection.execute(str_query).fetchall()
-   
 
     data = []
     count = 0
@@ -70,6 +69,20 @@ def all_users():
     }
 
     return respose
+
+# fetch user details
+def get_user_by_id(id):
+    user = connection.execute(
+        'SELECT *, U.id as user_id FROM public."User" AS U, public.user_detail as UD WHERE U.id = UD.user_id AND user_id = %s',
+        id).first()
+    return user
+
+
+# delete user details
+def delete_user_by_id(id):
+    # check self delete
+    delete = connection.execute('DELETE FROM public."User" WHERE id=%s', id)
+    return True
 
 
 # defining user roles
@@ -93,3 +106,49 @@ def is_normal():
         return True
     else:
         return False
+
+
+def all_std():
+    draw = request.form.get('draw')
+    row = request.form.get('start')
+    row_per_page = request.form.get('length')
+    search_value = request.form['search[value]']
+    search_query = ' '
+    if (search_value != ''):
+        search_query = "AND (A.index_number LIKE '%%" + search_value + "%%' " \
+            "OR P.student_cid LIKE '%%" + search_value + \
+            "%%' OR P.first_name LIKE '%% "+search_value+"%%') "
+
+    str_query = 'SELECT *, count(*) OVER() AS count_all, P.id FROM public.tbl_students_personal_info AS P, public.tbl_academic_detail as A WHERE P.id IS NOT NULL  '\
+                ''+ search_query + '' \
+                "AND P.id = A.std_personal_info_id LIMIT " + row_per_page + " OFFSET " + row + ""
+
+    users_std = connection.execute(str_query).fetchall()
+
+    data = []
+    count = 0
+    for index, user in enumerate(users_std):
+        data.append({'sl': index + 1,
+                     'index_number': user.index_number,
+                     'student_cid': user.student_cid,
+                     'first_name': user.first_name,
+                     'student_email': user.student_email,
+                     'id': user.id})
+        count = user.count_all
+
+    respose_std = {
+        "draw": int(draw),
+        "iTotalRecords": count,
+        "iTotalDisplayRecords": count,
+        "aaData": data
+    }
+
+    return respose_std
+
+
+# fetch student details from database
+def get_std_by_id(id):
+    std_details = connection.execute(
+        'SELECT *, P.id FROM public.tbl_students_personal_info AS P, public.tbl_academic_detail as A WHERE P.id = A.std_personal_info_id AND P.id =%s',
+        id).first()
+    return std_details

@@ -35,38 +35,53 @@
                           <tr>
                               <th scope="col" class="sort" data-sort="name">SL</th>
                               <th scope="col" class="sort" data-sort="name">Index Number</th>
-                              <th scope="col" class="sort" data-sort="name">Student Name</th>
                               <th scope="col" class="sort" data-sort="budget">CID</th>
+                              <th scope="col" class="sort" data-sort="name">Student Name</th>
+                              <th scope="col" class="sort" data-sort="name">Email</th>
                               <th scope="col">action</th>
                           </tr>
                           </thead>
                           <tbody class="list">
                            
-                                <tr>
-                                    <th scope="row">
-                                      
-                                    </th>
-                                    <th scope="row">
-                                       
-                                    </th>
-                                    <td class="budget">
-                                       
-                                    </td>
-                                    <td class="budget">
-                                     
-                                    </td>
-                                    
-                                    <td class="text-right">
-                                        <div class="dropdown">
-                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                               
-                                            </div>
+                            {% for std in users_st %}
+                            <tr>
+                                <th scope="row">
+                                    {{ loop.index }}
+                                </th>
+                                <th scope="row">
+                                    {{ std.index_number }}
+                                </th>
+                                <td class="budget">
+                                    {{ std.student_cid}}
+                                </td>
+                                <td class="budget">
+                                    {{ std.first_name }}
+                                </td>
+                                <td class="budget">
+                                  {{ std.first_name }}
+                              </td>
+                              <td class="budget">
+                                {{ std.student_email }}
+                            </td>
+
+                                <td class="text-right">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm btn-icon-only text-light" href="#"
+                                            role="button" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div
+                                            class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            <a class="dropdown-item"
+                                                href="/std-detials/{{ std.id }}">View</a>
+                                            <a class="dropdown-item" href="javascript:void(0)"
+                                                onclick="deleteUser('{{ user.user_id }}')">Delete</a>
                                         </div>
-                                    </td>
-                                </tr>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
                       
                             </tbody>
                       </table>
@@ -76,21 +91,7 @@
               </div>
           </div>
           </div>
-          <nav aria-label="...">
-            <ul class="pagination">
-              <li class="page-item disabled">
-                <a class="page-link">Previous</a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item active" aria-current="page">
-                <a class="page-link" href="#">2</a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-              </li>
-            </ul>
-          </nav>
+    
         </div>
       </div>
     </div>
@@ -126,22 +127,24 @@
             'serverSide': true,
             'bDestroy': true,
             'serverMethod': 'POST',
-            // 'ajax': {
-            //     'url':'/users'
-            // },
+            'ajax': {
+                'url':'/users-std'
+            },
             'columns': [
                 { data: 'sl' },
-                { data: 'username' },
-                { data: 'email' },
-                { data: 'role' },
+                { data: 'index_number' },
+                { data: 'student_cid' },
+                { data: 'first_name' },
+                { data: 'student_email' },
+              
                 {
                 "render": function(data, type, full, meta) {
                     return '<div class="dropdown">'+
-                        '<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
-                            '<i class="fas fa-ellipsis-v"></i>'+
+                        '<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background:orange">'+
+                            '<i class="fas fa-ellipsis-v"><b>Click</b></i>'+
                         '</a>'+
                         '<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">'+
-                            '<a class="dropdown-item" href="/user/'+full.id+'">View</a>'+
+                            '<a class="dropdown-item" href="/std-detials/' + full.id + '">View</a>'+
                             '<a class="dropdown-item" href="javascript:void(0)" onclick="deleteUser('+full.id+')">Delete</a>'+
                         '</div>'+
                     '</div>'
