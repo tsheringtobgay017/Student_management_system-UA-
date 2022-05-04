@@ -6,7 +6,6 @@ Digital KYC developer team
 import os
 from decouple import config
 
-
 class Config(object):
     basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -21,16 +20,16 @@ class Config(object):
     # MAIL_USE_SSL = True
 
     # This will create a file in <app> FOLDER
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'db.sqlite3')
+    # SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'db.sqlite3')
 
     # PostgreSQL database
     SQLALCHEMY_DATABASE_URI = '{}://{}:{}@{}:{}/{}'.format(
         config('DB_ENGINE', default='postgresql'),
         config('DB_USERNAME', default='postgre'),
-        config('DB_PASS', default='secret'),
+        config('DB_PASS', default='1600one123'),
         config('DB_HOST', default='localhost'),
         config('DB_PORT', default=5432),
-        config('DB_NAME', default='student_db')
+        config('DB_NAME', default='student_management_system')
     )
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -48,10 +47,10 @@ class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = '{}://{}:{}@{}:{}/{}'.format(
         config('DB_ENGINE', default='postgresql'),
         config('DB_USERNAME', default='postgre'),
-        config('DB_PASS', default='secret'),
+        config('DB_PASS', default='1600one123'),
         config('DB_HOST', default='localhost'),
         config('DB_PORT', default=5432),
-        config('DB_NAME', default='student_db')
+        config('DB_NAME', default='student_management_system')
     )
 
 

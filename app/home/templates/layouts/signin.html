@@ -31,17 +31,18 @@
                 {% block content %}
                 {% endblock content %}
             
-                {% include "partials/_footerhome.html" %}
+                <!-- {% include "partials/_footerhome.html" %} -->
 
 
 
     <!-- Specific JS goes HERE -->
-    {% block javascripts %}{% endblock javascripts %}
+    {% block javascripts %} {% endblock javascripts %}
  <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
  <script src="../static/js/headroom.min.js"></script>
  <script src="../static/js/jQuery.headroom.min.js"></script>
  <script src="../static/js/template.js"></script>
+
 </body>
 </html>
