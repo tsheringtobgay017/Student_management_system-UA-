@@ -1,7 +1,7 @@
 from flask import render_template, jsonify, request
 from flask_login import login_required
 from app.admin import blueprint
-from app.admin.service import save_user_table, save_user_detail_table, all_users, is_admin
+from app.admin.service import save_user_table, save_user_detail_table, all_users, is_admin, get_user_by_id, delete_user_by_id, get_std_by_id, all_std
 
 
 @blueprint.route('/admin-dashboard')
@@ -10,12 +10,12 @@ def admin_dashboard():
 
 
 @blueprint.route('/admin-add-user')
-def admin_buttons():
+def admin_add_user():
     return render_template('/pages/user-management/add-new-user.html')
 
 
 @blueprint.route('/admin-user-list')
-def admin_dropdowns():
+def admin_user_list():
     return render_template('/pages/user-management/user-list.html')
 
 
@@ -29,9 +29,9 @@ def admin_basic_elements():
     return render_template('/pages/forms/basic_elements.html')
 
 
-@blueprint.route('/admin-student-info')
-def admin_student_info():
-    return render_template('/pages/forms/studentinfo.html')
+# @blueprint.route('/admin-student-info')
+# def admin_student_info():
+   
 
 
 @blueprint.route('/admin-basic-tables')
@@ -89,4 +89,35 @@ def usersList():
 def save_user():
         user_id = save_user_table()
         return save_user_detail_table(user_id)
-        
+
+
+# fetch user details
+@blueprint.route('/user/<id>', methods=['GET'])
+def users(id):
+    user = get_user_by_id(id)
+    return user
+
+
+@blueprint.route('/users-std', methods=['POST'])
+def stdList():
+    if(is_admin()):
+        users_st = all_std()
+    else:
+        users_st = []
+
+    return users_st
+
+# fetch student details
+@blueprint.route('/std-detials/<id>', methods=['GET'])
+def std_details(id):
+    std = get_std_by_id(id)
+    return render_template('/pages/forms/studentinfo.html', std=std)
+
+
+@blueprint.route('/delete/<id>', methods=['POST'])
+def delete_user(id):
+    delete = delete_user_by_id(id)
+    if(delete):
+        return 'success', 200
+    else:
+        return 'error', 500

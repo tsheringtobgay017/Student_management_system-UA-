@@ -13,9 +13,9 @@
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="ui-basic">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="{{url_for('admin_blueprint.admin_buttons')}}">Add New User</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{url_for('admin_blueprint.admin_dropdowns')}}">User List</a></li>
+        <ul class="nav flex-column sub-menu" style="background: white;">
+          <li class="nav-item"> <a class="nav-link" href="{{url_for('admin_blueprint.admin_add_user')}}" style="color: #5c5656;">Add New User</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{url_for('admin_blueprint.admin_user_list')}}" style="color: #5c5656;">User List</a></li>
           <!-- <li class="nav-item"> <a class="nav-link" href="{{url_for('admin_blueprint.admin_typography')}}">Typography</a></li> -->
         </ul>
       </div>
@@ -23,12 +23,12 @@
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
         <i class="icon-columns menu-icon"></i>
-        <span class="menu-title">Registration</span>
+        <span class="menu-title">Applications</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="form-elements">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item"><a class="nav-link" href="{{url_for('admin_blueprint.admin_basic_elements')}}">Registered Students</a></li>
+        <ul class="nav flex-column sub-menu" style="background: white;">
+          <li class="nav-item"><a class="nav-link" href="{{url_for('admin_blueprint.admin_basic_elements')}}" style="color: #5c5656;">Application List</a></li>
         </ul>
       </div>
     </li>
