@@ -24,57 +24,67 @@
                     <div class="student">
                         <div class="row ">
                             <div class="col-sm-4 form-group">
-                                <label>CID</label>
-                                <input type="text" placeholder="Enter CID" class="form-control" name="cid" id="cid">
-                            </div>
+                            <p>CID: {{std.student_cid}}</p>
+                         
+                                <!-- <label>CID</label>
+                                <input type="text" placeholder="Enter CID" class="form-control" name="cid" id="cid" value="{{std.student_cid}}"> -->
+                            </div> 
                             <div class="col-sm-4 form-group">
-                                <label>First Name</label>
+                                <p>First Name: {{std.first_name}}</p>
+                                <!-- <label>First Name</label>
                                 <input type="text" placeholder="Enter Last Name" class="form-control" name="first_name"
-                                    id="first_name">
+                                    id="first_name" value="{{std.first_name}}"> -->
                             </div>
     
                             <div class="col-sm-4 form-group">
-                                <label>Last Name</label>
+                                <p>Last Name: {{std.last_name}}</p>
+                                <!-- <label>Last Name</label>
                                 <input type="text" placeholder="Enter Last Name" class="form-control" name="last_name"
-                                    id="last_name">
+                                    id="last_name" value="{{std.last_name}}"> -->
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-4 form-group">
-                                <label>DOB</label>
-                                <input type="date" placeholder="Enter DOB" class="form-control" name="dob" id="dob">
+                                <p>Date of Birth: {{std.dob}}</p>
+                                <!-- <label>DOB</label>
+                                <input type="date" placeholder="Enter DOB" class="form-control" name="dob" id="dob"> -->
                             </div>
                             <div class="col-sm-4 form-group">
-                                <label>Email Address</label>
-                                <input type="email" placeholder="Enter email" class="form-control" name="email" id="email">
+                                <p>Email Address: {{std.student_email}}</p>
+                                <!-- <label>Email Address</label>
+                                <input type="email" placeholder="Enter email" class="form-control" name="email" id="email"> -->
                             </div>
                             <div class="col-sm-4 form-group">
-                                <label>Phone Number</label>
+                                <p>Phone Number: {{std.student_phone_number}}</p>
+                                <!-- <label>Phone Number</label>
                                 <input type="text" placeholder="Enter Phone Number" class="form-control" name="phone_number"
-                                    id="phone_number">
+                                    id="phone_number"> -->
                             </div>
                         </div>
                         <div class="row ">
                             <div class="col-sm-4 form-group">
-                                <label for="permanent_dzongkhag" class="pull-left form-label">Dzongkhag </label>
+                                <p>Dzongkhag: {{std.student_dzongkhag}}</p>
+                                <!-- <label for="permanent_dzongkhag" class="pull-left form-label">Dzongkhag </label>
                                 <select class="form-control form-select" name="permanent_dzongkhag"
                                     id="permanent_dzongkhag">
                                     <option value="">---Select Dzongkhag---</option>
                                     
     
-                                </select>
+                                </select> -->
                             </div>
                             <div class="col-sm-4 form-group">
-                                <label for="permanent_gewog" class="pull-left form-label">Gewog</label>
+                                <p>Gewog: {{std.student_gewog}}</p>
+                                <!-- <label for="permanent_gewog" class="pull-left form-label">Gewog</label>
                                 <select class="form-control form-select" id="permanent_gewog" name="permanent_gewog">
                                     <option value="">---Select Gewog---</option>
-                                </select>
+                                </select> -->
                             </div>
                             <div class="col-sm-4 form-group">
-                                <label for="permanent_village" class="pull-left form-label">Gewog</label>
+                                <p>Village: {{std.student_village}}</p>
+                                <!-- <label for="permanent_village" class="pull-left form-label">Gewog</label>
                                 <select class="form-control form-select" id="permanent_village" name="permanent_village">
                                     <option value="">---Select Village---</option>
-                                </select>
+                                </select> -->
                             </div>
                         </div>
                     </div>
@@ -87,53 +97,33 @@
                     <div class="academic">
                         <div class="row ">
                             <div class="col-sm-4 form-group">
-                                <label>Index Number</label>
+                                <p>Index Number: {{std.index_number}}</p>
+                                <!-- <label>Index Number</label>
                                 <input type="text" placeholder="Enter Index Number" class="form-control" name="index_number"
-                                    id="index_number">
+                                    id="index_number"> -->
                             </div>
     
     
                             <div class="col-sm-4 form-group">
-                                <label>Previous School</label>
+                                <p>Previous School: {{std.previous_school_name}}</p>
+                                <!-- <label>Previous School</label>
                                 <input type="text" placeholder="Enter Previous School Name" class="form-control"
-                                    name="previous_school" id="previous_school">
+                                    name="previous_school" id="previous_school"> -->
+                            </div>
+                            <div class="col-sm-4 form-group">
+                                <p>Stream: {{std.stream}}</p>
+                                <!-- <label>Previous School</label>
+                                <input type="text" placeholder="Enter Previous School Name" class="form-control"
+                                    name="previous_school" id="previous_school"> -->
                             </div>
                         </div>
-                        <div class="row ">
-                            <div class="col-md-3">
-                                <label for="stream" class="pull-left form-label">Stream</label>
-                            </div>
-                        </div>
-                        <div class="form-group ">
-                            <div class="row ">
-                                <div class="col-md-4">
-                                    <div class="form-check form-check-inline">
-                                        <label for="stream">Arts </label>
-                                        <input class="form-check-input" type="radio" name="stream" id="arts"
-                                            value="Arts">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-check form-check-inline">
-                                        <label for="stream">Commerce </label>
-                                        <input class="form-check-input" type="radio" name="stream"
-                                            id="commerce" value="Commerce">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-check form-check-inline">
-                                        <label for="stream">Science </label>
-                                        <input class="form-check-input" type="radio" name="stream"
-                                            id="science" value="Science">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
+                       
+                       
                             <hr class="my-4" >
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <p>Marksheet: {{std.marksheet}}</p>
                                         <label for="phone" class="form-control-label">Marksheet</label>
                                         <input type="file" class="dropify form-control rounded-2" name="marksheet"
                                             id="marksheet" />
@@ -142,15 +132,17 @@
                             </div>
                             <div class="row">
                             <div class="col-sm-4 form-group">
-                                <label>SUPW Grade</label>
+                                <p>SUPW Grade: {{std.supw_grade}}</p>
+                                <!-- <label>SUPW Grade</label>
                                 <input type="text" placeholder="Enter supw grade" class="form-control" name="supw"
-                                    id="supw">
+                                    id="supw"> -->
                             </div>
     
                             <div class="col-sm-4 form-group">
-                                <label>Percentage</label>
+                                <p>Percentage: {{std.percentage_obtained}}</p>
+                                <!-- <label>Percentage</label>
                                 <input type="text" placeholder="Enter percentage obtained" class="form-control" name="percent"
-                                    id="percent">
+                                    id="percent"> -->
                             </div>
                         </div>
                     </div>
@@ -161,27 +153,31 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-4 form-group">
-                            <label>CID</label>
+                            <p>CID: {{std.parent_cid}}</p>
+                            <!-- <label>CID</label>
                             <input type="text" placeholder="Enter Parent/gaurdian's CID" class="form-control"
-                                name="parent_cid" id="parent_cid">
+                                name="parent_cid" id="parent_cid"> -->
                         </div>
                         <div class="col-sm-4 form-group">
-                            <label>Name</label>
+                            <p>Name: {{std.parent_full_name}}</p>
+                            <!-- <label>Name</label>
                             <input type="text" placeholder="Enter Parent/gaurdian Name" class="form-control"
-                                name="parent_name" id="parent_name">
+                                name="parent_name" id="parent_name"> -->
                         </div>
     
                         <div class="col-sm-4 form-group">
-                            <label>Phone Number</label>
+                            <p>Phone Number: {{std.parent_contact_number}}</p>
+                            <!-- <label>Phone Number</label>
                             <input type="text" placeholder="Enter Parent's Number" class="form-control" name="parent_number"
-                                id="parent_number">
+                                id="parent_number"> -->
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4 form-group">
-                            <label>Email Address</label>
+                            <p>Email Address: {{std.parent_email}}</p>
+                            <!-- <label>Email Address</label>
                             <input type="email" placeholder="Enter Parent's Email" class="form-control" name="parent_email"
-                                id="parent_email">
+                                id="parent_email"> -->
                         </div>
                     </div>
     
@@ -190,24 +186,27 @@
                     <div class="row">
                         <div class="row col-lg-12">
                             <div class="col-sm-4 form-group">
-                                <label for="present_dzongkhag" class="pull-left form-label">Dzongkhag </label>
+                                <p>Dzongkhag: {{std.student_present_dzongkhag}}</p>
+                                <!-- <label for="present_dzongkhag" class="pull-left form-label">Dzongkhag </label>
                                 <select class="form-control form-select" name="present_dzongkhag" id="present_dzongkhag">
                                     <option value="">---Select Dzongkhag---</option>
                                     
     
-                                </select>
+                                </select> -->
                             </div>
                             <div class="col-sm-4 form-group">
-                                <label for="present_gewog" class="pull-left form-label">Gewog</label>
+                                <p>Gewog: {{std.student_present_gewog}}</p>
+                                <!-- <label for="present_gewog" class="pull-left form-label">Gewog</label>
                                 <select class="form-control form-select" id="present_gewog" name="present_gewog">
                                     <option value="">---Select Gewog---</option>
-                                </select>
+                                </select> -->
                             </div>
                             <div class="col-sm-4 form-group">
-                                <label for="present_village" class="pull-left form-label">Village</label>
+                                <p>Village: {{std.student_present_village}}</p>
+                                <!-- <label for="present_village" class="pull-left form-label">Village</label>
                                 <select class="form-control form-select" id="present_village" name="present_village">
                                     <option value="">---Select Village---</option>
-                                </select>
+                                </select> -->
                             </div>
                         </div>
                     </div>

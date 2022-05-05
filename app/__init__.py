@@ -7,12 +7,12 @@ from flask_migrate import Migrate
 from datetime import timedelta
 
 db = SQLAlchemy()
-# login_manager = LoginManager()
+login_manager = LoginManager()
 migrate = Migrate()
 
 def register_extensions(app):
     db.init_app(app)
-    # login_manager.init_app(app)
+    login_manager.init_app(app)
     migrate.init_app(app)
 
 
@@ -22,13 +22,13 @@ def register_blueprints(app):
         app.register_blueprint(module.blueprint)
 
 
-# def configure_session(app):
-#     @app.before_request
-#     def make_session_permanent():
-#         session.permanent = True
-#         app.permanent_session_lifetime = timedelta(minutes=60)
-#         session.modified = True
-#         g.user = flask_login.current_user
+def configure_session(app):
+    @app.before_request
+    def make_session_permanent():
+        session.permanent = True
+        app.permanent_session_lifetime = timedelta(minutes=60)
+        session.modified = True
+        g.user = flask_login.current_user
 
 
 def configure_database(app):
@@ -48,6 +48,6 @@ def create_app(config):
     register_blueprints(app)
     register_extensions(app)
     configure_database(app)
-    # configure_session(app)
+    configure_session(app)
    
     return app

@@ -24,9 +24,9 @@ def admin_typography():
     return render_template('/pages/ui-features/typography.html')
 
 
-@blueprint.route('/admin-basic-elements')
-def admin_basic_elements():
-    return render_template('/pages/forms/basic_elements.html')
+@blueprint.route('/admin-student-application-list')
+def admin_std_app_list():
+    return render_template('/pages/forms/student_application_list.html')
 
 
 # @blueprint.route('/admin-student-info')

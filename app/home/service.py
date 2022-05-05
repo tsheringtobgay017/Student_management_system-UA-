@@ -5,11 +5,13 @@ from sqlalchemy import create_engine
 from config import Config
 from datetime import datetime
 from uuid import uuid4
+from random import randint
 # from decouple import config
 import io
 
 engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
 connection = engine.connect()
+random_id = randint(000, 999)
 
 # This is the route for storing student detials into tbl_student_personal_info 
 def store_student_details():
@@ -49,7 +51,14 @@ def store_academic_details(id_personal):
     index_number = request.form.get("index_number")
     previous_school_name = request.form.get("previous_school")
     stream = request.form.get("stream")
-    marksheet = request.form.get("marksheet")
+     # marksheet upload
+    marksheet = request.files.get('marksheet', '')
+
+    img_url = os.path.join('./app/home/static/uploads/marksheet/',
+                         str(random_id) + marksheet.filename)
+    marksheet.save(img_url)
+    marksheet_url = '../static/uploads/marksheet/' + \
+            str(random_id) + marksheet.filename
     supw_grade = request.form.get("supw")
     percentage_obtained = request.form.get("percent")
     created_at = datetime.now()
@@ -59,7 +68,7 @@ def store_academic_details(id_personal):
                     "created_at) "
                    "VALUES ("
                    "%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-                   (id, id_personal, index_number, previous_school_name, stream, marksheet, supw_grade, percentage_obtained,  created_at))
+                   (id, id_personal, index_number, previous_school_name, stream, marksheet_url, supw_grade, percentage_obtained,  created_at))
 
     return "success"
 
@@ -80,7 +89,6 @@ def get_dzo_list():
 def get_gewog():
     if request.method == 'POST':
         gewog_id = request.form['gewog_id']
-        print(":::",gewog_id)
         gewog_list = 'select * from public.tbl_gewog_list where "dzo_id" = %s ORDER BY "gewog_name" ASC'
         gewog_list = connection.execute(gewog_list, gewog_id).fetchall()
     return jsonify({"gewogList": [dict(row) for row in gewog_list]})
