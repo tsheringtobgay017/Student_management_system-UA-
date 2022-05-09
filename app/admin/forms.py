@@ -4,6 +4,7 @@ Digital KYC developer team
 """
 
 from flask_wtf import FlaskForm
+from flask_wtf import Form
 from wtforms import TextField, PasswordField
 from wtforms import validators
 from wtforms.fields.simple import SubmitField
