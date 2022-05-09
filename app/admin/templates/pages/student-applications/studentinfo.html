@@ -63,7 +63,7 @@
                         </div>
                         <div class="row ">
                             <div class="col-sm-4 form-group">
-                                <p><b>Dzongkhag:</b> {{std.student_dzongkhag}}</p>
+                                <p><b>Dzongkhag:</b> {{std_info.dzo_name}}</p>
                                 <!-- <label for="permanent_dzongkhag" class="pull-left form-label">Dzongkhag </label>
                                 <select class="form-control form-select" name="permanent_dzongkhag"
                                     id="permanent_dzongkhag">
@@ -73,14 +73,14 @@
                                 </select> -->
                             </div>
                             <div class="col-sm-4 form-group">
-                                <p><b>Gewog:</b> {{std.student_gewog}}</p>
+                                <p><b>Gewog:</b> {{std_info.gewog_name}}</p>
                                 <!-- <label for="permanent_gewog" class="pull-left form-label">Gewog</label>
                                 <select class="form-control form-select" id="permanent_gewog" name="permanent_gewog">
                                     <option value="">---Select Gewog---</option>
                                 </select> -->
                             </div>
                             <div class="col-sm-4 form-group">
-                                <p><b>Village:</b> {{std.student_village}}</p>
+                                <p><b>Village:</b> {{std_info.village_name}}</p>
                                 <!-- <label for="permanent_village" class="pull-left form-label">Gewog</label>
                                 <select class="form-control form-select" id="permanent_village" name="permanent_village">
                                     <option value="">---Select Village---</option>
@@ -184,7 +184,7 @@
                     <div class="row">
                         <div class="row col-lg-12">
                             <div class="col-sm-4 form-group">
-                                <p><b>Dzongkhag:</b> {{std.student_present_dzongkhag}}</p>
+                                <p><b>Dzongkhag:</b> {{std.dzo_name}}</p>
                                 <!-- <label for="present_dzongkhag" class="pull-left form-label">Dzongkhag </label>
                                 <select class="form-control form-select" name="present_dzongkhag" id="present_dzongkhag">
                                     <option value="">---Select Dzongkhag---</option>
@@ -193,14 +193,16 @@
                                 </select> -->
                             </div>
                             <div class="col-sm-4 form-group">
-                                <p><b>Gewog:</b> {{std.student_present_gewog}}</p>
+                                
+                                <p><b>Gewog:</b> {{std.gewog_name}}</p>
                                 <!-- <label for="present_gewog" class="pull-left form-label">Gewog</label>
                                 <select class="form-control form-select" id="present_gewog" name="present_gewog">
                                     <option value="">---Select Gewog---</option>
                                 </select> -->
                             </div>
                             <div class="col-sm-4 form-group">
-                                <p><b>Village:</b> {{std.student_present_village}}</p>
+                                <p><b>Village:</b> {{std.village_name}}</p>
+
                                 <!-- <label for="present_village" class="pull-left form-label">Village</label>
                                 <select class="form-control form-select" id="present_village" name="present_village">
                                     <option value="">---Select Village---</option>

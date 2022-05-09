@@ -1,6 +1,7 @@
 from flask import render_template, request, jsonify, session, redirect, url_for
 from app.home import blueprint
 from sqlalchemy import create_engine
+from app import db, login_manager
 from flask_login import (current_user, login_user, logout_user)
 from config import Config
 from app.admin.models import User
@@ -87,3 +88,33 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home_blueprint.login'))
+
+
+# Errors handling
+@login_manager.unauthorized_handler
+def unauthorized_handler():
+    login_form = LoginForm(request.form)
+    if not current_user.is_authenticated:
+        return render_template('signin.html',
+                               form=login_form)
+    # return render_template('accounts/login.html'), 403
+
+
+@blueprint.errorhandler(403)
+def access_forbidden(error):
+    login_form = LoginForm(request.form)
+    if not current_user.is_authenticated:
+        return render_template('signin.html',
+                               form=login_form)
+    # return render_template('accounts/login.html'), 403
+
+
+@blueprint.app_errorhandler(404)
+def not_found_error(error):
+    return render_template('page-404.html'), 404
+
+
+@blueprint.errorhandler(500)
+def internal_error(error):
+    return render_template('page-500.html'), 500
+

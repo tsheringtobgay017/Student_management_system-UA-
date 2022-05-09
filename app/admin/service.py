@@ -1,4 +1,4 @@
-from flask import request
+from flask import request, render_template
 # from flask_login import current_user
 from datetime import datetime
 from config import Config
@@ -34,6 +34,8 @@ def save_user_detail_table(user_id):
     return "saved"
 
 # for users search
+
+
 def all_users():
     draw = request.form.get('draw')
     row = request.form.get('start')
@@ -71,6 +73,8 @@ def all_users():
     return respose
 
 # fetch user details
+
+
 def get_user_by_id(id):
     user = connection.execute(
         'SELECT *, U.id as user_id FROM public."User" AS U, public.user_detail as UD WHERE U.id = UD.user_id AND user_id = %s',
@@ -117,12 +121,13 @@ def all_std():
     if (search_value != ''):
         search_query = "AND (A.index_number LIKE '%%" + search_value + "%%' " \
             "OR P.student_cid LIKE '%%" + search_value + \
-            "%%' OR P.first_name LIKE '%% "+search_value+"%%') "
+            "%%' OR P.first_name CONCAT(P.last_name) as full_name LIKE '%% "+search_value+"%%') "
 
     str_query = 'SELECT *, count(*) OVER() AS count_all, P.id FROM public.tbl_students_personal_info AS P, public.tbl_academic_detail as A WHERE P.id IS NOT NULL  '\
-                ''+ search_query + '' \
-                "AND P.id = A.std_personal_info_id LIMIT " + row_per_page + " OFFSET " + row + ""
-
+                '' + search_query + '' \
+                "AND P.id = A.std_personal_info_id LIMIT " + \
+        row_per_page + " OFFSET " + row + ""
+    
     users_std = connection.execute(str_query).fetchall()
 
     data = []
@@ -142,13 +147,27 @@ def all_std():
         "iTotalDisplayRecords": count,
         "aaData": data
     }
-
+    print(":::::::::::", respose_std)
     return respose_std
 
 
 # fetch student details from database
 def get_std_by_id(id):
     std_details = connection.execute(
-        'SELECT *, P.id FROM public.tbl_students_personal_info AS P, public.tbl_academic_detail as A WHERE P.id = A.std_personal_info_id AND P.id =%s',
+        'SELECT *, P.id FROM public.tbl_students_personal_info AS P '
+        'inner join public.tbl_academic_detail as A on P.id = A.std_personal_info_id '
+        'inner join public.tbl_dzongkhag_list as dzo on dzo.dzo_id = P.student_present_dzongkhag '
+        'inner join public.tbl_gewog_list as gewog on gewog.gewog_id = P.student_present_gewog '
+        'inner join public.tbl_village_list as village on village.village_id = P.student_present_village '
+        'WHERE P.id =%s',
         id).first()
-    return std_details
+
+    std_info = connection.execute(
+        'SELECT *, P.id FROM public.tbl_students_personal_info AS P '
+        'inner join public.tbl_academic_detail as A on P.id = A.std_personal_info_id '
+        'inner join public.tbl_dzongkhag_list as dzo on dzo.dzo_id = P.student_dzongkhag '
+        'inner join public.tbl_gewog_list as gewog on gewog.gewog_id = P.student_gewog '
+        'inner join public.tbl_village_list as village on village.village_id = P.student_village '
+        'WHERE P.id =%s',
+        id).first()
+    return render_template('/pages/student-applications/studentinfo.html', std=std_details, std_info=std_info)
