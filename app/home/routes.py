@@ -1,12 +1,13 @@
 from flask import render_template, request, jsonify, session, redirect, url_for
 from app.home import blueprint
 from sqlalchemy import create_engine
+from flask_login import (current_user, login_user, logout_user)
 from config import Config
 from app.admin.models import User
 from app.admin.forms import LoginForm
 from app.home.service import store_student_details, store_academic_details, get_dzo_list, get_gewog, get_village
 from flask_login import (current_user, login_required)
-from app.admin.util import get_user_by_id, verify_pass
+from app.admin.util import get_user_by_id, verify_pass, check_user_login_info, update_login_info
 
 engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
 connection = engine.connect()
@@ -54,15 +55,23 @@ def do_login():
     
     s_password = bytearray(user_list.password)
     # if ip and browser match direct login with otp
+     # if ip and browser match direct login with otp
     if user_list:
-        if user_list and verify_pass(password, s_password):
-            u_data = get_user_by_id(user_list.id)
-            session['l_username'] = username
-            session['l_secret'] = password
+        if check_user_login_info(user_list.id):
+            # direct login
+            if user_list and verify_pass(password, s_password):
+                update_login_info(user_list.id)
+                return jsonify({"output": {"fa_required": False, "email": ""}})
 
-            return jsonify({"output": {"fa_required": True,  "username": username, "role": u_data.role}})
         else:
-            return jsonify({"output": {"fa_required": "invalid", "message": "Invalid username or password"}})
+            if user_list and verify_pass(password, s_password):
+                u_data = get_user_by_id(user_list.id)
+                session['l_username'] = username
+                session['l_secret'] = password
+
+                return jsonify({"output": {"fa_required": True,  "username": username, "role": u_data.role}})
+            else:
+                return jsonify({"output": {"fa_required": "invalid", "message": "Invalid username or password"}})
     else:
         return jsonify({"output": {"fa_required": "invalid", "message": "Invalid username or password"}})
 
@@ -76,3 +85,10 @@ def login():
                                form=login_form)
 
     return redirect(url_for('admin_blueprint.admin_dashboard'))
+
+
+# Logout user
+@blueprint.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('home_blueprint.login'))

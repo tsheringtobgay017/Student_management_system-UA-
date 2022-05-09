@@ -26,7 +26,7 @@ def admin_typography():
 
 @blueprint.route('/admin-student-application-list')
 def admin_std_app_list():
-    return render_template('/pages/forms/student_application_list.html')
+    return render_template('/pages/student-applications/student_application_list.html')
 
 
 # @blueprint.route('/admin-student-info')
@@ -111,7 +111,7 @@ def stdList():
 @blueprint.route('/std-detials/<id>', methods=['GET'])
 def std_details(id):
     std = get_std_by_id(id)
-    return render_template('/pages/forms/studentinfo.html', std=std)
+    return render_template('/pages/student-applications/studentinfo.html', std=std)
 
 
 @blueprint.route('/delete/<id>', methods=['POST'])
