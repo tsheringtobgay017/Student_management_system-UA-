@@ -55,9 +55,9 @@ def store_academic_details(id_personal):
     marksheet = request.files.get('marksheet', '')
 
     img_url = os.path.join('./app/home/static/uploads/marksheet/',
-                         str(random_id) + marksheet.filename)
+                         index_number +str(random_id) + marksheet.filename)
     marksheet.save(img_url)
-    marksheet_url = '../static/uploads/marksheet/' + \
+    marksheet_url = '/static/uploads/marksheet/'+ index_number + \
             str(random_id) + marksheet.filename
     supw_grade = request.form.get("supw")
     percentage_obtained = request.form.get("percent")

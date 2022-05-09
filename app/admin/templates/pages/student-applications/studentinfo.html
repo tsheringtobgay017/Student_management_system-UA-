@@ -17,27 +17,27 @@
                   <hr>
                 <form method="POST" id="registration_form" action="" enctype="multipart/form-data">
 
-                    <div class="p-1 mb-2 mt-3 bg-primary" style="font-weight: 500;
+                    <div class="p-1 mb-2 mt-3 bg-secondary" style="font-weight: 500;
                     font-size: 13px">Student's Personal Detail<span class="text-danger">
                             *</span></div>
                     <!-- student's detail -->
                     <div class="student">
                         <div class="row ">
                             <div class="col-sm-4 form-group">
-                            <p>CID: {{std.student_cid}}</p>
+                            <p><b>CID:</b> {{std.student_cid}}</p>
                          
                                 <!-- <label>CID</label>
                                 <input type="text" placeholder="Enter CID" class="form-control" name="cid" id="cid" value="{{std.student_cid}}"> -->
                             </div> 
                             <div class="col-sm-4 form-group">
-                                <p>First Name: {{std.first_name}}</p>
+                                <p><b>First Name:</b> {{std.first_name}}</p>
                                 <!-- <label>First Name</label>
                                 <input type="text" placeholder="Enter Last Name" class="form-control" name="first_name"
                                     id="first_name" value="{{std.first_name}}"> -->
                             </div>
     
                             <div class="col-sm-4 form-group">
-                                <p>Last Name: {{std.last_name}}</p>
+                                <p><b>Last Name:</b> {{std.last_name}}</p>
                                 <!-- <label>Last Name</label>
                                 <input type="text" placeholder="Enter Last Name" class="form-control" name="last_name"
                                     id="last_name" value="{{std.last_name}}"> -->
@@ -45,17 +45,17 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-4 form-group">
-                                <p>Date of Birth: {{std.dob}}</p>
+                                <p><b>Date of Birth:</b> {{std.dob}}</p>
                                 <!-- <label>DOB</label>
                                 <input type="date" placeholder="Enter DOB" class="form-control" name="dob" id="dob"> -->
                             </div>
                             <div class="col-sm-4 form-group">
-                                <p>Email Address: {{std.student_email}}</p>
+                                <p><b>Email Address:</b> {{std.student_email}}</p>
                                 <!-- <label>Email Address</label>
                                 <input type="email" placeholder="Enter email" class="form-control" name="email" id="email"> -->
                             </div>
                             <div class="col-sm-4 form-group">
-                                <p>Phone Number: {{std.student_phone_number}}</p>
+                                <p><b>Phone Number:</b> {{std.student_phone_number}}</p>
                                 <!-- <label>Phone Number</label>
                                 <input type="text" placeholder="Enter Phone Number" class="form-control" name="phone_number"
                                     id="phone_number"> -->
@@ -63,7 +63,7 @@
                         </div>
                         <div class="row ">
                             <div class="col-sm-4 form-group">
-                                <p>Dzongkhag: {{std.student_dzongkhag}}</p>
+                                <p><b>Dzongkhag:</b> {{std.student_dzongkhag}}</p>
                                 <!-- <label for="permanent_dzongkhag" class="pull-left form-label">Dzongkhag </label>
                                 <select class="form-control form-select" name="permanent_dzongkhag"
                                     id="permanent_dzongkhag">
@@ -73,14 +73,14 @@
                                 </select> -->
                             </div>
                             <div class="col-sm-4 form-group">
-                                <p>Gewog: {{std.student_gewog}}</p>
+                                <p><b>Gewog:</b> {{std.student_gewog}}</p>
                                 <!-- <label for="permanent_gewog" class="pull-left form-label">Gewog</label>
                                 <select class="form-control form-select" id="permanent_gewog" name="permanent_gewog">
                                     <option value="">---Select Gewog---</option>
                                 </select> -->
                             </div>
                             <div class="col-sm-4 form-group">
-                                <p>Village: {{std.student_village}}</p>
+                                <p><b>Village:</b> {{std.student_village}}</p>
                                 <!-- <label for="permanent_village" class="pull-left form-label">Gewog</label>
                                 <select class="form-control form-select" id="permanent_village" name="permanent_village">
                                     <option value="">---Select Village---</option>
@@ -91,13 +91,13 @@
     
                     <!-- ends student's details -->
                     <!-- Academic details -->
-                    <div class="p-1 mb-2 mt-3 bg-primary" style="font-weight: 500;
+                    <div class="p-1 mb-2 mt-3 bg-secondary" style="font-weight: 500;
                     font-size: 13px">Academic Detail<span class="text-danger">
                             *</span></div>
                     <div class="academic">
                         <div class="row ">
                             <div class="col-sm-4 form-group">
-                                <p>Index Number: {{std.index_number}}</p>
+                                <p><b>Index Number:</b> {{std.index_number}}</p>
                                 <!-- <label>Index Number</label>
                                 <input type="text" placeholder="Enter Index Number" class="form-control" name="index_number"
                                     id="index_number"> -->
@@ -105,68 +105,66 @@
     
     
                             <div class="col-sm-4 form-group">
-                                <p>Previous School: {{std.previous_school_name}}</p>
+                                <p><b>Previous School:</b> {{std.previous_school_name}}</p>
                                 <!-- <label>Previous School</label>
                                 <input type="text" placeholder="Enter Previous School Name" class="form-control"
                                     name="previous_school" id="previous_school"> -->
                             </div>
                             <div class="col-sm-4 form-group">
-                                <p>Stream: {{std.stream}}</p>
+                                <p><b>Stream:</b> {{std.stream}}</p>
                                 <!-- <label>Previous School</label>
                                 <input type="text" placeholder="Enter Previous School Name" class="form-control"
                                     name="previous_school" id="previous_school"> -->
                             </div>
                         </div>
-                       
-                       
-                            <hr class="my-4" >
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <p>Marksheet: {{std.marksheet}}</p>
-                                        <label for="phone" class="form-control-label">Marksheet</label>
-                                        <input type="file" class="dropify form-control rounded-2" name="marksheet"
-                                            id="marksheet" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
+                        <div class="row">
                             <div class="col-sm-4 form-group">
-                                <p>SUPW Grade: {{std.supw_grade}}</p>
+                                <p><b>SUPW Grade:</b> {{std.supw_grade}}</p>
                                 <!-- <label>SUPW Grade</label>
                                 <input type="text" placeholder="Enter supw grade" class="form-control" name="supw"
                                     id="supw"> -->
                             </div>
     
                             <div class="col-sm-4 form-group">
-                                <p>Percentage: {{std.percentage_obtained}}</p>
+                                <p><b>Percentage:</b> {{std.percentage_obtained}}</p>
                                 <!-- <label>Percentage</label>
                                 <input type="text" placeholder="Enter percentage obtained" class="form-control" name="percent"
                                     id="percent"> -->
                             </div>
                         </div>
+                       
+                        <div class="col-md-4 col-lg-4">
+                            <div class="gal-detail thumb ">
+                                <h5>Marksheet</h5>
+                                <a href="{{ std.marksheet }}" class="image-popup" title="marksheet Photo">
+                                    <img src="{{ std.marksheet }}" class="thumb-img-mark" width="400" height="550" alt="Marksheet Image">
+                                </a>
+                                
+                            </div>
+                          </div>
+                         
                     </div>
                     <!-- Academic detail end -->
     
-                    <div class=" p-1 mb-2 mt-3 bg-primary" style="font-weight: 500;
+                    <div class=" p-1 mb-2 mt-3 bg-secondary" style="font-weight: 500;
                     font-size: 13px">Parent's/gaurdian's Detail<span class="text-danger"> *</span>
                     </div>
                     <div class="row">
                         <div class="col-sm-4 form-group">
-                            <p>CID: {{std.parent_cid}}</p>
+                            <p><b>CID:</b> {{std.parent_cid}}</p>
                             <!-- <label>CID</label>
                             <input type="text" placeholder="Enter Parent/gaurdian's CID" class="form-control"
                                 name="parent_cid" id="parent_cid"> -->
                         </div>
                         <div class="col-sm-4 form-group">
-                            <p>Name: {{std.parent_full_name}}</p>
+                            <p><b>Name:</b> {{std.parent_full_name}}</p>
                             <!-- <label>Name</label>
                             <input type="text" placeholder="Enter Parent/gaurdian Name" class="form-control"
                                 name="parent_name" id="parent_name"> -->
                         </div>
     
                         <div class="col-sm-4 form-group">
-                            <p>Phone Number: {{std.parent_contact_number}}</p>
+                            <p><b>Phone Number:</b> {{std.parent_contact_number}}</p>
                             <!-- <label>Phone Number</label>
                             <input type="text" placeholder="Enter Parent's Number" class="form-control" name="parent_number"
                                 id="parent_number"> -->
@@ -174,19 +172,19 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-4 form-group">
-                            <p>Email Address: {{std.parent_email}}</p>
+                            <p><b>Email Address:</b> {{std.parent_email}}</p>
                             <!-- <label>Email Address</label>
                             <input type="email" placeholder="Enter Parent's Email" class="form-control" name="parent_email"
                                 id="parent_email"> -->
                         </div>
                     </div>
     
-                    <div class=" p-1 mb-2 mt-3 bg-primary" style="font-weight: 500;
+                    <div class=" p-1 mb-2 mt-3 bg-secondary" style="font-weight: 500;
                     font-size: 13px">Present Address Detail<span class="text-danger"> *</span></div>
                     <div class="row">
                         <div class="row col-lg-12">
                             <div class="col-sm-4 form-group">
-                                <p>Dzongkhag: {{std.student_present_dzongkhag}}</p>
+                                <p><b>Dzongkhag:</b> {{std.student_present_dzongkhag}}</p>
                                 <!-- <label for="present_dzongkhag" class="pull-left form-label">Dzongkhag </label>
                                 <select class="form-control form-select" name="present_dzongkhag" id="present_dzongkhag">
                                     <option value="">---Select Dzongkhag---</option>
@@ -195,14 +193,14 @@
                                 </select> -->
                             </div>
                             <div class="col-sm-4 form-group">
-                                <p>Gewog: {{std.student_present_gewog}}</p>
+                                <p><b>Gewog:</b> {{std.student_present_gewog}}</p>
                                 <!-- <label for="present_gewog" class="pull-left form-label">Gewog</label>
                                 <select class="form-control form-select" id="present_gewog" name="present_gewog">
                                     <option value="">---Select Gewog---</option>
                                 </select> -->
                             </div>
                             <div class="col-sm-4 form-group">
-                                <p>Village: {{std.student_present_village}}</p>
+                                <p><b>Village:</b> {{std.student_present_village}}</p>
                                 <!-- <label for="present_village" class="pull-left form-label">Village</label>
                                 <select class="form-control form-select" id="present_village" name="present_village">
                                     <option value="">---Select Village---</option>
