@@ -121,7 +121,7 @@ const enrollfv = FormValidation.formValidation(enrollForm, {
                 },
                 stringLength: {
                     min: 2,
-                    message: 'The student index must be 2 digits and %'
+                    message: 'The student index must be 2 digits'
                 },
                 numeric: {
                     message: 'The value is not a number',
@@ -164,6 +164,9 @@ const enrollfv = FormValidation.formValidation(enrollForm, {
                 }
             }
         },
+
+       
+
         parent_number: {
             validators: {
                 notEmpty: {
@@ -344,3 +347,6 @@ $("#permanent_gewog").on("change", function () {
     });
 })
 //-------------------------------Script ends--------------------------------//
+
+
+
