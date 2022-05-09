@@ -59,15 +59,24 @@ def do_login():
     # if ip and browser match direct login with otp
     # if ip and browser match direct login with otp
     if user_list:
-        if user_list and verify_pass(password, s_password):
-            u_data = get_user_by_id(user_list.id)
-            update_login_info(user_list.id)
-            session['l_username'] = username
-            session['l_secret'] = password
-
-            return jsonify({"output": {"fa_required": True,  "username": username, "role": u_data.role}})
-        else:
+        if check_user_login_info(user_list.id):
+            # direct login
+            if user_list and verify_pass(password, s_password):
+                update_login_info(user_list.id)
+                login_user(user_list)
+                return jsonify({"output": {"fa_required": False, "email": ""}})
             return jsonify({"output": {"fa_required": "invalid", "message": "Invalid username or password"}})
+            
+
+        else:
+            if user_list and verify_pass(password, s_password):
+                u_data = get_user_by_id(user_list.id)
+                session['l_username'] = username
+                session['l_secret'] = password
+
+                return jsonify({"output": {"fa_required": True,  "username": username, "role": u_data.role}})
+            else:
+                return jsonify({"output": {"fa_required": "invalid", "message": "Invalid username or password"}})
     else:
         return jsonify({"output": {"fa_required": "invalid", "message": "Invalid username or password"}})
 
@@ -109,12 +118,5 @@ def access_forbidden(error):
     # return render_template('accounts/login.html'), 403
 
 
-@blueprint.app_errorhandler(404)
-def not_found_error(error):
-    return render_template('page-404.html'), 404
 
-
-@blueprint.errorhandler(500)
-def internal_error(error):
-    return render_template('page-500.html'), 500
 
