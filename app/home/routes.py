@@ -12,6 +12,7 @@ from app.admin.util import get_user_by_id, verify_pass, check_user_login_info, u
 engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
 connection = engine.connect()
 
+
 @blueprint.route('/')
 def route_default():
     return render_template('index.html')
@@ -52,26 +53,20 @@ def do_login():
     # Locate user
     user = 'SELECT * FROM public."User" WHERE username=%s'
     user_list = connection.execute(user, username).first()
-    
+
     s_password = bytearray(user_list.password)
     # if ip and browser match direct login with otp
-     # if ip and browser match direct login with otp
+    # if ip and browser match direct login with otp
     if user_list:
-        if check_user_login_info(user_list.id):
-            # direct login
-            if user_list and verify_pass(password, s_password):
-                update_login_info(user_list.id)
-                return jsonify({"output": {"fa_required": False, "email": ""}})
+        if user_list and verify_pass(password, s_password):
+            u_data = get_user_by_id(user_list.id)
+            update_login_info(user_list.id)
+            session['l_username'] = username
+            session['l_secret'] = password
 
+            return jsonify({"output": {"fa_required": True,  "username": username, "role": u_data.role}})
         else:
-            if user_list and verify_pass(password, s_password):
-                u_data = get_user_by_id(user_list.id)
-                session['l_username'] = username
-                session['l_secret'] = password
-
-                return jsonify({"output": {"fa_required": True,  "username": username, "role": u_data.role}})
-            else:
-                return jsonify({"output": {"fa_required": "invalid", "message": "Invalid username or password"}})
+            return jsonify({"output": {"fa_required": "invalid", "message": "Invalid username or password"}})
     else:
         return jsonify({"output": {"fa_required": "invalid", "message": "Invalid username or password"}})
 
