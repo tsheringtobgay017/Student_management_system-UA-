@@ -41,7 +41,7 @@ const enrollfv = FormValidation.formValidation(enrollForm, {
         phone_number: {
             validators: {
                 notEmpty: {
-                    message: 'The email field is required',
+                    message: 'This field is required',
                 },
                 stringLength: {
                     min: 8,
@@ -86,10 +86,63 @@ const enrollfv = FormValidation.formValidation(enrollForm, {
                 }
             }
         },
+
+        // academic details
+        previous_school: {
+            validators: {
+                notEmpty: {
+                    message: 'The Name field is required',
+                },
+            },
+        },
+
+        index_number: {
+            validators: {
+                notEmpty: {
+                    message: 'This field is required',
+                },
+                stringLength: {
+                    min: 5,
+                    message: 'The student index must be 5 digits'
+                },
+                numeric: {
+                    message: 'The value is not a number',
+                    // The default separators
+                    thousandsSeparator: '',
+                    decimalSeparator: '.',
+                },
+            },
+        },
+
+        percent: {
+            validators: {
+                notEmpty: {
+                    message: 'This field is required',
+                },
+                stringLength: {
+                    min: 2,
+                    message: 'The student index must be 2 digits and %'
+                },
+                numeric: {
+                    message: 'The value is not a number',
+                    // The default separators
+                    thousandsSeparator: '',
+                    decimalSeparator: '.',
+                },
+            },
+        },
+
+        supw: {
+            validators: {
+                notEmpty: {
+                    message: 'This field is required',
+                }
+            }
+        },
         
         parent_cid: {
             validators: {
-                notEmpty: {
+               notEmpty: {
                     message: 'The CID field is required',
                 },
                 stringLength: {
@@ -115,8 +168,18 @@ const enrollfv = FormValidation.formValidation(enrollForm, {
             validators: {
                 notEmpty: {
                     message: 'This field is required',
-                }
-            }
+                },
+                stringLength: {
+                    min: 8,
+                    message: 'The Phone number must be 8 digits'
+                },
+                numeric: {
+                    message: 'The value is not a number',
+                    // The default separators
+                    thousandsSeparator: '',
+                    decimalSeparator: '.',
+                },
+            },
         },
 
     },

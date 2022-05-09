@@ -5,7 +5,7 @@ Digital KYC developer team
 """
 
 from flask_login import UserMixin
-from sqlalchemy import Binary, Column, Integer, String
+from sqlalchemy  import LargeBinary, Column, Integer, String
 from app import db, login_manager
 from app.admin.util import hash_pass
 import uuid
@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     id = Column(String(36), primary_key=True, default=uuid.uuid4(), unique=True)
     username = Column(String, unique=True)
     email = Column(String, unique=True)
-    password = Column(Binary)
+    password = Column(LargeBinary)
     type = Column(Integer)
 
     def __init__(self, **kwargs):
