@@ -146,9 +146,20 @@
 						</div>
 						<div class="row">
 						<div class="col-sm-4 form-group">
-							<label>SUPW Grade</label>
-							<input type="text" placeholder="Enter supw grade" class="form-control" name="supw"
-								id="supw">
+							<label for="supw" class="pull-left form-label">SUPW Grade </label>
+							<select class="form-control form-select" name="supw" id="supw">
+								<option value="">---Select One---</option>
+								<option value="A">A</option>
+								<option value="A+">A+</option>
+								<option value="A-">A-</option>
+								<option value="B">B</option>
+								<option value="B+">B+</option>
+								<option value="B-">B-</option>
+								<option value="C">C</option>
+								<option value="C+">C+</option>
+								<option value="C-">C-</option>
+
+							</select>
 						</div>
 
 						<div class="col-sm-4 form-group">
@@ -200,6 +211,7 @@
 								{% for row in dzo_List %}
 								<option value="{{ row.dzo_id }}">{{ row.dzo_name }}</option>
 								{% endfor %}
+								
 
 							</select>
 						</div>

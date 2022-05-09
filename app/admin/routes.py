@@ -1,4 +1,4 @@
-from flask import render_template, jsonify, request
+from flask import render_template
 from flask_login import login_required
 from app.admin import blueprint
 from app.admin.service import save_user_table, save_user_detail_table, all_users, is_admin, get_user_by_id, delete_user_by_id, get_std_by_id, all_std
@@ -110,9 +110,8 @@ def stdList():
 # fetch student details
 @blueprint.route('/std-detials/<id>', methods=['GET'])
 def std_details(id):
-    std = get_std_by_id(id)
-    return render_template('/pages/student-applications/studentinfo.html', std=std)
-
+    return get_std_by_id(id)
+    
 
 @blueprint.route('/delete/<id>', methods=['POST'])
 def delete_user(id):

@@ -185,6 +185,30 @@ const enrollfv = FormValidation.formValidation(enrollForm, {
             },
         },
 
+        present_dzongkhag: {
+            validators: {
+                notEmpty: {
+                    message: 'Please select Dzongkhag',
+                }
+            },
+        },
+        present_gewog: {
+            validators: {
+                notEmpty: {
+                    message: 'Please select Gewog',
+                }
+            }
+        },
+
+        present_village: {
+            validators: {
+                notEmpty: {
+                    message: 'Please select Village',
+                }
+            }
+        },
+
+
     },
 
     plugins: {
