@@ -63,7 +63,7 @@ def do_login():
             # direct login
             if user_list and verify_pass(password, s_password):
                 update_login_info(user_list.id)
-                login_user(user_list)
+                # login_user(user_list)
                 return jsonify({"output": {"fa_required": False, "email": ""}})
             return jsonify({"output": {"fa_required": "invalid", "message": "Invalid username or password"}})
             

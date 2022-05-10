@@ -5,7 +5,6 @@ from app.admin.service import save_user_table, save_user_detail_table, all_users
 
 
 @blueprint.route('/admin-dashboard')
-@login_required
 def admin_dashboard():
     return render_template('admin.html')
 
