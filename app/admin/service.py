@@ -1,10 +1,15 @@
+from os import stat
 from flask import request, render_template
-# from flask_login import current_user
+from flask_login import current_user
 from datetime import datetime
 from config import Config
+from flask_mail import Message
+from app import mail
 from sqlalchemy import create_engine
 from app.admin.util import hash_pass
 from uuid import uuid4
+import requests
+from requests.structures import CaseInsensitiveDict
 
 
 engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
@@ -27,10 +32,12 @@ def save_user_table():
 def save_user_detail_table(user_id):
     id = uuid4()
     role = request.form['role']
+    grade = request.form['grade']
+    section = request.form['section']
     ip = request.remote_addr
     browser = request.headers.get('User-Agent')
-    connection.execute('INSERT INTO public.user_detail ("id", "user_id", "role", "ip_address", "browser", "created_at") VALUES (%s, %s, %s, %s, %s, %s)',
-                       (id, user_id, role, ip, browser, datetime.now()))
+    connection.execute('INSERT INTO public.user_detail ("id", "user_id", "role","grade", "section", "ip_address", "browser", "created_at") VALUES (%s,%s, %s, %s, %s, %s, %s, %s)',
+                       (id, user_id, role, grade,section, ip, browser, datetime.now()))
     return "saved"
 
 # for users search
@@ -94,7 +101,7 @@ def user_role():
     con = engine.connect()
     user = con.execute(
         'SELECT UD.role FROM public."User" AS U, public.user_detail as UD WHERE U.id = UD.user_id AND U.username = %s LIMIT 1',
-        str('admin')).fetchone()
+        str(current_user)).fetchone()
     return user['role']
 
 
@@ -105,8 +112,8 @@ def is_admin():
         return False
 
 
-def is_normal():
-    if(user_role() == 'normal'):
+def is_classTeacher():
+    if(user_role() == 'class_teacher'):
         return True
     else:
         return False
@@ -120,14 +127,15 @@ def all_std():
     search_query = ' '
     if (search_value != ''):
         search_query = "AND (A.index_number LIKE '%%" + search_value + "%%' " \
-            "OR P.student_cid LIKE '%%" + search_value + \
-            "%%' OR P.first_name CONCAT(P.last_name) as full_name LIKE '%% "+search_value+"%%') "
+            "OR P.student_cid LIKE '%%" + search_value + "%%' "\
+            "OR P.first_name LIKE '%% " + search_value+"%%') "\
+            "OR P.status LIKE '%%" + search_value + "%%' "
 
     str_query = 'SELECT *, count(*) OVER() AS count_all, P.id FROM public.tbl_students_personal_info AS P, public.tbl_academic_detail as A WHERE P.id IS NOT NULL  '\
                 '' + search_query + '' \
                 "AND P.id = A.std_personal_info_id LIMIT " + \
         row_per_page + " OFFSET " + row + ""
-    
+
     users_std = connection.execute(str_query).fetchall()
 
     data = []
@@ -138,6 +146,7 @@ def all_std():
                      'student_cid': user.student_cid,
                      'first_name': user.first_name,
                      'student_email': user.student_email,
+                     'status' : user.status,
                      'id': user.id})
         count = user.count_all
 
@@ -147,7 +156,6 @@ def all_std():
         "iTotalDisplayRecords": count,
         "aaData": data
     }
-    print(":::::::::::", respose_std)
     return respose_std
 
 
@@ -171,3 +179,42 @@ def get_std_by_id(id):
         'WHERE P.id =%s',
         id).first()
     return render_template('/pages/student-applications/studentinfo.html', std=std_details, std_info=std_info)
+
+
+def application_update():
+    status = request.form.get('action')
+    narration = request.form.get('narration')
+    id = request.form.get('app_id')
+    mail = request.form.get('email')
+    name = request.form.get('name')
+    if(status == '1'):
+        # return
+        connection.execute('UPDATE public.tbl_students_personal_info SET status=%s,  narration=%s, updated_at=%s, returned_at=%s WHERE id=%s',
+                    status, narration, datetime.now(), datetime.now(), id)
+    else:
+        # approved
+        connection.execute('UPDATE public.tbl_students_personal_info SET status=%s, narration=%s, updated_at=%s, approved_at=%s WHERE id=%s',
+                    status, narration, datetime.now(), datetime.now(), id)
+    
+    send_application_mail(name, status, narration, mail)
+    
+    return 'success'
+
+
+def send_application_mail(name, status, narration, user_mail):
+    if(status == "submitted"):
+        status_code = "Submitted"
+    elif(status == 'returned'):
+        status_code = "Returned"
+        message = "We are sorry to inform you that your application has been rejected , Thank you."
+
+    else:
+        status_code = "Approved"
+        message = "Your application has been approved"
+
+    msg = Message(subject='Application Status', sender='ugyendorji17737242@gmail.com',
+                recipients=[user_mail])
+    msg.body = str("Dear "+name+" \n "+message+"  \n Status: "+status_code+" \n Message: "+narration+"")
+    print('here')
+    mail.send(msg)
+    

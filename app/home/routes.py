@@ -52,25 +52,23 @@ def do_login():
     password = request.form['password']
 
     # Locate user
-    user = 'SELECT * FROM public."User" WHERE username=%s'
-    user_list = connection.execute(user, username).first()
+    user = User.query.filter_by(username=username).first()
 
-    s_password = bytearray(user_list.password)
+    s_password = bytearray(user.password)
     # if ip and browser match direct login with otp
-    # if ip and browser match direct login with otp
-    if user_list:
-        if check_user_login_info(user_list.id):
+    if user:
+        if check_user_login_info(user.id):
             # direct login
-            if user_list and verify_pass(password, s_password):
-                update_login_info(user_list.id)
-                # login_user(user_list)
+            if user and verify_pass(password, s_password):
+                update_login_info(user.id)
+                login_user(user)
                 return jsonify({"output": {"fa_required": False, "email": ""}})
+                
             return jsonify({"output": {"fa_required": "invalid", "message": "Invalid username or password"}})
-            
 
         else:
-            if user_list and verify_pass(password, s_password):
-                u_data = get_user_by_id(user_list.id)
+            if user and verify_pass(password, s_password):
+                u_data = get_user_by_id(user.id)
                 session['l_username'] = username
                 session['l_secret'] = password
 
@@ -89,7 +87,9 @@ def login():
         return render_template('signin.html',
                                form=login_form)
 
-    return redirect(url_for('admin_blueprint.admin_dashboard'))
+    else:
+         return render_template('signin.html',
+                               form=login_form)
 
 
 # Logout user
@@ -116,7 +116,3 @@ def access_forbidden(error):
         return render_template('signin.html',
                                form=login_form)
     # return render_template('accounts/login.html'), 403
-
-
-
-

@@ -88,13 +88,13 @@ const enrollfv = FormValidation.formValidation(enrollForm, {
         },
 
         // academic details
-        previous_school: {
-            validators: {
-                notEmpty: {
-                    message: 'The Name field is required',
-                },
-            },
-        },
+        // previous_school: {
+        //     validators: {
+        //         notEmpty: {
+        //             message: 'The Name field is required',
+        //         },
+        //     },
+        // },
 
         index_number: {
             validators: {
@@ -347,6 +347,73 @@ $("#permanent_gewog").on("change", function () {
     });
 })
 //-------------------------------Script ends--------------------------------//
+// -------------------------------Script for changing form------------------//
+$("#X").click(function (e) {
+    e.preventDefault();
+    $(".form_std").removeClass("d-none");
+    $(".form_title").addClass("d-none");
+    $(".grade_xi").addClass("d-none");
+    $(".grade_x_title").removeClass("d-none");
+    $(".grade_xii").addClass("d-none");
+    $(".general_grade").addClass("d-none");
+    $(".pre_school").removeClass("d-none");
+    $(".pre_school_X").addClass("d-none");
+    $(".pre_school_XII").addClass("d-none");
+    $(".emis_code").addClass("d-none");
+    $(".stream_choose").addClass("d-none");
+   
+    
+})
 
+$("#XI").click(function (e) {
+    e.preventDefault();
+    $(".form_std").removeClass("d-none");
+    $(".form_title").addClass("d-none");
+    $(".grade_xi").removeClass("d-none");
+    $(".grade_x_title").addClass("d-none");
+    $(".grade_xii").addClass("d-none");
+    $(".general_grade").addClass("d-none");
+    $(".pre_school").removeClass("d-none");
+    $(".pre_school_X").addClass("d-none");
+    $(".pre_school_XII").addClass("d-none");
+    $(".emis_code").addClass("d-none");
+    
+})
+
+$("#XII").click(function (e) {
+    e.preventDefault();
+    $(".form_std").removeClass("d-none");
+    $(".form_title").addClass("d-none");
+    $(".grade_xi").addClass("d-none");
+    $(".grade_x_title").addClass("d-none");
+    $(".grade_xii").removeClass("d-none");
+    $(".general_grade").addClass("d-none");
+    $(".pre_school").addClass("d-none");
+    $(".pre_school_X").removeClass("d-none");
+    $(".pre_school_XII").removeClass("d-none");
+    $(".emis_code").removeClass("d-none");
+   
+    
+    
+    
+})
+
+$("#General").click(function (e) {
+    e.preventDefault();
+    $(".form_std").removeClass("d-none");
+    $(".form_title").addClass("d-none");
+    $(".grade_xi").addClass("d-none");
+    $(".grade_x_title").addClass("d-none");
+    $(".grade_xii").addClass("d-none");
+    $(".general_grade").removeClass("d-none");
+    $(".pre_school").removeClass("d-none");
+    $(".pre_school_X").addClass("d-none");
+    $(".pre_school_XII").addClass("d-none");
+    $(".emis_code").addClass("d-none");
+    $(".stream_choose").addClass("d-none");
+   
+})
+
+//---------------------------------Script ends------------------------------//
 
 

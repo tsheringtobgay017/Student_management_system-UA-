@@ -11,10 +11,56 @@
 				Home</i></a></li>
 	<li class="active" style="font-size: 13px;">Student Registration</li>
 </ol>
-<hr> 
+<hr>
 <div class="container">
-	<h1 class="well" style="font-family: 'Neuton', serif; text-align: center;">REGISTER WITH UGYEN ACADEMY</h1>
-	<div class="col-lg-12 well">
+	<h4 class="well">
+		<img src="../static/admin_images/faces/uahead.png">
+		<hr>
+		<b>Classes X(Repeaters), XI & XII(Repeaters) and General Provisional Admission-2022</b>
+		<br>
+		<br>
+		<div class="form-group ">
+			<div class="row ">
+				<div class="col-md-3">
+					<div class="form-check form-check-inline">
+						<label for="class_select">X (Repeaters) </label>
+						<input class="form-check-input" type="radio" name="class_select" id="X" value="X">
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-check form-check-inline">
+						<label for="class_select">XI (Repeaters) </label>
+						<input class="form-check-input" type="radio" name="class_select" id="XI" value="XI">
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-check form-check-inline">
+						<label for="class_select">XII (Repeaters) </label>
+						<input class="form-check-input" type="radio" name="class_select" id="XII" value="XII">
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-check form-check-inline">
+						<label for="class_select">General </label>
+						<input class="form-check-input" type="radio" name="class_select" id="General" value="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</h4>
+
+	<div class="col-lg-12 well form_title">
+		<div class="row">
+			<h2 class="text-center">Your form will appear here!</h2>
+			
+	</div>
+	</div>
+<!-- enddddd -->
+	<div class="col-lg-12 well form_std d-none">
+		<h4 class="text-center grade_x_title">Registration for class X</h4>
+		<h4 class="text-center grade_xi">Registration for class XI</h4>
+		<h4 class="text-center grade_xii">Registration for class XII</h4>
+		<h4 class="text-center general_grade">Registration for General (VII - IX)</h4>
 		<div class="row">
 			<form method="POST" id="registration_form" action="" enctype="multipart/form-data">
 
@@ -42,6 +88,18 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-4 form-group">
+							<label>Gender</label>
+							<select class="form-control form-select" name="gender" id="gender">
+								<option value="">---Select One---</option>
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+								<option value="Others">Others</option>
+								
+	
+							</select>
+						</div>
+						
+						<div class="col-sm-4 form-group">
 							<label>DOB</label>
 							<input type="date" placeholder="Enter DOB" class="form-control" name="dob" id="dob">
 						</div>
@@ -49,11 +107,7 @@
 							<label>Email Address</label>
 							<input type="email" placeholder="Enter email" class="form-control" name="email" id="email">
 						</div>
-						<div class="col-sm-4 form-group">
-							<label>Phone Number</label>
-							<input type="text" placeholder="Enter Phone Number" class="form-control" name="phone_number"
-								id="phone_number">
-						</div>
+						
 					</div>
 					<div class="row ">
 						<div class="col-sm-4 form-group">
@@ -80,6 +134,13 @@
 							</select>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-sm-4 form-group">
+							<label>Phone Number</label>
+							<input type="text" placeholder="Enter Phone Number" class="form-control" name="phone_number"
+								id="phone_number">
+						</div>
+					</div>
 				</div>
 
 				<!-- ends student's details -->
@@ -94,17 +155,61 @@
 							<input type="text" placeholder="Enter Index Number" class="form-control" name="index_number"
 								id="index_number">
 						</div>
+						<div class="col-sm-4 form-group emis_code d-none">
+							<label>Student Code (EMIS code)</label>
+							<input type="text" placeholder="Enter student code" class="form-control" name="std_code"
+								id="std_code">
+						</div>
 
 
-						<div class="col-sm-4 form-group">
+						<div class="col-sm-4 form-group pre_school">
 							<label>Previous School</label>
 							<input type="text" placeholder="Enter Previous School Name" class="form-control"
 								name="previous_school" id="previous_school">
 						</div>
+
+						<div class="col-sm-4 form-group pre_school_X d-none">
+							<label>BCSE (Class X)</label>
+							<input type="text" placeholder="Enter School Name" class="form-control"
+								name="previous_school_X" id="previous_school_X">
+						</div>
+
+						<div class="col-sm-4 form-group pre_school_XII d-none">
+							<label>BHSEC (Class XII)</label>
+							<input type="text" placeholder="Enter School Name" class="form-control"
+								name="previous_school_XII" id="previous_school_XII">
+						</div>
+						<div class="col-sm-4 form-group">
+							<label for="accommodation" class="pull-left form-label">Accommodation (if admitted) </label>
+							
+								<select class="form-control form-select" name="accommodation" id="accommodation">
+									<option value="">---Select One---</option>
+									<option value="Boarder">Boarder</option>
+									<option value="Day student">Day student</option>
+									<option value="Paying guest">Paying guest</option>
+									
+		
+								</select>
+						</div>
+						<div class="col-sm-4 form-group admission_for">
+							<label for="admission_for" class="pull-left form-label">Admission for? (Enter class) </label>
+							
+								<select class="form-control form-select" name="admission_for" id="admission_for">
+									<option value="">---Select One---</option>
+									<option value="VII">VII</option>
+									<option value="VIII">VIII</option>
+									<option value="IX">IX</option>
+									<option value="X">X</option>
+									<option value="XI">XI</option>
+									<option value="XII">XII</option>
+		
+								</select>
+						</div>
 					</div>
+					<div class="stream_choose">
 					<div class="row ">
 						<div class="col-md-3">
-							<label for="stream" class="pull-left form-label">Stream</label>
+							<label for="stream" class="pull-left form-label">Choose Stream admission</label>
 						</div>
 					</div>
 					<div class="form-group ">
@@ -112,141 +217,138 @@
 							<div class="col-md-4">
 								<div class="form-check form-check-inline">
 									<label for="stream">Arts </label>
-									<input class="form-check-input" type="radio" name="stream" id="arts"
-										value="Arts">
+									<input class="form-check-input" type="radio" name="stream" id="arts" value="Arts">
 								</div>
 							</div>
 							<div class="col-md-4">
 								<div class="form-check form-check-inline">
 									<label for="stream">Commerce </label>
-									<input class="form-check-input" type="radio" name="stream"
-										id="commerce" value="Commerce">
+									<input class="form-check-input" type="radio" name="stream" id="commerce"
+										value="Commerce">
 								</div>
 							</div>
 							<div class="col-md-4">
 								<div class="form-check form-check-inline">
 									<label for="stream">Science </label>
-									<input class="form-check-input" type="radio" name="stream"
-										id="science" value="Science">
+									<input class="form-check-input" type="radio" name="stream" id="science"
+										value="Science">
 								</div>
 							</div>
-						</div>
-					</div>
-					
-						<hr class="my-4" >
-						<div class="row">
-							<div class="col-md-4">
-								<div class="form-group">
-									<label for="phone" class="form-control-label">Upload Marksheet (image)</label>
-									<input type="file" class="form-control rounded-2" name="marksheet"
-										id="marksheet" />
-								</div>
-							</div>
-						</div>
-						</div>
-						<div class="row">
-						<div class="col-sm-4 form-group">
-							<label for="supw" class="pull-left form-label">SUPW Grade </label>
-							<select class="form-control form-select" name="supw" id="supw">
-								<option value="">---Select One---</option>
-								<option value="A">A</option>
-								<option value="A+">A+</option>
-								<option value="A-">A-</option>
-								<option value="B">B</option>
-								<option value="B+">B+</option>
-								<option value="B-">B-</option>
-								<option value="C">C</option>
-								<option value="C+">C+</option>
-								<option value="C-">C-</option>
-
-							</select>
-						</div>
-
-						<div class="col-sm-4 form-group">
-							<label>Percentage (%)</label>
-							<input type="text" placeholder="Enter percentage obtained" class="form-control" name="percent"
-								id="percent">
 						</div>
 					</div>
 				</div>
-				<!-- Academic detail end -->
 
-				<div class=" p-1 mb-2 mt-3 bg-primary" style="font-weight: 500;
+					<hr class="my-4">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="phone" class="form-control-label">Upload Marksheet/result (image)</label>
+								<input type="file" class="form-control rounded-2" name="marksheet" id="marksheet" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 form-group">
+						<label for="supw" class="pull-left form-label">SUPW Grade </label>
+						<select class="form-control form-select" name="supw" id="supw">
+							<option value="">---Select One---</option>
+							<option value="A">A</option>
+							<option value="B">B</option>
+							<option value="C">C</option>
+							<option value="D">D</option>
+
+						</select>
+					</div>
+
+					<div class="col-sm-4 form-group">
+						<label>Percentage (%)</label>
+						<input type="text" placeholder="Enter percentage obtained" class="form-control" name="percent"
+							id="percent">
+					</div>
+				</div>
+		</div>
+		<!-- Academic detail end -->
+
+		<div class=" p-1 mb-2 mt-3 bg-primary" style="font-weight: 500;
 				font-size: 13px">Parent's/gaurdian's Detail<span class="text-danger"> *</span>
-				</div>
-				<div class="row">
-					<div class="col-sm-4 form-group">
-						<label>CID</label>
-						<input type="text" placeholder="Enter Parent/gaurdian's CID" class="form-control"
-							name="parent_cid" id="parent_cid">
-					</div>
-					<div class="col-sm-4 form-group">
-						<label>Name</label>
-						<input type="text" placeholder="Enter Parent/gaurdian Name" class="form-control"
-							name="parent_name" id="parent_name">
-					</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-4 form-group">
+				<label>CID</label>
+				<input type="text" placeholder="Enter Parent/gaurdian's CID" class="form-control" name="parent_cid"
+					id="parent_cid">
+			</div>
+			<div class="col-sm-4 form-group">
+				<label>Name</label>
+				<input type="text" placeholder="Enter Parent/gaurdian Name" class="form-control" name="parent_name"
+					id="parent_name">
+			</div>
 
-					<div class="col-sm-4 form-group">
-						<label>Phone Number</label>
-						<input type="text" placeholder="Enter Parent's Number" class="form-control" name="parent_number"
-							id="parent_number">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4 form-group">
-						<label>Email Address</label>
-						<input type="email" placeholder="Enter Parent's Email" class="form-control" name="parent_email"
-							id="parent_email">
-					</div>
-				</div>
+			<div class="col-sm-4 form-group">
+				<label>Phone Number</label>
+				<input type="text" placeholder="Enter Parent's Number" class="form-control" name="parent_number"
+					id="parent_number">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-4 form-group">
+				<label>Email Address</label>
+				<input type="email" placeholder="Enter Parent's Email" class="form-control" name="parent_email"
+					id="parent_email">
+			</div>
+		</div>
 
-				<div class=" p-1 mb-2 mt-3 bg-primary" style="font-weight: 500;
+		<div class=" p-1 mb-2 mt-3 bg-primary" style="font-weight: 500;
 				font-size: 13px">Present Address Detail<span class="text-danger"> *</span></div>
-				<div class="row">
-					<div class="row col-lg-12">
-						<div class="col-sm-4 form-group">
-							<label for="present_dzongkhag" class="pull-left form-label">Dzongkhag </label>
-							<select class="form-control form-select" name="present_dzongkhag" id="present_dzongkhag">
-								<option value="">---Select Dzongkhag---</option>
-								{% for row in dzo_List %}
-								<option value="{{ row.dzo_id }}">{{ row.dzo_name }}</option>
-								{% endfor %}
-								
+		<div class="row">
+			<div class="row col-lg-12">
+				<div class="col-sm-4 form-group">
+					<label for="present_dzongkhag" class="pull-left form-label">Dzongkhag </label>
+					<select class="form-control form-select" name="present_dzongkhag" id="present_dzongkhag">
+						<option value="">---Select Dzongkhag---</option>
+						{% for row in dzo_List %}
+						<option value="{{ row.dzo_id }}">{{ row.dzo_name }}</option>
+						{% endfor %}
 
-							</select>
-						</div>
-						<div class="col-sm-4 form-group">
-							<label for="present_gewog" class="pull-left form-label">Gewog</label>
-							<select class="form-control form-select" id="present_gewog" name="present_gewog">
-								<option value="">---Select Gewog---</option>
-							</select>
-						</div>
-						<div class="col-sm-4 form-group">
-							<label for="present_village" class="pull-left form-label">Village</label>
-							<select class="form-control form-select" id="present_village" name="present_village">
-								<option value="">---Select Village---</option>
-							</select>
-						</div>
-					</div>
+
+					</select>
 				</div>
+				<div class="col-sm-4 form-group">
+					<label for="present_gewog" class="pull-left form-label">Gewog</label>
+					<select class="form-control form-select" id="present_gewog" name="present_gewog">
+						<option value="">---Select Gewog---</option>
+					</select>
+				</div>
+				<div class="col-sm-4 form-group">
+					<label for="present_village" class="pull-left form-label">Village</label>
+					<select class="form-control form-select" id="present_village" name="present_village">
+						<option value="">---Select Village---</option>
+					</select>
+				</div>
+			</div>
+		</div>
 
 
 
-				<div class="button-center">
-					<button type="submit" class="btn btn-sm btn-warning student_reg" style="    color: white;
+		<div class="button-center">
+			<button type="submit" class="btn btn-sm btn-warning student_reg" style="    color: white;
 					width: 101px;
 					height: 40px;
 					font-size: 16px;">Submit</button>
-				</div>
-
-			</form>
 		</div>
+
+		</form>
 	</div>
+	
+	
 </div>
+
 
 {% endblock content %}
 
 <!-- Specific JS goes HERE -->
 {% block javascripts %}
+
 
 {% endblock javascripts %}
