@@ -1,0 +1,195 @@
+{% extends 'layouts/enroll_main.html' %}
+
+{% block title %} Student Management System {% endblock title %}
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block content %}
+<ol class="breadcrumb ">
+	<li><a href="{{url_for('home_blueprint.route_default')}}"><i class="fa fa-home" style="font-size:15px;">Home</i></a></li>
+	<li class="active" style="font-size: 13px;">Track Your Student</li>
+</ol>
+<hr> 
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card" >
+                <div class="card-header" style="font-size:16px">Track your student performances :</div> 
+                    <div class="card-body">
+                        <form action="" id="track_std" method="POST">
+                            <div class="form-group row">
+                                <label for="email_address" class="col-md-4 col-form-label text-md-right" style=" font-size:14px">CID</label>
+                                <div class="col-md-6"> <br>
+                                    <input type="text" id="std_cid" class="form-control" name="std_cid" style=" font-size:14px">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="email_address" class="col-md-4 col-form-label text-md-right" style=" font-size:14px">Student Number :</label>
+                                <div class="col-md-6"> <br>
+                                    <input type="text" id="std_index" class="form-control" name="std_index" style=" font-size:14px">
+                                </div>
+                            </div>
+                            <div class="col-md-6 offset-md-5">
+                                <button type="submit" class="btn btn-success" style="font-size:15px">
+                                    Search <i class="fa fa-search" aria-hidden="true"></i>
+                                </button> <br>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+<br><br><br>
+<!-- to show student details  -->
+<div class="container">
+    <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Student </h4>
+                  <hr>
+                  <div class="card-body">
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush" id="customerList">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th scope="col" class="sort" data-sort="name">SL</th>
+                                    <th scope="col" class="sort" data-sort="name">Index Number</th>
+                                    <th scope="col" class="sort" data-sort="budget">CID</th>
+                                    <th scope="col" class="sort" data-sort="name">Student Name</th>
+                                    <th scope="col" class="sort" data-sort="name">Email</th>
+                                    <th scope="col">action</th>
+                                </tr>
+                                </thead>
+                                <tbody class="list">
+                                 
+                                  {% for std in users_st %}
+                                  <tr>
+                                      <th scope="row">
+                                          {{ loop.index }}
+                                      </th>
+                                      <th scope="row">
+                                          {{ std.index_number }}
+                                      </th>
+                                      <td class="budget">
+                                          {{ std.student_cid}}
+                                      </td>
+                                      <td class="budget">
+                                          {{ std.first_name }}
+                                      </td>
+                                      <td class="budget">
+                                        {{ std.first_name }}
+                                      </td>
+                                      <td class="budget">
+                                      {{ std.student_email }}
+                                      </td>
+      
+                                      <td class="text-right">
+                                          <div class="dropdown">
+                                              <a class="btn btn-sm btn-icon-only text-light" href="#"
+                                                  role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                  aria-expanded="false">
+                                                  <i class="fas fa-ellipsis-v"></i>
+                                              </a>
+                                              <div
+                                                  class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                  <a class="dropdown-item"
+                                                      href="/std-detials/{{ std.id }}">View</a>
+                                                  <a class="dropdown-item" href="javascript:void(0)"
+                                                      onclick="deleteUser('{{ user.user_id }}')">Delete</a>
+                                              </div>
+                                          </div>
+                                      </td>
+                                  </tr>
+                                  {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script>
+   $(document).ready(function() {
+        loadUsers()
+    });
+  function loadUsers(){
+        $('#customerList').DataTable({
+            'processing': true,
+            'serverSide': true,
+            'bDestroy': true,
+            'serverMethod': 'POST',
+            'ajax': {
+                'url':'/users-std'
+            },
+            'columns': [
+                { data: 'sl' },
+                { data: 'index_number' },
+                { data: 'student_cid' },
+                { data: 'first_name' },
+                { data: 'student_email' },
+              
+                {
+                "render": function(data, type, full, meta) {
+                    return '<div class="dropdown">'+
+                        '<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background:orange">'+
+                            '<i class="fas fa-ellipsis-v"><b>Click</b></i>'+
+                        '</a>'+
+                        '<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">'+
+                            '<a class="dropdown-item" href="/std-detials/' + full.id + '">View</a>'+
+                            '<a class="dropdown-item" href="javascript:void(0)" onclick="deleteUser('+full.id+')">Delete</a>'+
+                        '</div>'+
+                    '</div>'
+                }
+                },
+            ],
+            language: {
+            paginate: {
+                next: '&#8594;', // or '→'
+                previous: '&#8592;' // or '←' 
+            }
+            },
+            "ordering": false
+        });
+    }
+
+
+    $("#track_std").on("submit", function (e) {
+		e.preventDefault(e);
+		var form_data = new FormData($('#track_std')[0])
+		$.ajax({
+			type: 'POST',
+			url: "/search",
+			data: form_data,
+			contentType: false,
+			cache: false,
+			processData: false,
+			success: function (res) {
+			
+			}
+
+		});
+	});
+</script>
+{% endblock javascripts %}

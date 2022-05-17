@@ -6,7 +6,7 @@ from flask_login import (current_user, login_user, logout_user)
 from config import Config
 from app.admin.models import User
 from app.admin.forms import LoginForm
-from app.home.service import store_student_details, store_academic_details, get_dzo_list, get_gewog, get_village
+from app.home.service import store_student_details, store_academic_details, get_dzo_list, get_gewog, get_village,track_std
 from flask_login import (current_user, login_required)
 from app.admin.util import get_user_by_id, verify_pass, check_user_login_info, update_login_info
 
@@ -117,6 +117,21 @@ def access_forbidden(error):
                                form=login_form)
     # return render_template('accounts/login.html'), 403
 
+# students fee structure
+@blueprint.route('/fees-detail')
+def studentFee():
+    return render_template("std_fee.html")
+
+# track student
+@blueprint.route('/track-student')
+def trackapplication():
+    return render_template("track_std.html")
+
+# track students
+
+@blueprint.route('/search', methods=['POST'])
+def search():
+    return track_std()
 
 
 

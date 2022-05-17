@@ -101,3 +101,12 @@ def get_village():
         village_list = 'SELECT * FROM public.tbl_village_list WHERE "gewog_id" = %s ORDER BY "village_name" ASC'
         village_list = connection.execute(village_list, village_id).fetchall()
     return jsonify({"villageList": [dict(row) for row in village_list]})
+
+
+def track_std():
+    if request.method == 'POST':
+        student_cid = request.form.get('std_cid')
+        index_number = request.form.get('std_index')
+        get_std = 'SELECT * FROM public.tbl_students_personal_info as sp inner join public.tbl_academic_detail as ac ON ac.std_personal_info_id = sp.id  WHERE student_cid =%s AND index_number =%s'
+        std_list = connection.execute(get_std, student_cid, index_number ).fetchall()
+    return str(std_list)
