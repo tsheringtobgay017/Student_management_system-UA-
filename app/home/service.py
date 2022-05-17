@@ -112,10 +112,44 @@ def get_village():
     return jsonify({"villageList": [dict(row) for row in village_list]})
 
 
+# def track_std():
+#     if request.method == 'POST':
+#         student_cid = request.form.get('std_cid')
+#         index_number = request.form.get('std_index')
+#         get_std = 'SELECT * FROM public.tbl_students_personal_info as sp inner join public.tbl_academic_detail as ac ON ac.std_personal_info_id = sp.id  WHERE student_cid =%s AND index_number =%s'
+#         std_list = connection.execute(get_std, student_cid, index_number ).fetchall()
+#         print('::::',std_list)
+#     return str(std_list)
+
+
 def track_std():
-    if request.method == 'POST':
-        student_cid = request.form.get('std_cid')
-        index_number = request.form.get('std_index')
-        get_std = 'SELECT * FROM public.tbl_students_personal_info as sp inner join public.tbl_academic_detail as ac ON ac.std_personal_info_id = sp.id  WHERE student_cid =%s AND index_number =%s'
-        std_list = connection.execute(get_std, student_cid, index_number ).fetchall()
-    return str(std_list)
+   
+    student_cid = request.form.get('std_cid')
+    index_number = request.form.get('std_index')
+  
+   
+
+    str_query = 'SELECT * FROM public.tbl_students_personal_info as sp inner join public.tbl_academic_detail as ac ON ac.std_personal_info_id = sp.id  WHERE student_cid =%s AND index_number =%s'
+       
+    
+
+    std_list = connection.execute(str_query, student_cid, index_number).fetchall()
+    print(":::::::", std_list)
+
+    data = []
+    count = 0
+    for index, user in enumerate(std_list):
+        data.append({'sl': index + 1,
+                     'index_number': user.index_number,
+                     'student_cid': user.student_cid,
+                     'first_name': user.first_name,
+                     'student_email': user.student_email,
+                     'id': user.id})
+      
+
+    respose_std_list = {
+        "iTotalRecords": count,
+        "iTotalDisplayRecords": count,
+        "aaData": data
+    }
+    return respose_std_list

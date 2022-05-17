@@ -8,8 +8,6 @@ from app import mail
 from sqlalchemy import create_engine
 from app.admin.util import hash_pass
 from uuid import uuid4
-import requests
-from requests.structures import CaseInsensitiveDict
 
 
 engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)

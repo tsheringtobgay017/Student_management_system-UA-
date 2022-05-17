@@ -70,25 +70,25 @@
                                 </thead>
                                 <tbody class="list">
                                  
-                                  {% for std in users_st %}
+                                  {% for usr in track_st %}
                                   <tr>
                                       <th scope="row">
                                           {{ loop.index }}
                                       </th>
                                       <th scope="row">
-                                          {{ std.index_number }}
+                                          {{ usr.index_number }}
                                       </th>
                                       <td class="budget">
-                                          {{ std.student_cid}}
+                                          {{ usr.student_cid}}
                                       </td>
                                       <td class="budget">
-                                          {{ std.first_name }}
+                                          {{ usr.first_name }}
                                       </td>
                                       <td class="budget">
-                                        {{ std.first_name }}
+                                        {{ usr.first_name }}
                                       </td>
                                       <td class="budget">
-                                      {{ std.student_email }}
+                                      {{ usr.student_email }}
                                       </td>
       
                                       <td class="text-right">
@@ -101,7 +101,7 @@
                                               <div
                                                   class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                   <a class="dropdown-item"
-                                                      href="/std-detials/{{ std.id }}">View</a>
+                                                      href="/search/{{ usr.id }}">View</a>
                                                   <a class="dropdown-item" href="javascript:void(0)"
                                                       onclick="deleteUser('{{ user.user_id }}')">Delete</a>
                                               </div>
@@ -131,24 +131,32 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script>
-   $(document).ready(function() {
-        loadUsers()
-    });
-  function loadUsers(){
-        $('#customerList').DataTable({
-            'processing': true,
-            'serverSide': true,
-            'bDestroy': true,
-            'serverMethod': 'POST',
-            'ajax': {
-                'url':'/users-std'
-            },
-            'columns': [
-                { data: 'sl' },
-                { data: 'index_number' },
-                { data: 'student_cid' },
-                { data: 'first_name' },
-                { data: 'student_email' },
+//    $(document).ready(function() {
+//         loadUsers()
+//     });
+    $("#track_std").on("submit", function (e) {
+		e.preventDefault(e);
+        var form_data = new FormData($('#track_std')[0])
+		$.ajax({
+			type: 'POST',
+			url: "/search",
+			data: form_data,
+			contentType: false,
+			cache: false,
+			processData: false,
+			success: function (res) {
+                $('#customerList').DataTable({
+                'processing': true,
+                'serverSide': true,
+                'bDestroy': true,
+                'serverMethod': 'POST',
+           
+                'columns': [
+                    { data: 'sl' },
+                    { data: 'index_number' },
+                    { data: 'student_cid' },
+                    { data: 'first_name' },
+                    { data: 'student_email' },
               
                 {
                 "render": function(data, type, full, meta) {
@@ -157,7 +165,7 @@
                             '<i class="fas fa-ellipsis-v"><b>Click</b></i>'+
                         '</a>'+
                         '<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">'+
-                            '<a class="dropdown-item" href="/std-detials/' + full.id + '">View</a>'+
+                            '<a class="dropdown-item" href="/search/' + full.id + '">View</a>'+
                             '<a class="dropdown-item" href="javascript:void(0)" onclick="deleteUser('+full.id+')">Delete</a>'+
                         '</div>'+
                     '</div>'
@@ -171,25 +179,31 @@
             }
             },
             "ordering": false
-        });
-    }
-
-
-    $("#track_std").on("submit", function (e) {
-		e.preventDefault(e);
-		var form_data = new FormData($('#track_std')[0])
-		$.ajax({
-			type: 'POST',
-			url: "/search",
-			data: form_data,
-			contentType: false,
-			cache: false,
-			processData: false,
-			success: function (res) {
-			
+        })
 			}
+            
 
 		});
-	});
+       
+        
+    })
+
+
+    // $("#track_std").on("submit", function (e) {
+	// 	e.preventDefault(e);
+	// 	var form_data = new FormData($('#track_std')[0])
+	// 	$.ajax({
+	// 		type: 'POST',
+	// 		url: "/search",
+	// 		data: form_data,
+	// 		contentType: false,
+	// 		cache: false,
+	// 		processData: false,
+	// 		success: function (res) {
+			
+	// 		}
+
+	// 	});
+	// });
 </script>
 {% endblock javascripts %}

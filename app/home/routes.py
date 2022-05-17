@@ -116,7 +116,6 @@ def access_forbidden(error):
         return render_template('signin.html',
                                form=login_form)
     # return render_template('accounts/login.html'), 403
-<<<<<<< HEAD
 
 # students fee structure
 @blueprint.route('/fees-detail')
@@ -132,9 +131,8 @@ def trackapplication():
 
 @blueprint.route('/search', methods=['POST'])
 def search():
-    return track_std()
+    track_st = track_std()
+    print(":::::::::", track_st)
+    return track_st
 
 
-
-=======
->>>>>>> d75f88b581c5efc392763d8a9ae2dc9bbb7f4594
