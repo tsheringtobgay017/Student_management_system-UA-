@@ -5,19 +5,28 @@ from flask_sqlalchemy import SQLAlchemy
 from importlib import import_module
 from flask_migrate import Migrate
 from datetime import timedelta
+from flask_mail import Mail
+from numpy.testing._private.utils import jiffies
+from sqlalchemy.sql.ddl import DropIndex
+from sqlalchemy.sql.schema import ThreadLocalMetaData
+from werkzeug import datastructures
+from werkzeug.utils import redirect
+
 
 db = SQLAlchemy()
 login_manager = LoginManager()
+mail = Mail()
 migrate = Migrate()
 
 def register_extensions(app):
     db.init_app(app)
     login_manager.init_app(app)
     migrate.init_app(app)
+    mail.init_app(app)
 
 
 def register_blueprints(app):
-    for module_name in ('home', 'admin',):
+    for module_name in ('home', 'admin', 'class_teacher', ):
         module = import_module('app.{}.routes'.format(module_name))
         app.register_blueprint(module.blueprint)
 
@@ -44,7 +53,6 @@ def configure_database(app):
 def create_app(config):
     app = Flask(__name__, static_folder='home/static')
     app.config.from_object(config)
-    app.config['SECRET_KEY'] = 'dkjfdijk879dfjindf'
     register_blueprints(app)
     register_extensions(app)
     configure_database(app)

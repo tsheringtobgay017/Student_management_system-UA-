@@ -1,13 +1,17 @@
 from flask import render_template
 from flask_login import login_required
 from app.admin import blueprint
-from app.admin.service import save_user_table, save_user_detail_table, all_users, is_admin, get_user_by_id, delete_user_by_id, get_std_by_id, all_std
+from app.admin.service import save_user_table, save_user_detail_table, application_update, all_users, is_admin,is_classTeacher, get_user_by_id, delete_user_by_id, get_std_by_id, all_std
 
 
-@blueprint.route('/admin-dashboard')
-def admin_dashboard():
-    return render_template('admin.html')
+@blueprint.route('/dashboard')
+def dashboard():
+    if(is_admin()):
+        return render_template('admin.html')
 
+    else:
+        return render_template('class_teacherDash.html')  
+   
 
 @blueprint.route('/admin-add-user')
 def admin_add_user():
@@ -120,3 +124,11 @@ def delete_user(id):
         return 'success', 200
     else:
         return 'error', 500
+
+
+@blueprint.route('/update-status', methods=['POST'])
+def update_app_status():
+    if(is_admin()):
+        return application_update()
+    else:
+        return "Failed"

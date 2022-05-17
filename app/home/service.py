@@ -33,14 +33,17 @@ def store_student_details():
     student_present_dzongkhag = request.form.get("present_dzongkhag")
     student_present_gewog = request.form.get("present_gewog")
     student_present_village = request.form.get("present_village")
+    status = 'submitted'
+    gender = request.form.get('gender')
     
 
 
     engine.execute("INSERT INTO public.tbl_students_personal_info (id, student_cid, first_name, last_name, dob, student_email, student_phone_number,  student_dzongkhag, student_gewog, student_village, parent_cid,"
-                    "parent_full_name, parent_contact_number, parent_email, student_present_dzongkhag, student_present_gewog, student_present_village, created_at) "
+                    "parent_full_name, parent_contact_number, parent_email, student_present_dzongkhag, student_present_gewog, student_present_village, created_at, status,gender) "
                    "VALUES ("
-                   "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s, %s)",
-                   (id, student_cid, first_name, last_name,dob, student_email, student_phone_number, student_dzongkhag, student_gewog, student_village, parent_cid, parent_full_name, parent_contact_number, parent_email,student_present_dzongkhag,  student_present_gewog, student_present_village,  created_at))
+                   "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s, %s, %s, %s)",
+                   (id, student_cid, first_name, last_name,dob, student_email, student_phone_number, student_dzongkhag, student_gewog, student_village, parent_cid, parent_full_name, parent_contact_number, 
+                   parent_email,student_present_dzongkhag,  student_present_gewog, student_present_village,  created_at, status, gender))
 
     return id
 
@@ -62,13 +65,19 @@ def store_academic_details(id_personal):
     supw_grade = request.form.get("supw")
     percentage_obtained = request.form.get("percent")
     created_at = datetime.now()
+    admission_for_class = request.form.get('admission_for')
+    accommodation = request.form.get('accommodation')
+    student_code = request.form.get ('std_code')
+    bcse_x = request.form.get ('previous_school_X')
+    bhsec_xii = request.form.get('previous_school_XII')
     
 
     engine.execute("INSERT INTO public.tbl_academic_detail (id, std_personal_info_id, index_number, previous_school_name, stream, marksheet, supw_grade, percentage_obtained,"
-                    "created_at) "
+                    "created_at, admission_for_class, accommodation, student_code, bcse_x, bhsec_xii) "
                    "VALUES ("
-                   "%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-                   (id, id_personal, index_number, previous_school_name, stream, marksheet_url, supw_grade, percentage_obtained,  created_at))
+                   "%s,%s,%s,%s,%s,%s,%s,%s,%s, %s, %s, %s, %s,%s)",
+                   (id, id_personal, index_number, previous_school_name, stream, marksheet_url, supw_grade, percentage_obtained,  created_at,
+                    admission_for_class, accommodation, student_code, bcse_x,bhsec_xii))
 
     return "success"
 
