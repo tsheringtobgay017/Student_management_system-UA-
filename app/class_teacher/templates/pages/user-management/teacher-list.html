@@ -1,4 +1,4 @@
-{% extends 'layouts/admin_main.html' %}
+{% extends 'layouts/class_teacher_main.html' %}
 
 {% block title %} Dashboard For Bank Users {% endblock title %}
 <!-- Specific CSS goes HERE -->
@@ -21,10 +21,12 @@
             <div class="col-lg-12 grid-margin">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">User List</h4>
+                        <h4 class="card-title">Class</h4>
+                        
                         <hr>
                         <div class="card-body">
                             <div class="row">
+                               
                                 <div class="table-responsive">
                                     <table class="table align-items-center table-flush" id="customerList">
                                         <thead class="thead-light">
@@ -32,24 +34,30 @@
                                                 <th scope="col" class="sort" data-sort="name">SL</th>
                                                 <th scope="col" class="sort" data-sort="name">Username</th>
                                                 <th scope="col" class="sort" data-sort="name">Email</th>
+                                                <th scope="col" class="sort" data-sort="name">Subject</th>
                                                 <th scope="col" class="sort" data-sort="budget">roles</th>
                                                 <th scope="col">action</th>
                                             </tr>
                                         </thead>
                                         <tbody class="list">
-                                            {% for users in user %}
+                                            
+                                            {% for usr in user %}
+                                            
                                             <tr>
                                                 <th scope="row">
                                                     {{ loop.index }}
                                                 </th>
                                                 <th scope="row">
-                                                    {{ users.username }}
+                                                    {{ usr.username }}
                                                 </th>
                                                 <td class="budget">
-                                                    {{ users.email}}
+                                                    {{ usr.email}}
                                                 </td>
                                                 <td class="budget">
-                                                    {{ users.role }}
+                                                    {{ usr.subject}}
+                                                </td>
+                                                <td class="budget">
+                                                    {{ usr.role }}
                                                 </td>
 
                                                 <td class="text-right">
@@ -62,9 +70,9 @@
                                                         <div
                                                             class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                             <a class="dropdown-item"
-                                                                href="/user/{{ users.user_id }}">View</a>
+                                                                href="">View</a>
                                                             <a class="dropdown-item" href="javascript:void(0)"
-                                                                onclick="deleteUser('{{ users.user_id }}')">Delete</a>
+                                                                >Delete</a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -112,13 +120,15 @@
             'bDestroy': true,
             'serverMethod': 'POST',
             'ajax': {
-                'url': '/users'
+                'url': '/subject-teacher-list'
             },
             'columns': [
                 { data: 'sl' },
                 { data: 'username' },
                 { data: 'email' },
+                { data: 'subject' },
                 { data: 'role' },
+               
                 {
                     "render": function (data, type, full, meta) {
                         return '<div class="dropdown">' +
@@ -126,8 +136,8 @@
                             '<i class="fas fa-ellipsis-v"><b>Click</b></i>' +
                             '</a>' +
                             '<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">' +
-                            '<a class="dropdown-item" href="/user/' + full.id + '">View</a>' +
-                            '<a class="dropdown-item" href="javascript:void(0)" onclick="deleteUser(' + full.id + ')">Delete</a>' +
+                            '<a class="dropdown-item" href="">View</a>' +
+                            '<a class="dropdown-item" href="">Delete</a>' +
                             '</div>' +
                             '</div>'
                     }

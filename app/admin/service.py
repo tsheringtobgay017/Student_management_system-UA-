@@ -34,10 +34,12 @@ def save_user_detail_table(user_id):
     role = request.form['role']
     grade = request.form['grade']
     section = request.form['section']
+    stream = request.form['stream']
+    subject = request.form['subject']
     ip = request.remote_addr
     browser = request.headers.get('User-Agent')
-    connection.execute('INSERT INTO public.user_detail ("id", "user_id", "role","grade", "section", "ip_address", "browser", "created_at") VALUES (%s,%s, %s, %s, %s, %s, %s, %s)',
-                       (id, user_id, role, grade,section, ip, browser, datetime.now()))
+    connection.execute('INSERT INTO public.user_detail ("id", "user_id", "role","grade", "section", "stream", "subject", "ip_address", "browser", "created_at") VALUES (%s,%s, %s, %s, %s, %s, %s, %s, %s, %s)',
+                       (id, user_id, role, grade,section,stream,subject, ip, browser, datetime.now()))
     return "saved"
 
 # for users search
@@ -114,6 +116,13 @@ def is_admin():
 
 def is_classTeacher():
     if(user_role() == 'class_teacher'):
+        return True
+    else:
+        return False
+
+
+def is_subjectTeacher():
+    if(user_role() == 'subject_teacher'):
         return True
     else:
         return False
