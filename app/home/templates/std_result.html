@@ -1,0 +1,97 @@
+{% extends 'layouts/enroll_main.html' %}
+
+{% block title %} Student Management System {% endblock title %}
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block content %}
+<ol class="breadcrumb ">
+	<li><a href="{{url_for('home_blueprint.route_default')}}"><i class="fa fa-home" style="font-size: 15px;">
+				Home</i></a></li>
+	<li class="active" style="font-size: 13px;"> Fees 2022 Academic Session</li>
+</ol>
+<hr> 
+<!-- result form -->
+<div class="container">
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-8">
+                    <h2><b>STATEMENT OF MARKS</b></h2> <br>
+                    <h5>Index Number : 12180068</h5> <br>
+                </div>
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>SUBJECT</th>
+                    <th>CA (20)</th>
+                    <th>PRACTICAL(20)</th>
+                    <th>THEORY(60)</th>
+                    <th>TOTAL</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>English</td>
+                    <td>19</td>
+                    <td>19</td>
+                    <td>50</td>
+                    <td>70</td>
+                </tr>
+                <tr>
+                    <td>Dzongkha</td>
+                    <td>19</td>
+                    <td>19</td>
+                    <td>50</td>
+                    <td>70</td>
+                </tr> 
+                <tr>
+                    <td>Business math</td>
+                    <td>19</td>
+                    <td>19</td>
+                    <td>50</td>
+                    <td>70</td>
+                </tr>
+                <tr>
+                    <td>Accountancy</td>
+                    <td>19</td>
+                    <td>19</td>
+                    <td>50</td>
+                    <td>70</td>
+                </tr> 
+                <tr>
+                    <td>Commerce</td>
+                    <td>19</td>
+                    <td>19</td>
+                    <td>50</td>
+                    <td>70</td>
+                </tr>   
+                <tr>
+                    <td>Economics</td>
+                    <td>19</td>
+                    <td>19</td>
+                    <td>50</td>
+                    <td>70</td>
+                </tr>
+                <tr>
+                    <td>SUPW :</td>
+                    <td>A+</td>
+                </tr>
+                <tr>
+                    <td>RESULT :</td>
+                    <td>Pass Certificated Awarded</td>
+                </tr>        
+            </tbody>
+        </table>
+    </div>
+</div>    
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}
+
+{% endblock javascripts %}
