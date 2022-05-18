@@ -147,7 +147,7 @@ $("#add_student").on("submit", function (e) {
 			success: function (res) {
                 const { aaData } = res;
                 $("#add_std").append('<tr><td>'+aaData[0].sl+'</td><td>'+aaData[0].index_number+'</td><td>'+aaData[0].student_cid+'</td><td>'+aaData[0].first_name +' '+ aaData[0].last_name+'</td><td>'+aaData[0].student_email +'</td><td>'+aaData[0].status +'</td><td>'+ '<a class="btn btn-sm btn-icon-only text-light" id="add_new_std" role="button" style="background:orange">' +
-                        '<b>View</b>' +
+                        '<b>Add</b>' +
                         '</a>'  +'</td></tr>' )
                         
                     $("#add_new_std").click(function(){

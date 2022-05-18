@@ -49,5 +49,21 @@ def std_details(id):
     return get_std_by_id(id)
 
 
+@blueprint.route('/view-std-detail')
+@login_required
+def view_student_detail():
+    return render_template('/pages/add-student/student_detail.html')
+
+
+@blueprint.route('/view-std-marks')
+@login_required
+def view_student_marks():
+    return render_template('/pages/add-student/view_std_mark.html')
+
+
+@blueprint.route('/view-std-class-marks')
+@login_required
+def view_student_class_marks():
+    return render_template('/pages/add-student/class_teacher_assessment.html')
 
     
