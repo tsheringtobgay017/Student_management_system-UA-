@@ -129,10 +129,6 @@ def trackapplication():
 
 # track students
 
-@blueprint.route('/search', methods=['POST'])
+@blueprint.route('/search', methods=["POST"])
 def search():
-    track_st = track_std()
-    print(":::::::::", track_st)
-    return track_st
-
-
+    return track_std()

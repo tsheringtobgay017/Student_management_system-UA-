@@ -126,15 +126,9 @@ def track_std():
    
     student_cid = request.form.get('std_cid')
     index_number = request.form.get('std_index')
-  
-   
-
     str_query = 'SELECT * FROM public.tbl_students_personal_info as sp inner join public.tbl_academic_detail as ac ON ac.std_personal_info_id = sp.id  WHERE student_cid =%s AND index_number =%s'
-       
-    
-
     std_list = connection.execute(str_query, student_cid, index_number).fetchall()
-    print(":::::::", std_list)
+    
 
     data = []
     count = 0
