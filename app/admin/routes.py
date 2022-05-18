@@ -10,8 +10,11 @@ def dashboard():
     if(is_admin()):
         return render_template('admin.html')
 
-    else:
+    elif(is_classTeacher()):
         return render_template('class_teacherDash.html')  
+    
+    else:
+        return render_template('subject_teacherDash.html')
    
 
 @blueprint.route('/admin-add-user')
