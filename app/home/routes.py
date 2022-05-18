@@ -134,4 +134,8 @@ def search():
     return track_std()
 
 
+# student result
 
+@blueprint.route('/student-result')
+def result():
+    return render_template("std_result.html")

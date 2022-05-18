@@ -137,6 +137,7 @@ def track_std():
                      'index_number': user.index_number,
                      'student_cid': user.student_cid,
                      'first_name': user.first_name,
+                     'last_name': user.last_name,
                      'student_email': user.student_email,
                      'id': user.id})
       
