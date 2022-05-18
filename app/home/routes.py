@@ -132,3 +132,6 @@ def trackapplication():
 @blueprint.route('/search', methods=["POST"])
 def search():
     return track_std()
+
+
+

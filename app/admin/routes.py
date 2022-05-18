@@ -5,30 +5,38 @@ from app.admin.service import save_user_table, save_user_detail_table, applicati
 
 
 @blueprint.route('/dashboard')
+@login_required
 def dashboard():
     if(is_admin()):
         return render_template('admin.html')
 
-    else:
+    elif(is_classTeacher()):
         return render_template('class_teacherDash.html')  
+    
+    else:
+        return render_template('subject_teacherDash.html')
    
 
 @blueprint.route('/admin-add-user')
+@login_required
 def admin_add_user():
     return render_template('/pages/user-management/add-new-user.html')
 
 
 @blueprint.route('/admin-user-list')
+@login_required
 def admin_user_list():
     return render_template('/pages/user-management/user-list.html')
 
 
 @blueprint.route('/admin-typography')
+@login_required
 def admin_typography():
     return render_template('/pages/ui-features/typography.html')
 
 
 @blueprint.route('/admin-student-application-list')
+@login_required
 def admin_std_app_list():
     return render_template('/pages/student-applications/student_application_list.html')
 
@@ -39,26 +47,31 @@ def admin_std_app_list():
 
 
 @blueprint.route('/admin-basic-tables')
+@login_required
 def admin_basic_tables():
     return render_template('/pages/tables/basic-table.html')
 
 
 @blueprint.route('/admin-charts')
+@login_required
 def admin_charts():
     return render_template('/pages/charts/chartjs.html')
 
 
 @blueprint.route('/admin-icons')
+@login_required
 def admin_icons():
     return render_template('/pages/icons/mdi.html')
 
 
 @blueprint.route('/admin-login')
+@login_required
 def admin_login():
     return render_template('/pages/samples/login.html')
 
 
 @blueprint.route('/admin-register')
+@login_required
 def admin_register():
     return render_template('/pages/samples/register.html')
 
