@@ -25,29 +25,8 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Add Student In Class</h4>
+                        <h4 class="card-title">Student List</h4>
                         <hr>
-                        <form action="" id="add_student" method="POST">
-                            <div class="row">
-                                <div class="col-sm-4 form-group">
-                                    <label>CID</label>
-                                    <input type="text" placeholder="Enter CID" class="form-control" name="cid" id="cid">
-                                </div>
-                                <div class="col-sm-4 form-group">
-                                    <label>Index Number</label>
-                                    <input type="text" placeholder="Enter Index Number" class="form-control"
-                                        name="index_num" id="index_num">
-                                </div>
-
-                                <div class="col-md-4 mt-2">
-                                    <br>
-
-                                    <button type="submit"  class="btn btn-success" style="font-size:15px">
-                                        Search
-                                    </button> <br>
-                                </div>
-                            </div>
-                        </form>
                         <div class="card-body">
                             <div class="row">
                                 <div class="table-responsive">
@@ -63,8 +42,30 @@
                                                 <th scope="col">action</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="list" id="add_std">
-
+                                        <tbody class="list" id="class_std">
+                                            <tr>
+                                                <td>1 </td>
+                                                <td>00001</td>
+                                                <td>10715000332</td>
+                                                <td>Ugyen Dorji</td>
+                                                <td>Ugyen@gmail.com</td>
+                                                <td>approved</td>
+                                                <td> <a class="btn btn-sm btn-icon-only text-light" id="add_new_std" role="button" style="background:orange">
+                                                    <b>View</b> </a></td>
+                                               
+                                            </tr>
+                                            <tr>
+                                                <td>2 </td>
+                                                <td>00002</td>
+                                                <td>10715000321</td>
+                                                <td>pema Loday</td>
+                                                <td>pema@gmail.com</td>
+                                                <td>approved</td>
+                                                <td> <a class="btn btn-sm btn-icon-only text-light" id="add_new_std" role="button" style="background:orange">
+                                                    <b>View</b> </a></td>
+                                               
+                                            </tr>
+                                           
                                            
                                            
 
@@ -75,36 +76,6 @@
 
                             </div>
                         </div>
-
-                        <!-- <div class="card-body">
-                            <h4 class="card-title">Student List </h4>
-                            <hr>
-                            <div class="row">
-                                <div class="table-responsive">
-                                    <table class="table align-items-center table-flush" id="customerList">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col" class="sort" data-sort="name">SL</th>
-                                                <th scope="col" class="sort" data-sort="name">Index Number</th>
-                                                <th scope="col" class="sort" data-sort="budget">CID</th>
-                                                <th scope="col" class="sort" data-sort="name">Student Name</th>
-                                                <th scope="col" class="sort" data-sort="name">Email</th>
-                                                <th scope="col" class="sort" data-sort="name">Status</th>
-                                                <th scope="col">action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="list" id="class_std">
-
-                                           
-                                           
-
-                                        </tbody>
-                                    </table>
-
-                                </div>
-
-                            </div>
-                        </div> -->
                     </div>
 
                 </div>
@@ -146,15 +117,9 @@ $("#add_student").on("submit", function (e) {
 			processData: false,
 			success: function (res) {
                 const { aaData } = res;
-                $("#add_std").append('<tr><td>'+aaData[0].sl+'</td><td>'+aaData[0].index_number+'</td><td>'+aaData[0].student_cid+'</td><td>'+aaData[0].first_name +' '+ aaData[0].last_name+'</td><td>'+aaData[0].student_email +'</td><td>'+aaData[0].status +'</td><td>'+ '<a class="btn btn-sm btn-icon-only text-light" id="add_new_std" role="button" style="background:orange">' +
-                        '<b>View</b>' +
+                $("#add_std").append('<tr><td>'+aaData[0].sl+'</td><td>'+aaData[0].index_number+'</td><td>'+aaData[0].student_cid+'</td><td>'+aaData[0].first_name +' '+ aaData[0].last_name+'</td><td>'+aaData[0].student_email +'</td><td>'+aaData[0].status +'</td><td>'+ '<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" style="background:orange">' +
+                        '<b>Add</b>' +
                         '</a>'  +'</td></tr>' )
-                        
-                    $("#add_new_std").click(function(){
-                       window.location = '/get-std-list'
-                        
-                    })
-                
             
 			}
 

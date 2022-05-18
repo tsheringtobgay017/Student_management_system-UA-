@@ -46,41 +46,26 @@ def subject_teacher():
 def search_std():
     student_cid = request.form.get('cid')
     index_number = request.form.get('index_num')
-    draw = request.form.get('draw')
-    row = request.form.get('start')
-    row_per_page = request.form.get('length')
-    search_value = request.form['search[value]']
-    search_query = ' '
-    if (search_value != ''):
-        search_query = "AND (A.index_number LIKE '%%" + search_value + "%%' " \
-            "OR P.student_cid LIKE '%%" + search_value + "%%' "\
-            "OR P.first_name LIKE '%% " + search_value+"%%') "\
-            "OR P.status LIKE '%%" + search_value + "%%' "
-
-    str_query = 'SELECT *, count(*) OVER() AS count_all, P.id FROM public.tbl_students_personal_info AS P, public.tbl_academic_detail as A WHERE P.id IS NOT NULL  '\
-                '' + search_query + '' \
-                "AND P.id = A.std_personal_info_id LIMIT " + \
-        row_per_page + " OFFSET " + row + ""
-
-    search_std = connection.execute(str_query, student_cid, index_number).fetchall()
+    str_query = 'SELECT * FROM public.tbl_students_personal_info as sp inner join public.tbl_academic_detail as ac ON ac.std_personal_info_id = sp.id  WHERE student_cid =%s AND index_number =%s '
+    addstd_list = connection.execute(str_query, student_cid, index_number).fetchall()
     data = []
     count = 0
-    for index, user in enumerate(search_std):
+    for index, user in enumerate(addstd_list):
         data.append({'sl': index + 1,
-                    'index_number': user.index_number,
+                     'index_number': user.index_number,
                      'student_cid': user.student_cid,
                      'first_name': user.first_name,
+                     'last_name': user.last_name,
                      'student_email': user.student_email,
-                     'status' : user.status,
+                     'status': user.status,
                      'id': user.id})
-        count = user.count_all
 
-    respose_search_std = {
-        "draw": int(draw),
+    respose_addstd_list = {
         "iTotalRecords": count,
         "iTotalDisplayRecords": count,
-        "aaData": data
+        "aaData": data,
     }
-    return respose_search_std
-
+   
+    return respose_addstd_list
+    
     

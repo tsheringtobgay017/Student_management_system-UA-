@@ -3,7 +3,7 @@ from flask import render_template
 from flask_login import login_required
 from app.class_teacher import blueprint
 from app.class_teacher.service import subject_teacher, search_std
-from app.admin.service import is_classTeacher
+from app.admin.service import is_classTeacher, get_std_by_id
 
 @blueprint.route('/add-subject-teacher')
 @login_required
@@ -34,11 +34,19 @@ def add_student():
 
 @blueprint.route('/search-for-std', methods=['POST', 'GET'])
 def search_stdList():
-    if(is_classTeacher()):
-        std_search = search_std()
-    else:
-        std_search = []
-    return std_search
+    return search_std()
+
+
+@blueprint.route('/get-std-list')
+@login_required
+def get_student_list():
+    return render_template('/pages/add-student/student_list_class.html')
+
+
+# fetch student details
+@blueprint.route('/std-detials/<id>', methods=['GET'])
+def std_details(id):
+    return get_std_by_id(id)
 
 
 
