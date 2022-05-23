@@ -139,3 +139,7 @@ def search():
 @blueprint.route('/student-result')
 def result():
     return render_template("std_result.html")
+
+@blueprint.route('/Contact-us')
+def contact():
+    return render_template("contact_us.html")
