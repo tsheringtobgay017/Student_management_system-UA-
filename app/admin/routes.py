@@ -1,7 +1,7 @@
 from flask import render_template
 from flask_login import login_required
 from app.admin import blueprint
-from app.admin.service import save_user_table, save_user_detail_table, application_update, all_users, is_admin,is_classTeacher, get_user_by_id, delete_user_by_id, get_std_by_id, all_std
+from app.admin.service import save_user_table, save_user_detail_table, application_update, all_users, is_admin,is_classTeacher, get_user_by_id, delete_user_by_id, get_std_by_id, all_std, user_quries
 
 
 @blueprint.route('/dashboard')
@@ -41,21 +41,16 @@ def admin_std_app_list():
     return render_template('/pages/student-applications/student_application_list.html')
 
 
-# @blueprint.route('/admin-student-info')
-# def admin_student_info():
-   
-
-
 @blueprint.route('/admin-basic-tables')
 @login_required
 def admin_basic_tables():
     return render_template('/pages/tables/basic-table.html')
 
 
-@blueprint.route('/admin-charts')
+@blueprint.route('/feedback')
 @login_required
-def admin_charts():
-    return render_template('/pages/charts/chartjs.html')
+def usrfeedback():
+    return render_template('/pages/user-feedback/feedback.html')
 
 
 @blueprint.route('/admin-icons')
@@ -145,3 +140,16 @@ def update_app_status():
         return application_update()
     else:
         return "Failed"
+
+
+
+@blueprint.route('/users-queries', methods=['POST'])
+def queryList():
+    if(is_admin()):
+        users_query = user_quries()
+    else:
+        users_query = []
+
+    return users_query
+
+ 

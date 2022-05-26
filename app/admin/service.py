@@ -225,3 +225,42 @@ def send_application_mail(name, status, narration, user_mail):
     print('here')
     mail.send(msg)
     
+
+
+def user_quries():
+    draw = request.form.get('draw')
+    row = request.form.get('start')
+    row_per_page = request.form.get('length')
+    search_value = request.form['search[value]']
+    search_query = ' '
+    if (search_value != ''):
+        search_query = "AND (full_name LIKE '%%" + search_value + "%%' " \
+            "OR user_email LIKE '%%" + search_value + "%%' "\
+            "OR phone_no LIKE '%% " + search_value+"%%') "
+            
+
+    str_query = 'SELECT *, count(*) OVER() AS count_all, id FROM public.tbl_contact_form WHERE id IS NOT NULL  '\
+                '' + search_query + '' \
+                "LIMIT " + \
+        row_per_page + " OFFSET " + row + ""
+
+    users_query = connection.execute(str_query).fetchall()
+
+    data = []
+    count = 0
+    for index, user in enumerate(users_query):
+        data.append({'sl': index + 1,
+                     'full_name': user.full_name,
+                     'user_email': user.user_email,
+                     'phone_no': user.phone_no,
+                     'comment': user.comment,
+                     'id': user.id})
+        count = user.count_all
+
+    respose_query = {
+        "draw": int(draw),
+        "iTotalRecords": count,
+        "iTotalDisplayRecords": count,
+        "aaData": data
+    }
+    return respose_query

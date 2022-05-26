@@ -82,6 +82,24 @@ def store_academic_details(id_personal):
     return "success"
 
 
+# storing contact details
+def store_contact_details():
+    id = uuid4()
+    full_name = request.form.get("Username")
+    user_email = request.form.get("Useremail")
+    phone_no = request.form.get("phone_number")
+    comment = request.form.get("comment")
+    created_date = datetime.now()
+    updated_date = datetime.now()
+
+    engine.execute("INSERT INTO public.tbl_contact_form (id, full_name, user_email, phone_no, comment, created_date, updated_date) "
+                   "VALUES ("
+                   "%s,%s,%s,%s,%s,%s,%s)",
+                   (id, full_name, user_email, phone_no, comment, created_date, updated_date))
+
+    return 'successful'
+
+
 # Fetching Dzongkhag/gewog/village list from the database
 def get_dzo_list():
     dzongkhag = 'SELECT * FROM public.tbl_dzongkhag_list'
