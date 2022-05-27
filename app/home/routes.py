@@ -148,4 +148,4 @@ def contact():
 # contact form
 @blueprint.route('/store-contact-form', methods=['POST'])
 def contact_us():
-    return store_contact_details()
+    return store_marks_details()

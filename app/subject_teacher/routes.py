@@ -14,3 +14,8 @@ def view_std_table():
 @blueprint.route('/view-std-info')
 def view_std_info():
     return render_template('/pages/view-student-table/std_detail.html')
+
+
+@blueprint.route('/store-marks-detail', methods=['POST'])
+def contact_us():
+    return store_contact_details()

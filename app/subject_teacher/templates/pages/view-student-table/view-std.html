@@ -64,17 +64,10 @@
                                                 <td>approved</td>
                                                 <td> <a class="btn btn-sm btn-icon-only text-light" id="add_new_std" role="button" style="background:orange">
                                                     <b>View</b> </a></td>
-                                               
                                             </tr>
-                                           
-                                           
-                                           
-
                                         </tbody>
                                     </table>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -106,9 +99,6 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
 <script>
-
-
-
     $('#customerList').DataTable({
         'processing': true,
         'serverSide': true,
@@ -158,10 +148,7 @@ Table.rows.add(result).draw();
 }).fail(function (jqXHR, textStatus, errorThrown) {
 // needs to implement if it fails
 });
-});
-
-
-    
+});  
 </script>
 
 {% endblock javascripts %}
