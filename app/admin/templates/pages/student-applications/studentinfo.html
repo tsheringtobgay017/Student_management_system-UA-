@@ -28,10 +28,26 @@
                                     *</span></div>
                             <!-- student's detail -->
                             <div class="student">
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-4">
+                                        <div class="gal-detail thumb ">
+                                            <h5>Passport Size Photo</h5>
+                                            <a href="{{ std.half_photo }}" class="image-popup"
+                                                title="Passport Size Photo">
+                                                <img src="{{ std.half_photo }}" class="thumb-img-mark" width="200"
+                                                    height="150" alt="Passport Size Image">
+                                            </a>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <hr>
+
                                 <div class="row ">
                                     <div class="col-sm-4 form-group">
                                         <p><b>CID:</b><br>
-                                             {{std.student_cid}}</p>
+                                            {{std.student_cid}}</p>
 
 
                                     </div>
@@ -53,7 +69,7 @@
                                     <div class="col-sm-4 form-group">
                                         <p><b>Email Address:</b> <br>{{std.student_email}}</p>
                                     </div>
-                                   
+
                                 </div>
                                 <div class="row ">
                                     <div class="col-sm-4 form-group">
@@ -84,14 +100,14 @@
                                         <p><b>Index Number:</b><br> {{std.index_number}}</p>
                                     </div>
 
-                                    <div class="col-sm-4 form-group" {% if(std.student_code=='') %} hidden  {% endif %}>
+                                    <div class="col-sm-4 form-group" {% if(std.student_code=='' ) %} hidden {% endif %}>
                                         <p><b>Student Code:</b> <br>{{std.student_code}}</p>
                                     </div>
 
-                                    <div class="col-sm-4 form-group" {% if(std.bcse_x=='') %} hidden  {% endif %}>
+                                    <div class="col-sm-4 form-group" {% if(std.bcse_x=='' ) %} hidden {% endif %}>
                                         <p><b>BCSE (Class X):</b> <br>{{std.bcse_x}}</p>
                                     </div>
-                                    <div class="col-sm-4 form-group" {% if(std.bhsec_xii=='') %} hidden  {% endif %}>
+                                    <div class="col-sm-4 form-group" {% if(std.bhsec_xii=='' ) %} hidden {% endif %}>
                                         <p><b>BHSEC (Class XII):</b><br> {{std.bhsec_xii}}</p>
                                     </div>
                                     <div class="col-sm-4 form-group">
@@ -101,10 +117,11 @@
                                         <p><b>Admission for? (Enter class):</b><br> {{std.admission_for_class}}</p>
                                     </div>
 
-                                    <div class="col-sm-4 form-group" {% if(std.previous_school_name=='') %} hidden  {% endif %}>
+                                    <div class="col-sm-4 form-group" {% if(std.previous_school_name=='' ) %} hidden {%
+                                        endif %}>
                                         <p><b>Previous School:</b><br> {{std.previous_school_name}}</p>
                                     </div>
-                                    <div class="col-sm-4 form-group" {% if(std.stream==None ) %} hidden  {% endif %}>
+                                    <div class="col-sm-4 form-group" {% if(std.stream==None ) %} hidden {% endif %}>
                                         <p><b>Stream:</b><br> {{std.stream}}</p>
                                     </div>
                                     <div class="col-sm-4 form-group">
@@ -114,7 +131,7 @@
                                         <p><b>Percentage:</b> <br>{{std.percentage_obtained}}%</p>
                                     </div>
                                 </div>
-                               
+
                                 <div class="col-md-4 col-lg-4">
                                     <div class="gal-detail thumb ">
                                         <h5>Marksheet</h5>
@@ -160,7 +177,7 @@
                                     <div class="col-sm-4 form-group">
 
                                         <p><b>Gewog:</b> <br>{{std.gewog_name}}</p>
-                                    
+
                                     </div>
                                     <div class="col-sm-4 form-group">
                                         <p><b>Village:</b><br> {{std.village_name}}</p>

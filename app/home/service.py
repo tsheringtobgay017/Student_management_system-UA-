@@ -35,15 +35,23 @@ def store_student_details():
     student_present_village = request.form.get("present_village")
     status = 'submitted'
     gender = request.form.get('gender')
+     # marksheet passport size photo
+    half_photo = request.files.get('half_photo', '')
+
+    img_url = os.path.join('./app/home/static/uploads/halfphoto/',
+                         student_cid +str(random_id) + half_photo.filename)
+    half_photo.save(img_url)
+    halfphoto_url = '/static/uploads/halfphoto/'+ student_cid + \
+            str(random_id) + half_photo.filename
     
 
 
     engine.execute("INSERT INTO public.tbl_students_personal_info (id, student_cid, first_name, last_name, dob, student_email, student_phone_number,  student_dzongkhag, student_gewog, student_village, parent_cid,"
-                    "parent_full_name, parent_contact_number, parent_email, student_present_dzongkhag, student_present_gewog, student_present_village, created_at, status,gender) "
+                    "parent_full_name, parent_contact_number, parent_email, student_present_dzongkhag, student_present_gewog, student_present_village, created_at, status,gender, half_photo) "
                    "VALUES ("
-                   "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s, %s, %s, %s)",
+                   "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s, %s, %s, %s, %s)",
                    (id, student_cid, first_name, last_name,dob, student_email, student_phone_number, student_dzongkhag, student_gewog, student_village, parent_cid, parent_full_name, parent_contact_number, 
-                   parent_email,student_present_dzongkhag,  student_present_gewog, student_present_village,  created_at, status, gender))
+                   parent_email,student_present_dzongkhag,  student_present_gewog, student_present_village,  created_at, status, gender, halfphoto_url))
 
     return id
 
@@ -148,3 +156,16 @@ def track_std():
         "aaData": data
     }
     return respose_std_list
+
+
+#checking for cid already exist in database
+def check_exist(identification_number):
+    check_exist_data = 'SELECT COUNT(*) FROM public.tbl_students_personal_info as sp inner join public.tbl_academic_detail as ac ON ac.std_personal_info_id = sp.id  WHERE student_cid =%s'
+    results = connection.execute(
+        check_exist_data, identification_number).fetchone()[0]
+    output = int(results)
+    print
+    if output > 0:
+        return True
+    else:
+        return False

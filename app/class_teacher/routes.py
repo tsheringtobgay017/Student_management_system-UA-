@@ -2,8 +2,8 @@ import re
 from flask import render_template
 from flask_login import login_required
 from app.class_teacher import blueprint
-from app.class_teacher.service import subject_teacher, search_std
-from app.admin.service import is_classTeacher, get_std_by_id
+from app.class_teacher.service import subject_teacher, search_std, update_tbl_academic, get_std_in_class, get_std_class
+from app.admin.service import is_classTeacher
 
 @blueprint.route('/add-subject-teacher')
 @login_required
@@ -43,16 +43,16 @@ def get_student_list():
     return render_template('/pages/add-student/student_list_class.html')
 
 
+# @blueprint.route('/view-std-detail')
+# @login_required
+# def view_student_detail():
+#     return render_template('/pages/add-student/student_detail.html')
+
+
 # fetch student details
-@blueprint.route('/std-detials/<id>', methods=['GET'])
-def std_details(id):
-    return get_std_by_id(id)
-
-
-@blueprint.route('/view-std-detail')
-@login_required
-def view_student_detail():
-    return render_template('/pages/add-student/student_detail.html')
+@blueprint.route('/view-std-detail/<id>', methods=['GET'])
+def view_student_detail(id):
+    return get_std_class(id)
 
 
 @blueprint.route('/view-std-marks')
@@ -66,4 +66,22 @@ def view_student_marks():
 def view_student_class_marks():
     return render_template('/pages/add-student/class_teacher_assessment.html')
 
-    
+
+
+@blueprint.route('/update-std-details', methods=['POST'])
+@login_required
+def update_std_class():
+    if(is_classTeacher()):
+        return update_tbl_academic()
+    else:
+        return "error"
+
+
+
+@blueprint.route('/student-class-list', methods=['POST'])
+def student_classList():
+    if(is_classTeacher()):
+        student_in_class = get_std_in_class()
+    else:
+        student_in_class = []
+    return student_in_class

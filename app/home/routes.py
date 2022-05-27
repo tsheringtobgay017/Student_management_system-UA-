@@ -6,7 +6,7 @@ from flask_login import (current_user, login_user, logout_user)
 from config import Config
 from app.admin.models import User
 from app.admin.forms import LoginForm
-from app.home.service import store_student_details, store_academic_details, get_dzo_list, get_gewog, get_village,track_std
+from app.home.service import store_student_details, check_exist, store_academic_details, get_dzo_list, get_gewog, get_village, track_std
 from flask_login import (current_user, login_required)
 from app.admin.util import get_user_by_id, verify_pass, check_user_login_info, update_login_info
 
@@ -28,9 +28,15 @@ def enroll_page():
 # Route to store student detail
 @blueprint.route('/store-student-info', methods=['POST'])
 def store_studentInfo_page():
-    id_personal = store_student_details()
-    store_academic_details(id_personal)
-    return "success"
+    # try:
+    identification_number = request.form.get('cid')
+    check = check_exist(identification_number)
+    if check:
+        return "Error"
+    else:
+        id_personal = store_student_details()
+        store_academic_details(id_personal)
+        return "success"
 
 
 # Route to fetch gewog list
@@ -63,7 +69,7 @@ def do_login():
                 update_login_info(user.id)
                 login_user(user)
                 return jsonify({"output": {"fa_required": False, "email": ""}})
-                
+
             return jsonify({"output": {"fa_required": "invalid", "message": "Invalid username or password"}})
 
         else:
@@ -88,7 +94,7 @@ def login():
                                form=login_form)
 
     else:
-         return render_template('signin.html',
+        return render_template('signin.html',
                                form=login_form)
 
 
@@ -118,16 +124,21 @@ def access_forbidden(error):
     # return render_template('accounts/login.html'), 403
 
 # students fee structure
+
+
 @blueprint.route('/fees-detail')
 def studentFee():
     return render_template("std_fee.html")
 
 # track student
+
+
 @blueprint.route('/track-student')
 def trackapplication():
     return render_template("track_std.html")
 
 # track students
+
 
 @blueprint.route('/search', methods=["POST"])
 def search():
@@ -135,7 +146,17 @@ def search():
 
 
 # student result
-
 @blueprint.route('/student-result')
 def result():
     return render_template("std_result.html")
+
+
+# To check if CID / data already exist in database
+@blueprint.route('/check-cid-exist', methods=['GET', 'POST'])
+def checkCID():
+    identification_number = request.form.get('cid')
+    check = check_exist(identification_number)
+    if check:
+        return "ErrorFound"
+    else:
+        return "Done"

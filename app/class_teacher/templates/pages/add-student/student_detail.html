@@ -23,9 +23,19 @@
                     <div class="card-body">
                         <h4 class="card-title">Student Detail</h4>
                         <hr>
-                        <p><b>Student Name:</b> Ugyen Dorji</p>
-                        <p><b>Student CID:</b> 10715000332</p>
-                        <p><b>Index Number:</b> 00001</p>
+                        <div class="gal-detail thumb ">
+                            <h5>Passport Size Photo</h5>
+                            <a href="{{ std.half_photo }}" class="image-popup"
+                                title="Passport Size Photo">
+                                <img src="{{ std.half_photo }}" class="thumb-img-mark" width="200"
+                                    height="150" alt="Passport Size Image">
+                            </a>
+
+                        </div>
+                        <p><b>Student Name:</b> {{std.first_name}} {{std.last_name}}</p>
+                        <p><b>Student CID:</b> {{std.student_cid}}</p>
+                        <p><b>Index Number:</b> {{std.index_number}}</p>
+                        
 
                         <div class="card-body">
                             <h6 class="text-center">Student Marks</h6>
@@ -100,12 +110,71 @@
                                     </div>
                                 </div>
                             </div>
+                            <hr>
+                            <h4 class="card-title">Student Remarks</h4>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="punctuality">Punctuality</label>
+                                        <select name="punctuality" id="punctuality" class="form-control">
+                                            <option value="">---Select---</option>
+                                            <option value="Outstanding">Outstanding</option>
+                                            <option value="Very Goo">Very Good</option>
+                                            <option value="Good">Good</option>
+                                            <option value="Satisfactory">Satisfactory</option>
+                    
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="discipline">Discipline</label>
+                                        <select name="discipline" id="discipline" class="form-control">
+                                            <option value="">---Select---</option>
+                                            <option value="Outstanding">Outstanding</option>
+                                            <option value="Very Goo">Very Good</option>
+                                            <option value="Good">Good</option>
+                                            <option value="Satisfactory">Satisfactory</option>
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="socialservice">Social Service</label>
+                                        <select name="socialservice" id="socialservice" class="form-control">
+                                            <option value="">---Select---</option>
+                                            <option value="Outstanding">Outstanding</option>
+                                            <option value="Very Goo">Very Good</option>
+                                            <option value="Good">Good</option>
+                                            <option value="Satisfactory">Satisfactory</option>
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="leadership">Leadership Quality</label>
+                                        <select name="leadership" id="leadership" class="form-control">
+                                            <option value="">---Select---</option>
+                                            <option value="Outstanding">Outstanding</option>
+                                            <option value="Very Goo">Very Good</option>
+                                            <option value="Good">Good</option>
+                                            <option value="Satisfactory">Satisfactory</option>
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <button type="button" id="update" class="btn btn-md btn-primary">Submit</button>
                                 </div>
                             </div>
-                            
+                           
+                                
                         </form>
                     </div>
                 </div>

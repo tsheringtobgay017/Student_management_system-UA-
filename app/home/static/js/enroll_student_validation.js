@@ -31,8 +31,8 @@ const enrollfv = FormValidation.formValidation(enrollForm, {
         email: {
             validators: {
                 emailAddress: {
-                        message: 'The value is not a valid email address',
-                    },
+                    message: 'The value is not a valid email address',
+                },
                 notEmpty: {
                     message: 'The email field is required',
                 },
@@ -139,10 +139,10 @@ const enrollfv = FormValidation.formValidation(enrollForm, {
                 }
             }
         },
-        
+
         parent_cid: {
             validators: {
-               notEmpty: {
+                notEmpty: {
                     message: 'The CID field is required',
                 },
                 stringLength: {
@@ -165,7 +165,7 @@ const enrollfv = FormValidation.formValidation(enrollForm, {
             }
         },
 
-       
+
 
         parent_number: {
             validators: {
@@ -225,7 +225,7 @@ const enrollfv = FormValidation.formValidation(enrollForm, {
     swal("Validation failed !!!", "Some required fields are empty", "error")
 });
 
-function studentDetail() { 
+function studentDetail() {
     var form = document.getElementById("registration_form");
     var data = new FormData(form);
     $.ajax({
@@ -237,10 +237,17 @@ function studentDetail() {
         cache: false,
 
         success: function (res) {
-            swal("Information successfully submitted", "Click Ok to continue", "success")
-                .then(function () {
-                    window.location = ""
-                })
+            if (res === 'Error') {
+                swal("Data already exist", "Check CID and try again", "error")
+                    .then(function () {
+                        window.location = ""
+                    });
+            } else {
+                swal("Information successfully submitted", "Click Ok to continue", "success")
+                    .then(function () {
+                        window.location = ""
+                    })
+            }
         },
         error: function () {
             swal("Infomation submission failed", "Click Ok to continue", "error")
@@ -260,7 +267,7 @@ $("#present_dzongkhag").on("change", function () {
         data: { type: 'Gewog', gewog_id: gewog_id },
         dataType: "json",
         success: function (data) {
-            
+
             var list = data.gewogList;
             var html = "<option value=''>---Select Gewog---</option>";
             for (var count = 0; count < list.length; count++) {
@@ -269,7 +276,7 @@ $("#present_dzongkhag").on("change", function () {
             $("#present_gewog").html(html);
         },
         error: function (e) {
-            alert('error',e);
+            alert('error', e);
         }
     });
 });
@@ -309,7 +316,7 @@ $("#permanent_dzongkhag").on("change", function () {
         data: { type: 'Gewog', gewog_id: gewog_id },
         dataType: "json",
         success: function (data) {
-            
+
             var list = data.gewogList;
             var html = "<option value=''>---Select Gewog---</option>";
             for (var count = 0; count < list.length; count++) {
@@ -347,6 +354,7 @@ $("#permanent_gewog").on("change", function () {
     });
 })
 //-------------------------------Script ends--------------------------------//
+
 // -------------------------------Script for changing form------------------//
 $("#X").click(function (e) {
     e.preventDefault();
@@ -361,8 +369,8 @@ $("#X").click(function (e) {
     $(".pre_school_XII").addClass("d-none");
     $(".emis_code").addClass("d-none");
     $(".stream_choose").addClass("d-none");
-   
-    
+
+
 })
 
 $("#XI").click(function (e) {
@@ -377,7 +385,7 @@ $("#XI").click(function (e) {
     $(".pre_school_X").addClass("d-none");
     $(".pre_school_XII").addClass("d-none");
     $(".emis_code").addClass("d-none");
-    
+
 })
 
 $("#XII").click(function (e) {
@@ -392,10 +400,7 @@ $("#XII").click(function (e) {
     $(".pre_school_X").removeClass("d-none");
     $(".pre_school_XII").removeClass("d-none");
     $(".emis_code").removeClass("d-none");
-   
-    
-    
-    
+
 })
 
 $("#General").click(function (e) {
@@ -411,7 +416,7 @@ $("#General").click(function (e) {
     $(".pre_school_XII").addClass("d-none");
     $(".emis_code").addClass("d-none");
     $(".stream_choose").addClass("d-none");
-   
+
 })
 
 //---------------------------------Script ends------------------------------//

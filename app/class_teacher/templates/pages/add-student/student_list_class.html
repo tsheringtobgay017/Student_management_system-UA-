@@ -28,9 +28,12 @@
                         <h4 class="card-title">Student List</h4>
                         <hr>
                         <div class="card-body">
+                            <input type="hidden" id="user_id" name="user_id" value="{{current_user.id}}">
+
+
                             <div class="row">
                                 <div class="table-responsive">
-                                    <table class="table align-items-center table-flush" id="customerList">
+                                    <!-- <table class="table align-items-center table-flush" id="customerList">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col" class="sort" data-sort="name">SL</th>
@@ -50,7 +53,7 @@
                                                 <td>Ugyen Dorji</td>
                                                 <td>Ugyen@gmail.com</td>
                                                 <td>approved</td>
-                                                <td> <a class="btn btn-sm btn-icon-only text-light" id="add_new_std" role="button" href="{{url_for('class_teacher_blueprint.view_student_detail')}}" style="background:orange">
+                                                <td> <a class="btn btn-sm btn-icon-only text-light" id="add_new_std" role="button" href="" style="background:orange">
                                                     <b>View</b> </a></td>
                                                
                                             </tr>
@@ -69,6 +72,58 @@
                                            
                                            
 
+                                        </tbody>
+                                    </table> -->
+                                    <table class="table align-items-center table-flush" id="customerList">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col" class="sort" data-sort="name">SL</th>
+                                                <th scope="col" class="sort" data-sort="name">Index Number</th>
+                                                <th scope="col" class="sort" data-sort="budget">CID</th>
+                                                <th scope="col" class="sort" data-sort="name">Student Name</th>
+                                                <th scope="col" class="sort" data-sort="name">Email</th>
+                                                <th scope="col">action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="list">
+
+                                            {% for usr in user %}
+
+                                            <tr>
+                                                <th scope="row">
+                                                    {{ loop.index }}
+                                                </th>
+                                                <th scope="row">
+                                                    {{ usr.username }}
+                                                </th>
+                                                <td class="budget">
+                                                    {{ usr.email}}
+                                                </td>
+                                                <td class="budget">
+                                                    {{ usr.subject}}
+                                                </td>
+                                                <td class="budget">
+                                                    {{ usr.role }}
+                                                </td>
+
+                                                <td class="text-right">
+                                                    <div class="dropdown">
+                                                        <a class="btn btn-sm btn-icon-only text-light" href="#"
+                                                            role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            <i class="fas fa-ellipsis-v"></i>
+                                                        </a>
+                                                        <div
+                                                            class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                            <a class="dropdown-item"
+                                                                href="/view-std-detail/{{ std.id }}">View</a>
+                                                            <a class="dropdown-item" href="javascript:void(0)"
+                                                                onclick="deleteUser('{{ std.id }}')">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
                                         </tbody>
                                     </table>
 
@@ -105,26 +160,83 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
 <script>
-$("#add_student").on("submit", function (e) {
-		e.preventDefault(e);
-		var form_data = new FormData($('#add_student')[0])
-		$.ajax({
-			type: 'POST',
-			url: "/search-for-std",
-			data: form_data,
-			contentType: false,
-			cache: false,
-			processData: false,
-			success: function (res) {
-                const { aaData } = res;
-                $("#add_std").append('<tr><td>'+aaData[0].sl+'</td><td>'+aaData[0].index_number+'</td><td>'+aaData[0].student_cid+'</td><td>'+aaData[0].first_name +' '+ aaData[0].last_name+'</td><td>'+aaData[0].student_email +'</td><td>'+aaData[0].status +'</td><td>'+ '<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" style="background:orange">' +
-                        '<b>Add</b>' +
-                        '</a>'  +'</td></tr>' )
-            
-			}
+    $(document).ready(function () {
+        loadUsers()
+    });
+    function loadUsers() {
+        $('#customerList').DataTable({
+            'processing': true,
+            'serverSide': true,
+            'bDestroy': true,
+            'serverMethod': 'POST',
+            'ajax': {
+                'url': '/student-class-list'
+            },
+            'columns': [
+                { data: 'sl' },
+                { data: 'index_number' },
+                { data: 'student_cid' },
+                { data: 'first_name' },
+                { data: 'student_email' },
 
-		});
-	});
+                {
+                    "render": function (data, type, full, meta) {
+                        return '<div class="dropdown">' +
+                            '<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background:orange">' +
+                            '<i class="fas fa-ellipsis-v"><b>Click</b></i>' +
+                            '</a>' +
+                            '<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">' +
+                            '<a class="dropdown-item" href="/view-std-detail/' + full.id + '">View</a>' +
+                            '<a class="dropdown-item" href="javascript:void(0)" onclick="deleteUser(' + full.id + ')">Delete</a>' +
+                            '</div>' +
+                            '</div>'
+                    }
+                },
+            ],
+            language: {
+                paginate: {
+                    next: '&#8594;', // or '→'
+                    previous: '&#8592;' // or '←' 
+                }
+            },
+            "ordering": false
+        });
+    }
+
+
+    // for deleting
+    function deleteUser(id) {
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this data!",
+            type: "warning",
+            showCancelButton: true,
+            showConfirmButton: true
+        }).then(function (isConfirm) {
+            if (isConfirm.value == true) {
+                $.ajax({
+                    url: '/delete/' + id,
+                    type: 'POST',
+                    success: function () {
+                        swal({
+                            title: 'Success!',
+                            text: 'User delete successful!',
+                            type: 'success'
+                        }).then(function () {
+                            loadUsers();
+                        });
+                    },
+                    error: function () {
+                        swal("Error", "Error while deleting user. Refresh page and try again :)", "error");
+                    }
+                })
+
+            } else {
+                swal("Cancelled", "Your data is safe :)", "error");
+            }
+        })
+    }
+
 </script>
 
 {% endblock javascripts %}
