@@ -39,32 +39,48 @@
                                                 <th scope="col" class="sort" data-sort="budget">CID</th>
                                                 <th scope="col" class="sort" data-sort="name">Student Name</th>
                                                 <th scope="col" class="sort" data-sort="name">Email</th>
-                                                <th scope="col" class="sort" data-sort="name">Status</th>
                                                 <th scope="col">action</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="list" id="class_std">
+                                        <tbody class="list">
+
+                                            {% for usr in user %}
+
                                             <tr>
-                                                <td>1 </td>
-                                                <td>00001</td>
-                                                <td>10715000332</td>
-                                                <td>Ugyen Dorji</td>
-                                                <td>Ugyen@gmail.com</td>
-                                                <td>approved</td>
-                                                <td> <a class="btn btn-sm btn-icon-only text-light" id="add_new_std" role="button" href="{{url_for('subject_teacher_blueprint.view_std_info')}}" style="background:orange">
-                                                    <b>View</b> </a></td>
-                                               
+                                                <th scope="row">
+                                                    {{ loop.index }}
+                                                </th>
+                                                <th scope="row">
+                                                    {{ usr.username }}
+                                                </th>
+                                                <td class="budget">
+                                                    {{ usr.email}}
+                                                </td>
+                                                <td class="budget">
+                                                    {{ usr.subject}}
+                                                </td>
+                                                <td class="budget">
+                                                    {{ usr.role }}
+                                                </td>
+
+                                                <td class="text-right">
+                                                    <div class="dropdown">
+                                                        <a class="btn btn-sm btn-icon-only text-light" href="#"
+                                                            role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            <i class="fas fa-ellipsis-v"></i>
+                                                        </a>
+                                                        <div
+                                                            class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                            <a class="dropdown-item"
+                                                                href="/view-std-info/{{ std.id }}">View</a>
+                                                            <a class="dropdown-item" href="javascript:void(0)"
+                                                                onclick="deleteUser('{{ std.id }}')">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
                                             </tr>
-                                            <tr>
-                                                <td>2 </td>
-                                                <td>00002</td>
-                                                <td>10715000321</td>
-                                                <td>pema Loday</td>
-                                                <td>pema@gmail.com</td>
-                                                <td>approved</td>
-                                                <td> <a class="btn btn-sm btn-icon-only text-light" id="add_new_std" role="button" style="background:orange">
-                                                    <b>View</b> </a></td>
-                                            </tr>
+                                            {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>
@@ -150,5 +166,84 @@ Table.rows.add(result).draw();
 });
 });  
 </script>
+    <script>
+        $(document).ready(function () {
+            loadUsers()
+        });
+        function loadUsers() {
+            $('#customerList').DataTable({
+                'processing': true,
+                'serverSide': true,
+                'bDestroy': true,
+                'serverMethod': 'POST',
+                'ajax': {
+                    'url': '/get-student-class-list'
+                },
+                'columns': [
+                    { data: 'sl' },
+                    { data: 'index_number' },
+                    { data: 'student_cid' },
+                    { data: 'first_name' },
+                    { data: 'student_email' },
+    
+                    {
+                        "render": function (data, type, full, meta) {
+                            return '<div class="dropdown">' +
+                                '<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background:orange">' +
+                                '<i class="fas fa-ellipsis-v"><b>Click</b></i>' +
+                                '</a>' +
+                                '<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">' +
+                                '<a class="dropdown-item" href="/view-std-info/' + full.id + '">View</a>' +
+                                '<a class="dropdown-item" href="javascript:void(0)" onclick="deleteUser(' + full.id + ')">Delete</a>' +
+                                '</div>' +
+                                '</div>'
+                        }
+                    },
+                ],
+                language: {
+                    paginate: {
+                        next: '&#8594;', // or '→'
+                        previous: '&#8592;' // or '←' 
+                    }
+                },
+                "ordering": false
+            });
+        }
+    
+    
+        // for deleting
+        function deleteUser(id) {
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this data!",
+                type: "warning",
+                showCancelButton: true,
+                showConfirmButton: true
+            }).then(function (isConfirm) {
+                if (isConfirm.value == true) {
+                    $.ajax({
+                        url: '/delete/' + id,
+                        type: 'POST',
+                        success: function () {
+                            swal({
+                                title: 'Success!',
+                                text: 'User delete successful!',
+                                type: 'success'
+                            }).then(function () {
+                                loadUsers();
+                            });
+                        },
+                        error: function () {
+                            swal("Error", "Error while deleting user. Refresh page and try again :)", "error");
+                        }
+                    })
+    
+                } else {
+                    swal("Cancelled", "Your data is safe :)", "error");
+                }
+            })
+        }
+    
+    </script>
 
 {% endblock javascripts %}
