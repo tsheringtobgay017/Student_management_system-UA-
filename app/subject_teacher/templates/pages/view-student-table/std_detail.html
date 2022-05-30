@@ -20,24 +20,7 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-<<<<<<< HEAD
-                        <h4 class="card-title">Evaluate Student</h4>
-                        <hr>
-
-                        <div class="gal-detail thumb ">
-                            <h5>Passport Size Photo</h5>
-                            <a href="{{ std.half_photo }}" class="image-popup" title="Passport Size Photo">
-                                <img src="{{ std.half_photo }}" class="thumb-img-mark" width="200" height="150"
-                                    alt="Passport Size Image">
-                            </a>
-
-                        </div>
-                        <p><b>Student Name:</b> {{std.first_name}} {{std.last_name}}</p>
-                        <p><b>Student CID:</b> {{std.student_cid}}</p>
-                        <p><b>Index Number:</b> {{std.index_number}}</p>
-=======
                         <h4 class="card-title">Evaluate Student :</h4>
->>>>>>> 04c5780b1bee1424328fc2e00d9f7459c92aff50
                         <hr>
                         <div class="container mt-5">
                             <div class="row d-flex justify-content-center"> 
@@ -69,49 +52,6 @@
                                     <form action="#" method="#" id="info">
                                         <input type="hidden" name="sub_id" value="{{current_user.id}}">
                                         <input type="hidden" name="std_id" value="{{std.id}}">
-<<<<<<< HEAD
-
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="class_test">Class Test 01 :</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Marks*"
-                                                        name="class_test_1" value="" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="class_test">Continuous Assessment :</label>
-                                                    <input type="text" class="form-control" placeholder="Enter CA*"
-                                                        name="CA" value="" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="lname">Mid-Term Marks :</label>
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Mid-term marks*" name="mid_term" value="" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="lname">Annual Exam :</label>
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Annual Exam Marks*" name="annual_exam" value="" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="class_test">Class Test 02 :</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Marks*"
-                                                        name="class_test_2" value="" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="std_status">Status :</label>
-                                                    <select name="std_status" id="std_status" class="form-control">
-                                                        <option value="">---Select Status---</option>
-                                                        <option value="PASS">PASS</option>
-                                                        <option value="FAIL">FAIL</option>
-
-                                                    </select>
-
-=======
                             
                                     <div class="row">
                                         <div class="col-md-6">
@@ -203,72 +143,8 @@
                                                         
                                                     </select>
                                                     </div>
->>>>>>> 04c5780b1bee1424328fc2e00d9f7459c92aff50
                                                 </div>
 
-<<<<<<< HEAD
-                                            <hr>
-
-                                            <div class="row" id="subjectTeacher_div" style="display: none;">
-                                                <h4 class="card-title">Student Remarks</h4>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label class="form-control-label"
-                                                            for="punctuality">Punctuality</label>
-                                                        <select name="punctuality" id="punctuality"
-                                                            class="form-control">
-                                                            <option value="">---Select---</option>
-                                                            <option value="Outstanding">Outstanding</option>
-                                                            <option value="Very Good">Very Good</option>
-                                                            <option value="Good">Good</option>
-                                                            <option value="Satisfactory">Satisfactory</option>
-
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label class="form-control-label"
-                                                            for="discipline">Discipline</label>
-                                                        <select name="discipline" id="discipline" class="form-control">
-                                                            <option value="">---Select---</option>
-                                                            <option value="Outstanding">Outstanding</option>
-                                                            <option value="Very Good">Very Good</option>
-                                                            <option value="Good">Good</option>
-                                                            <option value="Satisfactory">Satisfactory</option>
-
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label class="form-control-label" for="socialservice">Social
-                                                            Service</label>
-                                                        <select name="socialservice" id="socialservice"
-                                                            class="form-control">
-                                                            <option value="">---Select---</option>
-                                                            <option value="Outstanding">Outstanding</option>
-                                                            <option value="Very Good">Very Good</option>
-                                                            <option value="Good">Good</option>
-                                                            <option value="Satisfactory">Satisfactory</option>
-
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label class="form-control-label" for="leadership">Leadership
-                                                            Quality</label>
-                                                        <select name="leadership" id="leadership" class="form-control">
-                                                            <option value="">---Select---</option>
-                                                            <option value="Outstanding">Outstanding</option>
-                                                            <option value="Very Good">Very Good</option>
-                                                            <option value="Good">Good</option>
-                                                            <option value="Satisfactory">Satisfactory</option>
-
-=======
                                                 <div class="form-group row">
                                                     <label class="control-label col-sm-4 text-right" for="leadership">Leadership Quality:</label>
                                                     <div class="col-sm-8">
@@ -278,11 +154,11 @@
                                                             <option value="Very Goo">Very Good</option>
                                                             <option value="Good">Good</option>
                                                             <option value="Satisfactory">Satisfactory</option>   
->>>>>>> 04c5780b1bee1424328fc2e00d9f7459c92aff50
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
                                         </div>
                                     </form>
                                     <div class="button-center">
@@ -290,10 +166,6 @@
                                             style="color: white; width: 101px; height: 40px; font-size: 16px;">Submit</button>
                                     </div>
                                 </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> 04c5780b1bee1424328fc2e00d9f7459c92aff50
                             </div>
                         </div>
                     </div>
@@ -321,34 +193,6 @@
 
 <script>
 
-<<<<<<< HEAD
-    $("#sub_sent").click(function () {
-        var form = document.getElementById("info");
-        var data = new FormData(form);
-        $.ajax({
-            type: 'POST',
-            url: '/store-std-marks',
-            data: data,
-            processData: false,
-            contentType: false,
-            cache: false,
-
-            success: function (res) {
-                if (res === 'Error') {
-                    swal("Data already exist", "Infomation submission failed", "error")
-                        .then(function () {
-                            window.location = ""
-                        });
-                } else {
-                    swal("Marks successfully submitted", "Click Ok to continue", "success")
-                        .then(function () {
-                            window.location = "/view-std-gradings"
-                        })
-                }
-            },
-            error: function () {
-                swal("Infomation submission failed", "Click Ok to continue", "error")
-=======
 function std_detail_validation() { 
     var form = document.getElementById("info");
     var data = new FormData(form);
@@ -368,27 +212,17 @@ function std_detail_validation() {
                     });
             } else {
                 swal("Marks successfully submitted", "Click Ok to continue", "success")
->>>>>>> 04c5780b1bee1424328fc2e00d9f7459c92aff50
                     .then(function () {
                         window.location = ""
                     })
             }
-        });
+        }
     });
-<<<<<<< HEAD
-=======
 };
->>>>>>> 04c5780b1bee1424328fc2e00d9f7459c92aff50
 
 
     // =================================================
 
-    $('#sub_sent').click(function () {
-        swal("Information successfully submitted", "Click Ok to continue", "success")
-            .then(function () {
-                window.location = "/view-std-table"
-            })
-    })
 
 
 

@@ -492,4 +492,22 @@ img.pull-left {
 	}
 /* Conatct end */
 
-
+/* for student detail */
+.pos-rel{
+	position:relative;
+	}
+	.pos-rel .nav-item{
+	margin:0 1em;
+	}
+	.connected-line{
+	border-bottom: 1px solid #007bff;
+	position: relative;
+	top: -20px;
+	z-index: -1;
+	}
+	.seminor-login-modal-body .close{
+position: relative;
+top: -45px;
+left: 10px;
+color: #1cd8ad;
+}
