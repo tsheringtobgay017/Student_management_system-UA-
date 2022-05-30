@@ -1,34 +1,15 @@
 // -----------------------Form Validation--------------------------------//
-const contactForm = document.getElementById('contact_form');
-
-const contactfv = FormValidation.formValidation(contactForm, {
+const MarkSubmission = document.getElementById('info');
+const markfv = FormValidation.formValidation(MarkSubmission, {
     fields: {
-        Username: {
-            validators: {
-                notEmpty: {
-                    message: 'The name field is required',
-                },
-            },
-        },
-
-        Useremail: {
-            validators: {
-                emailAddress: {
-                        message: 'The value is not a valid email address',
-                    },
-                notEmpty: {
-                    message: 'The email field is required',
-                },
-            },
-        },
-        phone_number: {
+        class_test_1: {
             validators: {
                 notEmpty: {
                     message: 'This field is required',
                 },
                 stringLength: {
-                    min: 8,
-                    message: 'The Phone number must be 8 digits'
+                    min:2,
+                    message: 'The Phone number must be 2 digits'
                 },
                 numeric: {
                     message: 'The value is not a number',
@@ -38,12 +19,108 @@ const contactfv = FormValidation.formValidation(contactForm, {
                 },
             },
         },
-        comment: {
+        CA: {
             validators: {
                 notEmpty: {
-                    message: 'The comment field is required',
+                    message: 'This field is required',
+                },
+                stringLength: {
+                    min:2,
+                    message: 'The Phone number must be 2 digits'
+                },
+                numeric: {
+                    message: 'The value is not a number',
+                    // The default separators
+                    thousandsSeparator: '',
+                    decimalSeparator: '.',
                 },
             },
+        },
+        mid_term: {
+            validators: {
+                notEmpty: {
+                    message: 'This field is required',
+                },
+                stringLength: {
+                    min:2,
+                    message: 'The Phone number must be 2 digits'
+                },
+                numeric: {
+                    message: 'The value is not a number',
+                    // The default separators
+                    thousandsSeparator: '',
+                    decimalSeparator: '.',
+                },
+            },
+        },
+        annual_exam: {
+            validators: {
+                notEmpty: {
+                    message: 'This field is required',
+                },
+                stringLength: {
+                    min:2,
+                    message: 'The Phone number must be 2 digits'
+                },
+                numeric: {
+                    message: 'The value is not a number',
+                    // The default separators
+                    thousandsSeparator: '',
+                    decimalSeparator: '.',
+                },
+            },
+        },
+        class_test_2: {
+            validators: {
+                notEmpty: {
+                    message: 'This field is required',
+                },
+                stringLength: {
+                    min:2,
+                    message: 'The Phone number must be 2 digits'
+                },
+                numeric: {
+                    message: 'The value is not a number',
+                    // The default separators
+                    thousandsSeparator: '',
+                    decimalSeparator: '.',
+                },
+            },
+        },
+        std_status: {
+            validators: {
+                notEmpty: {
+                    message: 'This field is required',
+                }
+            }
+        },
+        punctuality: {
+            validators: {
+                notEmpty: {
+                    message: 'This field is required',
+                }
+            }
+        },
+        discipline: {
+            validators: {
+                notEmpty: {
+                    message: 'This field is required',
+                }
+            }
+        },
+        socialservice: {
+            validators: {
+                notEmpty: {
+                    message: 'This field is required',
+                }
+            }
+        },
+        leadership: {
+                validators: {
+                    notEmpty: {
+                        message: 'This field is required',
+                    }
+                }
         },
     },
 
@@ -55,7 +132,8 @@ const contactfv = FormValidation.formValidation(contactForm, {
 
     },
 }).on('core.form.valid', function (e) {
-    contactDetail();
+    std_detail_validation();
+    alert('hi')
 
 }).on('core.form.invalid', function (e) {
     swal("Validation failed !!!", "Some required fields are empty", "error")
