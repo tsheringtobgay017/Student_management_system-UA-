@@ -23,22 +23,29 @@
                     <div class="card-body">
                         <h4 class="card-title">Student Detail</h4>
                         <hr>
-                        <div class="gal-detail thumb ">
-                            <h5>Passport Size Photo</h5>
-                            <a href="{{ std.half_photo }}" class="image-popup"
-                                title="Passport Size Photo">
-                                <img src="{{ std.half_photo }}" class="thumb-img-mark" width="200"
-                                    height="150" alt="Passport Size Image">
-                            </a>
-
-                        </div>
-                        <p><b>Student Name:</b> {{std.first_name}} {{std.last_name}}</p>
-                        <p><b>Student CID:</b> {{std.student_cid}}</p>
-                        <p><b>Index Number:</b> {{std.index_number}}</p>
-                        
+                        <div class="container mt-5">
+                            <div class="row d-flex justify-content-center"> 
+                                <div class="col-md-7"> 
+                                    <div class="card p-3 py-4">     
+                                        <div class="text-center">
+                                            <a href="{{ std.half_photo }}" class="image-popup" title="Passport Size Photo">
+                                                <img src="{{ std.half_photo }}" width="150px" height="140px" class="rounded-circle">
+                                            </a>
+                                        </div>
+                                        <div class="text-center mt-3">
+                                            <span class="bg-secondary p-1 px-4 rounded text-white"> {{std.first_name}} {{std.last_name}}</span> 
+                                            <div class="px-4 mt-1"> <br>
+                                                <p><b>Student CID:</b> {{std.student_cid}}</p>
+                                                <p><b>Index Number:</b> {{std.index_number}}</p>
+                                            </div>        
+                                        </div>   
+                                    </div> 
+                                </div>
+                            </div>  
+                        </div>  <hr>
 
                         <div class="card-body">
-                            <h6 class="text-center">Student Marks</h6>
+                            <h4 class="text-center">Student Marks</h4>
                             <div class="row">
                                 <div class="table-responsive">
                                     <table class="table align-items-center table-flush" id="customerList">
@@ -62,8 +69,7 @@
                                                 <td>78</td>
                                                 <td>35</td>
                                                 <td> <a class="btn btn-sm btn-icon-only text-light" id="add_new_std" role="button" href="{{url_for('class_teacher_blueprint.view_student_marks')}}" style="background:orange">
-                                                    <b>View</b> </a></td>
-                                               
+                                                    <b>View</b> </a></td> 
                                             </tr>
                                             <tr>
                                                 <td>Commerce</td>
@@ -73,13 +79,8 @@
                                                 <td>72</td>
                                                 <td>37</td>
                                                 <td> <a class="btn btn-sm btn-icon-only text-light" id="add_new_std" role="button" style="background:orange">
-                                                    <b>View</b> </a></td>
-                                               
+                                                    <b>View</b> </a></td>  
                                             </tr>
-                                           
-                                           
-                                           
-
                                         </tbody>
                                     </table>
 
@@ -87,12 +88,12 @@
 
                             </div>
                         </div>
-                        <form method="POST" id="update_form" action="" enctype="multipart/form-data">
-                            <div class="row">
-                               
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="form-control-label col-form-label" for="supw_grade">SUPW Grade</label>
+                        <br><br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="class_test" class="control-label col-sm-4">Supw Grade :</label>
+                                    <div class="col-sm-8">
                                         <select name="supw_grade" id="supw_grade" class="form-control form-control-sm">
                                             <option value="">---Select SUPW Grade---</option>
                                             <option value="A">A</option>
@@ -103,19 +104,30 @@
                                         <span class="invalid-feedback">Please select action type</span>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="form-control-label col-form-label" for="ca">CA</label>
-                                        <input name="ca" class="form-control form-control-sm">
-                                    </div>
+                                <div class="form-group row">
+                                    <label for="class_test" class="control-label col-sm-4">Continuous Assessment :</label>
+                                    <div class="col-sm-8">
+                                       <input type="text" class="form-control" placeholder="Enter CA *"  name="CA" value=""/>
+                                    </div>    
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="class_test" class="control-label col-sm-4">Class Teacher Remarks :</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control"  placeholder="Enter Remarks *" name="class_test_1" value=""/>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                        <form method="POST" id="update_form" action="" enctype="multipart/form-data">
                             <hr>
                             <h4 class="card-title">Student Remarks</h4>
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="punctuality">Punctuality</label>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-4" for="punctuality">Punctuality :</label>
+                                        <div class="col-sm-8">
                                         <select name="punctuality" id="punctuality" class="form-control">
                                             <option value="">---Select---</option>
                                             <option value="Outstanding">Outstanding</option>
@@ -124,12 +136,14 @@
                                             <option value="Satisfactory">Satisfactory</option>
                     
                                         </select>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="discipline">Discipline</label>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-4" for="discipline">Discipline :</label>
+                                        <div class="col-sm-8">
                                         <select name="discipline" id="discipline" class="form-control">
                                             <option value="">---Select---</option>
                                             <option value="Outstanding">Outstanding</option>
@@ -138,11 +152,13 @@
                                             <option value="Satisfactory">Satisfactory</option>
                                             
                                         </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="socialservice">Social Service</label>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-4" for="socialservice">Social Service :</label>
+                                        <div class="col-sm-8">
                                         <select name="socialservice" id="socialservice" class="form-control">
                                             <option value="">---Select---</option>
                                             <option value="Outstanding">Outstanding</option>
@@ -151,12 +167,14 @@
                                             <option value="Satisfactory">Satisfactory</option>
                                             
                                         </select>
+                                     </div>
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="leadership">Leadership Quality</label>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-4" for="leadership">Leadership Quality :</label>
+                                        <div class="col-sm-8">
                                         <select name="leadership" id="leadership" class="form-control">
                                             <option value="">---Select---</option>
                                             <option value="Outstanding">Outstanding</option>
@@ -165,6 +183,7 @@
                                             <option value="Satisfactory">Satisfactory</option>
                                             
                                         </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
