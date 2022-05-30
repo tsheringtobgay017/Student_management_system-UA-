@@ -20,39 +20,55 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Evaluate Student :</h4>
+                        <h4 class="card-title">Evaluate Student</h4>
                         <hr>
-                        <div class="container mt-5">
-                            <div class="row d-flex justify-content-center"> 
-                                <div class="col-md-7"> 
-                                    <div class="card p-3 py-1">     
-                                        <div class="text-center">
-                                            <a href="{{ std.half_photo }}" class="image-popup"
-                                                title="Passport Size Photo">
-                                                <img src="{{ std.half_photo }}" width="150px" height="130px"
-                                                    class="rounded-circle">
-                                            </a>
-                                        </div>
-                                        <div class="text-center mt-3">
-                                            <span class="bg-secondary p-1 px-4 rounded text-white"> {{std.first_name}}
-                                                {{std.last_name}}</span>
-                                            <div class="px-4 mt-1"> <br>
-                                                <p><b>Student CID:</b> {{std.student_cid}}</p>
-                                                <p><b>Index Number:</b> {{std.index_number}}</p>
+                        <div class="pos-rel">
+                            <!-- Nav pills -->
+                            <ul class="nav nav-pills justify-content-center nav-justified" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active btn btn-primary" data-toggle="pill"
+                                        href="#studentDetail">Student Detail</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link btn btn-primary" data-toggle="pill" href="#marks_std">Enter Marks</a>
+                                <li class="nav-item">
+                                    <a class="nav-link btn btn-primary" data-toggle="pill" href="#parent-detail">View Marks</a>
+                                </li>
+                                </li>
+                            
+                            </ul>
+                            <div class="connected-line"></div>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div id="studentDetail" class="container tab-pane active">
+                                    <div class="container mt-0">
+                                        <div class="row d-flex justify-content-center">
+                                            <div class="col-md-7">
+                                                <div class="card p-3 py-1">
+                                                    <div class="text-center">
+                                                        <a href="{{ std.half_photo }}" class="image-popup"
+                                                            title="Passport Size Photo">
+                                                            <img src="{{ std.half_photo }}" width="150px" height="130px"
+                                                                class="rounded-circle">
+                                                        </a>
+                                                    </div>
+                                                    <div class="text-center mt-3">
+                                                        <span class="bg-secondary p-1 px-4 rounded text-white">
+                                                            {{std.first_name}}
+                                                            {{std.last_name}}</span>
+                                                        <div class="px-4 mt-1"> <br>
+                                                            <p><b>Student CID:</b> {{std.student_cid}}</p>
+                                                            <p><b>Index Number:</b> {{std.index_number}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>   
-                                    </div> 
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="container register-form">
-                            <div class="form1">
-                                <div class="note">
-                                    <h4>Enter marks obtained</h4>
-                                </div>
-                                <br>
-                                <div class="form-content">
+
+
+                                <div id="marks_std" class="container tab-pane fade">
                                     <form action="#" method="#" id="info">
                                         <input type="hidden" name="sub_id" value="{{current_user.id}}">
                                         <input type="hidden" name="std_id" value="{{std.id}}">
@@ -61,7 +77,9 @@
                                             <div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label for="class_test"
-                                                        class="control-label col-sm-4 text-right">Class Test 01:</label>
+                                                        class="control-label col-sm-4 text-right">Class
+                                                        Test
+                                                        01:</label>
                                                     <div class="col-sm-8">
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter Marks *" name="class_test_1" value="" />
@@ -78,7 +96,9 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="class_test"
-                                                        class="control-label col-sm-4 text-right">Class Test 02:</label>
+                                                        class="control-label col-sm-4 text-right">Class
+                                                        Test
+                                                        02:</label>
                                                     <div class="col-sm-8">
                                                         <input type="text" class="form-control"
                                                             placeholder="Enter Marks *" name="class_test_2" value="" />
@@ -131,7 +151,8 @@
                                                                 <option value="Outstanding">Outstanding</option>
                                                                 <option value="Very Good">Very Good</option>
                                                                 <option value="Good">Good</option>
-                                                                <option value="Satisfactory">Satisfactory</option>
+                                                                <option value="Satisfactory">Satisfactory
+                                                                </option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -145,7 +166,8 @@
                                                                 <option value="Outstanding">Outstanding</option>
                                                                 <option value="Very Good">Very Good</option>
                                                                 <option value="Good">Good</option>
-                                                                <option value="Satisfactory">Satisfactory</option>
+                                                                <option value="Satisfactory">Satisfactory
+                                                                </option>
 
                                                             </select>
                                                         </div>
@@ -162,7 +184,8 @@
                                                                 <option value="Outstanding">Outstanding</option>
                                                                 <option value="Very Good">Very Good</option>
                                                                 <option value="Good">Good</option>
-                                                                <option value="Satisfactory">Satisfactory</option>
+                                                                <option value="Satisfactory">Satisfactory
+                                                                </option>
 
                                                             </select>
                                                         </div>
@@ -178,7 +201,8 @@
                                                                 <option value="Outstanding">Outstanding</option>
                                                                 <option value="Very Good">Very Good</option>
                                                                 <option value="Good">Good</option>
-                                                                <option value="Satisfactory">Satisfactory</option>
+                                                                <option value="Satisfactory">Satisfactory
+                                                                </option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -190,8 +214,9 @@
                                                 style="color: white; width: 101px; height: 40px; font-size: 16px;">Submit</button>
                                         </div>
                                     </form>
-                                    
                                 </div>
+
+
                             </div>
                         </div>
                     </div>
