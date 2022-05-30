@@ -30593,3 +30593,31 @@ div.tagsinput span.tag a {
 }
 
 /*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */
+
+/* for student detail */
+.btn-xl {
+	width: 80px;
+	height: 80px;
+	padding: 10px 10px;
+	line-height: 1.33;
+	border-radius: 50%;
+	background-color: #ffffff;
+	text-align: center;
+	font-size: 14px;
+	border-width: 2px;
+	border-color: #00ABE2;
+  }
+  
+.horizontal{
+	display: block;
+	position: absolute;
+	padding: 0px;
+	width:10%;
+	margin-top: 20px !important;
+	margin-bottom:0px !important;
+	margin-left: 170px;
+	margin-right: auto;
+	border: 0;
+	border-top: 1px solid #00ABE2;
+}
+  
