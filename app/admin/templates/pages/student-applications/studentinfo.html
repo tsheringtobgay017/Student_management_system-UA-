@@ -48,208 +48,261 @@
                             
                             <!-- student's detail -->
                             <div class="student">
-                                    <div class="row">
-                                        <div class="col-md-4 col-lg-4">
-                                            <div class="gal-detail thumb ">
-                                                <h5>Passport Size Photo</h5>
-                                                <a href="{{ std.half_photo }}" class="image-popup"
-                                                    title="Passport Size Photo">
-                                                    <img src="{{ std.half_photo }}" class="thumb-img-mark" width="200"
-                                                        height="150" alt="Passport Size Image">
-                                                </a>
-
+                                <div class="container mt-3">
+                                    <div class="row d-flex justify-content-center"> 
+                                        <div class="col-md-5"> 
+                                            <div class="card p-2 py-5">     
+                                                <div class="text-center">
+                                                    <a href="{{ std.half_photo }}" class="image-popup" title="Passport Size Photo">
+                                                        <img src="{{ std.half_photo }}" width="150px" height="140px" class="rounded-circle">
+                                                    </a>
+                                                </div> 
+                                            </div> 
+                                        </div>
+                                    </div>  
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="cid" class="control-label col-sm-4 text-right">CID :</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" value="{{std.student_cid}}" name="cid" id="cid" disabled>
                                             </div>
                                         </div>
-
-                                    </div>
-                                    <hr>
-                                    <div class="row ">
-                                        <div class="col-sm-4 form-group">
-                                            <label for="cid">CID:</label>
-                                            <input type="text" class="form-control" value="{{std.student_cid}}" name="cid"
-                                                id="cid" disabled>
-                                        </div>
-                                        <div class="col-sm-4 form-group">
-                                            <label>First Name:</label>
-                                            <input type="text" class="form-control" value="{{std.first_name}}"
-                                                name="first_name" id="first_name" disabled>
-                                        </div>
-
-                                        <div class="col-sm-4 form-group">
-                                            <label>Last Name:</label>
-                                            <input type="text" value="{{std.last_name}}" class="form-control"
-                                                name="last_name" id="last_name" disabled>
+                                        <div class="form-group row">
+                                            <label for="FirstName" class="control-label col-sm-4 text-right">First Name :</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" value="{{std.first_name}}" name="first_name" id="first_name" disabled>
+                                            </div>    
                                         </div>
                                     </div>
-
-                                    <div class="row ">
-                                        <div class="col-sm-4 form-group">
-                                            <label>Gender:</label>
-                                            <input type="text" class="form-control" value="{{std.gender}}" name="gender"
-                                                id="gender" disabled>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="LastName" class="control-label col-sm-4 text-right">Last Name:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" value="{{std.last_name}}" class="form-control" name="last_name" id="last_name" disabled>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-4 form-group">
-                                            <label>Date of Birth:</label>
-                                            <input type="text" class="form-control" value="{{std.dob}}" name="dob" id="dob"
-                                                disabled>
+                                        <div class="form-group row">
+                                            <label for="DateofBirth" class="control-label col-sm-4 text-right">Date of Birth :</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" value="{{std.dob}}" name="dob" id="dob" disabled>
+                                            </div>    
+                                        </div> 
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="Gender" class="control-label col-sm-4 text-right">Gender :</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" value="{{std.gender}}" name="gender" id="gender" disabled>
+                                            </div>
                                         </div>
-
-                                        <div class="col-sm-4 form-group">
-                                            <label>Email Address:</label>
-                                            <input type="text" value="{{std.student_email}}" class="form-control"
-                                                name="email_add" id="email_add" disabled>
+                                        <div class="form-group row">
+                                            <label for="EmailAddress" class="control-label col-sm-4 text-right">Email Address :</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" value="{{std.student_email}}" class="form-control" name="email_add" id="email_add" disabled>
+                                            </div>    
                                         </div>
                                     </div>
-
-                                    <div class="row ">
-                                        <div class="col-sm-4 form-group">
-                                            <label>Dzongkhag:</label>
-                                            <input type="text" class="form-control" value="{{std_info.dzo_name}}"
-                                                name="per_dzongkhag" id="per_dzongkhag" disabled>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="Dzongkhag" class="control-label col-sm-4 text-right">Dzongkhag:</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" value="{{std_info.dzo_name}}" name="per_dzongkhag" id="per_dzongkhag" disabled>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-4 form-group">
-                                            <label>Gewog:</label>
-                                            <input type="text" class="form-control" value="{{std_info.gewog_name}}"
-                                                name="per_gewog" id="per_gewog" disabled>
-                                        </div>
-
-                                        <div class="col-sm-4 form-group">
-                                            <label>Village:</label>
-                                            <input type="text" value="{{std_info.village_name}}" class="form-control"
-                                                name="per_village" id="per_village" disabled>
+                                        <div class="form-group row">
+                                            <label for="Gewog" class="control-label col-sm-4 text-right">Gewog :</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" value="{{std_info.gewog_name}}" name="per_gewog" id="per_gewog" disabled>
+                                            </div>    
+                                        </div> 
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="village" class="control-label col-sm-4 text-right">Village :</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" value="{{std.village_name}}" class="form-control" name="per_village" id="per_village" disabled>
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 form-group">
-                                            <label>Phone Number:</label>
-                                            <input type="text" value="{{std.student_phone_number}}" class="form-control"
-                                                name="phone_num" id="phone_num" disabled>
-
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="Phone Number" class="control-label col-sm-4 text-right">Phone Number :</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" value="{{std.student_phone_number}}" class="form-control" name="phone_num" id="phone_num" disabled>
+                                            </div>    
                                         </div>
                                     </div>
-                            </div>
-                                <div class=" p-1 mb-2 mt-3 bg-secondary" style="font-weight: 500; font-size: 13px; color: white;">Present Address Detail</div>
+                                </div>
+                                <!-- perminant address -->
+                                <div class=" p-1 mb-2 mt-3 bg-secondary" style="font-weight: 500; font-size: 13px; color: white;">Present Address Detail</div> <br><br>
                                 <div class="row">
-                                    <div class="col-sm-4 form-group">
-                                        <label>Dzongkhag:</label>
-                                        <input type="text" class="form-control" value="{{std.dzo_name}}" name="pre_dzongkhag"
-                                            id="pre_dzongkhag" disabled>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="village" class="control-label col-sm-4 text-right">Dzongkhag :</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" value="{{std.dzo_name}}" name="pre_dzongkhag" id="pre_dzongkhag" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="geog" class="control-label col-sm-4 text-right">Geog :</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" value="{{std.gewog_name}}" class="form-control" name="per_gewog" id="per_gewog" disabled>
+                                            </div>
+                                        </div>
                                     </div>
-
-                                    <div class="col-sm-4 form-group">
-                                        <label>Gewog:</label>
-                                        <input type="text" value="{{std.gewog_name}}" class="form-control"
-                                            name="per_gewog" id="per_gewog" disabled>
+                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="village" class="control-label col-sm-4 text-right">Village :</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" value="{{std.village_name}}" class="form-control" name="per_village" id="per_village" disabled>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-4 form-group">
-                                        <label>Village:</label>
-                                        <input type="text" value="{{std.village_name}}" class="form-control"
-                                            name="per_village" id="per_village" disabled>
-                                    </div> 
                                 </div>
                             </div>
-                        
+                        </div>
                             <div id="academicDetail" class="container tab-pane fade">
                             <!-- second display -->
                                 <div class="academic">
-                                    <div class="row ">
-                                        <div class="col-sm-4 form-group">
-                                            <label>Index Number:</label>
-                                            <input type="text" class="form-control" value="{{std.index_number}}"
-                                                name="index_num" id="index_num" disabled>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label for="Index Number" class="control-label col-sm-4 text-right">Index Number :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" value="{{std.index_number}}" name="index_num" id="index_num" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row"  {% if(std.bcse_x=='' ) %} hidden {% endif %}>
+                                                <label for="BCSE" class="control-label col-sm-4 text-right">BCSE (Class X):</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" value="{{std.bcse_x}}" class="form-control" name="class_x" id="class_x" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Accommodation" class="control-label col-sm-4 text-right">Accommodation (if admitted):</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" value="{{std.accommodation}}" name="accommodation" id="accommodation" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" {% if(std.previous_school_name=='' ) %} hidden {% endif %}>
+                                                <label for="PreviousSchool" class="control-label col-sm-4 text-right">Previous School:</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" value="{{std.previous_school_name}}" name="previous_school" id="previous_school" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" >
+                                                <label for="SUPW Grade" class="control-label col-sm-4 text-right">SUPW Grade :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" value="{{std.supw_grade}}" class="form-control" name="supw" id="supw" disabled>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-4 form-group" {% if(std.student_code=='' ) %} hidden {% endif %}>
-                                            <label>Student Code:</label>
-                                            <input type="text" class="form-control" value="{{std.student_code}}"
-                                                name="std_code" id="std_code" disabled>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group row" {% if(std.student_code=='' ) %} hidden {% endif %}>
+                                                <label for="studentcode" class="control-label col-sm-4 text-right">student Code :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" value="{{std.student_code}}" name="std_code" id="std_code" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row"  {% if(std.bhsec_xii=='' ) %} hidden {% endif %} >
+                                                <label for="BHSEC" class="control-label col-sm-4 text-right">BHSEC (Class XII) :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" value="{{std.bhsec_xii}}" name="class_XII" id="class_XII" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" >
+                                                <label for="Admission" class="control-label col-sm-4 text-right">Admission for? (Enter class) :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" value="{{std.admission_for_class}}" class="form-control" name="admission" id="admission" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row"  {% if(std.stream==None ) %} hidden {% endif %} >
+                                                <label for="Stream" class="control-label col-sm-4 text-right">Stream :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" value="{{std.stream}}" name="stream" id="stream" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="Percentage" class="control-label col-sm-4 text-right">Percentage :</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" value="{{std.percentage_obtained}}%" class="form-control" name="percentage" id="percentage" disabled>
+                                                </div>
+                                            </div>
                                         </div>
-
-                                        <div class="col-sm-4 form-group" {% if(std.bcse_x=='' ) %} hidden {% endif %}>
-                                            <label>BCSE (Class X):</label>
-                                            <input type="text" value="{{std.bcse_x}}" class="form-control" name="class_x"
-                                                id="class_x" disabled>
-                                        </div>
-
-                                        <div class="col-sm-4 form-group" {% if(std.bhsec_xii=='' ) %} hidden {% endif %}>
-                                            <label>BHSEC (Class XII):</label>
-                                            <input type="text" class="form-control" value="{{std.bhsec_xii}}"
-                                                name="class_XII" id="class_XII" disabled>
-                                        </div>
-                                        <div class="col-sm-4 form-group">
-                                            <label>Accommodation (if admitted):</label>
-                                            <input type="text" class="form-control" value="{{std.accommodation}}"
-                                                name="accommodation" id="accommodation" disabled>
-                                        </div>
-
-                                        <div class="col-sm-4 form-group">
-                                            <label>Admission for? (Enter class):</label>
-                                            <input type="text" value="{{std.admission_for_class}}" class="form-control"
-                                                name="admission" id="admission" disabled>
-                                        </div>
-
-
-                                        <div class="col-sm-4 form-group" {% if(std.previous_school_name=='' ) %} hidden {%
-                                            endif %}>
-                                            <label>Previous School:</label>
-                                            <input type="text" class="form-control" value="{{std.previous_school_name}}"
-                                                name="previous_school" id="previous_school" disabled>
-                                        </div>
-                                        <div class="col-sm-4 form-group" {% if(std.stream==None ) %} hidden {% endif %}>
-                                            <label>Stream:</label>
-                                            <input type="text" class="form-control" value="{{std.stream}}" name="stream"
-                                                id="stream" disabled>
-                                        </div>
-
-                                        <div class="col-sm-4 form-group">
-                                            <label>SUPW Grade:</label>
-                                            <input type="text" value="{{std.supw_grade}}" class="form-control" name="supw"
-                                                id="supw" disabled>
-                                        </div>
-                                        <div class="col-sm-4 form-group">
-                                            <label>Percentage:</label>
-                                            <input type="text" value="{{std.percentage_obtained}}%" class="form-control"
-                                                name="percentage" id="percentage" disabled>
-                                        </div>
+                                    </div>  <br><br>
+                                    <!-- modal -->
+                                    <!-- Button trigger modal -->
+                                    <div class="col-md-12 text-center">
+                                        <button type="button" class="btn btn-warning text-light text-center" data-toggle="modal" data-target="#exampleModal">
+                                             View Marksheet
+                                        </button>
                                     </div>
-
-                                    <div class="col-md-4 col-lg-4">
-                                        <div class="gal-detail thumb ">
-                                            <h5>Marksheet</h5>
-                                            <a href="{{ std.marksheet }}" class="image-popup" title="marksheet Photo">
-                                                <img src="{{ std.marksheet }}" class="thumb-img-mark" width="400"
-                                                    height="550" alt="Marksheet Image">
-                                            </a>
-                                        </div>
-                                    </div>
+  
+                                     <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                             <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                <div class="modal-body">
+                                                    <div class="col-md-4 col-lg-4">
+                                                        <div class="gal-detail thumb ">
+                                                            <a href="{{ std.marksheet }}" class="image-popup" title="marksheet Photo">
+                                                                <img src="{{ std.marksheet }}" class="thumb-img-mark" width="400"
+                                                                    height="550" alt="Marksheet Image">
+                                                            </a>
+                                                        </div>
+                                                    </div> 
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                         </div>
+                                     </div>
+                                    <!-- end modal -->
                                 </div>
                             </div>
                             <div id="parent-detail" class="container tab-pane fade">
                             <!-- third display -->
                                     <div class="row">
-                                        <div class="col-sm-4 form-group">
-                                            <label>CID:</label>
-                                            <input type="text" class="form-control" value="{{std.parent_cid}}" name="par_cid"
-                                                id="par_cid" disabled>
-                                        </div>
-
-                                        <div class="col-sm-4 form-group">
-                                            <label>Parent Name:</label>
-                                            <input type="text" value="{{std.parent_full_name}}" class="form-control"
-                                                name="par_name" id="par_name" disabled>
-                                        </div>
-                                        <div class="col-sm-4 form-group">
-                                            <label>Phone Number:</label>
-                                            <input type="text" value="{{std.parent_contact_number}}" class="form-control"
-                                                name="par_number" id="par_number" disabled>
-                                        </div>
-
-                                        <div class="col-sm-4 form-group">
-                                            <label>Email Address:</label>
-                                            <input type="text" value="{{std.parent_email}}" class="form-control"
-                                                name="par_email" id="par_email" disabled>
-                                        </div>
-
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label for="CID" class="control-label col-sm-4 text-right">CID :</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" value="{{std.parent_cid}}" name="par_cid" id="par_cid" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="ParentName" class="control-label col-sm-4 text-right">Parent Name :</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" value="{{std.parent_full_name}}" class="form-control" name="par_name" id="par_name" disabled>
+                                                    </div>    
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label for="EmailAddress" class="control-label col-sm-4 text-right">Email Address :</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" value="{{std.parent_email}}" class="form-control" name="par_email" id="par_email" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="PhoneNumber" class="control-label col-sm-4 text-right">Phone Number :</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" value="{{std.parent_contact_number}}" class="form-control" name="par_number" id="par_number" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
                                     </div>
                             </div>
                             <div id="actions" class="container tab-pane fade">
@@ -258,30 +311,36 @@
                                     <input type="hidden" name="email" value="{{ std.student_email }}">
                                     <input type="hidden" name="name" value="{{ std.first_name }}">
                                     <input type="hidden" name="app_id" value="{{std.id}}">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="form-control-label col-form-label" for="action">Action</label>
-                                            <select name="action" id="action" class="form-control form-control-sm">
-                                                <option value="">Select Action</option>
-                                                <option value="approved">Approved Application</option>
-                                                <option value="reject For Amendment">Reject For Amendment</option>
-                                                <option value="returned">Reject Application</option>
-                                            </select>
-                                            <span class="invalid-feedback">Please select action type</span>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-4 text-right" for="action">Action :</label>
+                                            <div class="col-sm-8">
+                                                <select name="action" id="action" class="form-control form-control-sm">
+                                                    <option value="">Select Action</option>
+                                                    <option value="approved">Approved Application</option>
+                                                    <option value="reject For Amendment">Reject For Amendment</option>
+                                                    <option value="returned">Reject Application</option>
+                                                </select>
+                                                <span class="invalid-feedback">Please select action type</span>                                           
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="form-control-label col-form-label" for="">Narration</label>
-                                            <textarea name="narration" class="form-control form-control-sm"></textarea>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="control-label col-sm-4 text-right" for="">Message :</label>
+                                            <div class="col-sm-8">
+                                                <textarea name="narration" class="form-control form-control-sm"></textarea>
+                                            </div>    
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
+                                </div> <br><br>
+                                <div class="row text-center">
                                     <div class="col-md-12">
                                         <button type="button" id="update" class="btn btn-md btn-primary">Submit</button>
                                     </div>
                                 </div>
+                            </div>
+                               
                             </div>
                         </form>
                     </div>
