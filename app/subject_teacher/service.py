@@ -106,3 +106,47 @@ def check_exist(id):
         return True
     else:
         return False
+
+
+# fetching student marks given by class teacher
+def get_std_marks():
+    draw = request.form.get('draw')
+    row = request.form.get('start')
+    row_per_page = request.form.get('length')
+    search_value = request.form['search[value]']
+    user_id = request.form.get('user_id')
+    search_query = ' '
+    if (search_value != ''):
+        search_query = "AND (A.subject LIKE '%%" + search_value + "%%' "
+
+    str_query = 'SELECT *, count(*) OVER() AS count_all, se.id from public.tbl_student_evaluation as se, public.tbl_students_personal_info as sp, public."User" as U ,public.tbl_academic_detail as ad, '\
+                'public.user_detail as ud where se.id IS NOT NULL '\
+                '' + search_query + '' \
+                "AND sp.id = se.student_id AND U.id = se.subject_teacher_id AND sp.id = ad.std_personal_info_id AND U.id = ud.user_id  LIMIT " + \
+        row_per_page + " OFFSET " + row + ""
+
+    get_std_marks = connection.execute(str_query, user_id).fetchall()
+
+    data = []
+    count = 0
+    for index, user in enumerate(get_std_marks):
+        data.append({'sl': index + 1,
+                     'subject': user.subject,
+                     'class_test_one': user.class_test_one,
+                     'mid_term': user.mid_term,
+                     'class_test_two': user.class_test_two,
+                     'annual_exam': user.annual_exam,
+                     'cont_assessment': user.cont_assessment,
+                     'id': user.id})
+        count = user.count_all
+
+    respose_get_marks = {
+        "draw": int(draw),
+        "iTotalRecords": count,
+        "iTotalDisplayRecords": count,
+        "aaData": data
+    }
+    return respose_get_marks
+
+
+

@@ -2,7 +2,7 @@ import re
 from flask import render_template
 from flask_login import login_required
 from app.class_teacher import blueprint
-from app.class_teacher.service import subject_teacher, search_std, update_tbl_academic, get_std_in_class, get_std_class
+from app.class_teacher.service import subject_teacher, search_std, update_tbl_academic, get_std_in_class, get_std_class, get_std_marks, get_subject_teacher_info
 from app.admin.service import is_classTeacher
 
 @blueprint.route('/add-subject-teacher')
@@ -55,10 +55,10 @@ def view_student_detail(id):
     return get_std_class(id)
 
 
-@blueprint.route('/view-std-marks')
+@blueprint.route('/view-std-marks/<id>')
 @login_required
-def view_student_marks():
-    return render_template('/pages/add-student/view_std_mark.html')
+def view_student_marks(id):
+    return get_subject_teacher_info(id)
 
 
 @blueprint.route('/view-std-class-marks')
@@ -85,3 +85,12 @@ def student_classList():
     else:
         student_in_class = []
     return student_in_class
+
+
+@blueprint.route('/get-subject-marks', methods=['POST'])
+def subject_marks():
+    if(is_classTeacher()):
+        subject_marks = get_std_marks()
+    else:
+        subject_marks = []
+    return subject_marks

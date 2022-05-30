@@ -60,27 +60,48 @@
                                                 <th scope="col">action</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="list" id="class_std">
+                                        <tbody class="list">
+                                            
+                                            {% for usr in user %}
+                                            
                                             <tr>
-                                                <td>English </td>
-                                                <td>26</td>
-                                                <td>74</td>
-                                                <td>23</td>
-                                                <td>78</td>
-                                                <td>35</td>
-                                                <td> <a class="btn btn-sm btn-icon-only text-light" id="add_new_std" role="button" href="{{url_for('class_teacher_blueprint.view_student_marks')}}" style="background:orange">
-                                                    <b>View</b> </a></td> 
+                                                <th scope="row">
+                                                    {{ usr.subject }}
+                                                </th>
+                                                <th scope="row">
+                                                    {{ usr.class_test_one }}
+                                                </th>
+                                                <td class="budget">
+                                                    {{ usr.mid_term}}
+                                                </td>
+                                                <td class="budget">
+                                                    {{ usr.class_test_two}}
+                                                </td>
+                                                <td class="budget">
+                                                    {{ usr.annual_exam }}
+                                                </td>
+                                                <td class="budget">
+                                                    {{ usr.cont_assessment }}
+                                                </td>
+
+                                                <td class="text-right">
+                                                    <div class="dropdown">
+                                                        <a class="btn btn-sm btn-icon-only text-light" href="#"
+                                                            role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            <i class="fas fa-ellipsis-v"></i>
+                                                        </a>
+                                                        <div
+                                                            class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                            <a class="dropdown-item"
+                                                                href="/view-std-marks/{{ sub_teacher.id }}">View</a>
+                                                            <a class="dropdown-item" href="javascript:void(0)"
+                                                                >Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
                                             </tr>
-                                            <tr>
-                                                <td>Commerce</td>
-                                                <td>23</td>
-                                                <td>66</td>
-                                                <td>26</td>
-                                                <td>72</td>
-                                                <td>37</td>
-                                                <td> <a class="btn btn-sm btn-icon-only text-light" id="add_new_std" role="button" style="background:orange">
-                                                    <b>View</b> </a></td>  
-                                            </tr>
+                                            {% endfor %}
                                         </tbody>
                                     </table>
 
@@ -215,6 +236,86 @@
     crossorigin="anonymous"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+  $(document).ready(function () {
+        loadUsers()
+    });
+    function loadUsers() {
+        $('#customerList').DataTable({
+            'processing': true,
+            'serverSide': true,
+            'bDestroy': true,
+            'serverMethod': 'POST',
+            'ajax': {
+                'url': '/get-subject-marks'
+            },
+            'columns': [
+                { data: 'subject' },
+                { data: 'class_test_one' },
+                { data: 'mid_term' },
+                { data: 'class_test_two' },
+                { data: 'annual_exam' },
+                { data: 'cont_assessment' },
+               
+                {
+                    "render": function (data, type, full, meta) {
+                        return '<div class="dropdown">' +
+                            '<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background:orange">' +
+                            '<i class="fas fa-ellipsis-v"><b>Click</b></i>' +
+                            '</a>' +
+                            '<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">' +
+                            '<a class="dropdown-item" href="/view-std-marks/' + full.id + '">View</a>' +
+                            '<a class="dropdown-item" href="">Delete</a>' +
+                            '</div>' +
+                            '</div>'
+                    }
+                },
+            ],
+            language: {
+                paginate: {
+                    next: '&#8594;', // or '→'
+                    previous: '&#8592;' // or '←' 
+                }
+            },
+            "ordering": false
+        });
+    }
+
+
+    // for deleting
+    function deleteUser(id) {
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this data!",
+            type: "warning",
+            showCancelButton: true,
+            showConfirmButton: true
+        }).then(function (isConfirm) {
+            if (isConfirm.value == true) {
+                $.ajax({
+                    url: '/delete/' + id,
+                    type: 'POST',
+                    success: function () {
+                        swal({
+                            title: 'Success!',
+                            text: 'User delete successful!',
+                            type: 'success'
+                        }).then(function () {
+                            loadUsers();
+                        });
+                    },
+                    error: function () {
+                        swal("Error", "Error while deleting user. Refresh page and try again :)", "error");
+                    }
+                })
+
+            } else {
+                swal("Cancelled", "Your data is safe :)", "error");
+            }
+        })
+    }
+
+// ========================================================
+
     $("#supw_grade").on('change', function () {
         if (this.value == '') {
             $("#supw_grade").addClass('is-invalid')
