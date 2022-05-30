@@ -30,15 +30,24 @@
                             <h6 class="text-center">Student Marks</h6>
                             <div class="row">
                                 <div class="table-responsive">
-                                    <table class="table align-items-center table-flush" id="customerList">
+                                    <table class="table align-items-center table-flush" id="customerList" style="width:100%;">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th scope="col" class="sort" data-sort="name">SL</th>
-                                                <th scope="col" class="sort" data-sort="name">Index Number</th>
-                                                <th scope="col" class="sort" data-sort="budget">CID</th>
-                                                <th scope="col" class="sort" data-sort="name">Student Name</th>
-                                                <th scope="col" class="sort" data-sort="name">Email</th>
-                                                <th scope="col">action</th>
+                                                <th scope="col" class="sort" data-sort="name">Subject
+                                                </th>
+                                                <th scope="col" class="sort" data-sort="name">class test
+                                                    I
+                                                </th>
+                                                <th scope="col" class="sort" data-sort="budget">Mid-term
+                                                    Exam</th>
+                                                <th scope="col" class="sort" data-sort="name">Class test
+                                                    II
+                                                </th>
+                                                <th scope="col" class="sort" data-sort="name">Annual
+                                                    Exam
+                                                </th>
+                                                <th scope="col" class="sort" data-sort="name">CA</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody class="list">
@@ -47,43 +56,29 @@
 
                                             <tr>
                                                 <th scope="row">
-                                                    {{ loop.index }}
+                                                    {{ usr.subject }}
                                                 </th>
                                                 <th scope="row">
-                                                    {{ usr.username }}
+                                                    {{ usr.class_test_one }}
                                                 </th>
                                                 <td class="budget">
-                                                    {{ usr.email}}
+                                                    {{ usr.mid_term}}
                                                 </td>
                                                 <td class="budget">
-                                                    {{ usr.subject}}
+                                                    {{ usr.class_test_two}}
                                                 </td>
                                                 <td class="budget">
-                                                    {{ usr.role }}
+                                                    {{ usr.annual_exam }}
+                                                </td>
+                                                <td class="budget">
+                                                    {{ usr.cont_assessment }}
                                                 </td>
 
-                                                <td class="text-right">
-                                                    <div class="dropdown">
-                                                        <a class="btn btn-sm btn-icon-only text-light" href="#"
-                                                            role="button" data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                            <i class="fas fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div
-                                                            class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                            <a class="dropdown-item"
-                                                                href="/view-std-info/{{ std.id }}">View</a>
-                                                            <a class="dropdown-item" href="javascript:void(0)"
-                                                                onclick="deleteUser('{{ std.id }}')">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
                                             </tr>
                                             {% endfor %}
                                         </tbody>
                                     </table>
-                                    <hr>
-                                    <h4 class="card-title">Subject Teacher Remarks</h4>
+                                    
                                    
                                 </div>
 
@@ -120,28 +115,17 @@
                 'bDestroy': true,
                 'serverMethod': 'POST',
                 'ajax': {
-                    'url': '/get-student-class-list'
+                    'url': '/get-std-grade'
                 },
                 'columns': [
-                    { data: 'sl' },
-                    { data: 'index_number' },
-                    { data: 'student_cid' },
-                    { data: 'first_name' },
-                    { data: 'student_email' },
+                { data: 'subject' },
+                { data: 'class_test_one' },
+                { data: 'mid_term' },
+                { data: 'class_test_two' },
+                { data: 'annual_exam' },
+                { data: 'cont_assessment' },
     
-                    {
-                        "render": function (data, type, full, meta) {
-                            return '<div class="dropdown">' +
-                                '<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background:orange">' +
-                                '<i class="fas fa-ellipsis-v"><b>Click</b></i>' +
-                                '</a>' +
-                                '<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">' +
-                                '<a class="dropdown-item" href="/view-std-info/' + full.id + '">View</a>' +
-                                '<a class="dropdown-item" href="javascript:void(0)" onclick="deleteUser(' + full.id + ')">Delete</a>' +
-                                '</div>' +
-                                '</div>'
-                        }
-                    },
+                   
                 ],
                 language: {
                     paginate: {

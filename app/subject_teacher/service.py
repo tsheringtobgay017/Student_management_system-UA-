@@ -60,6 +60,7 @@ def get_std_subject_class(id):
         'inner join public.tbl_dzongkhag_list as dzo on dzo.dzo_id = P.student_present_dzongkhag '
         'inner join public.tbl_gewog_list as gewog on gewog.gewog_id = P.student_present_gewog '
         'inner join public.tbl_village_list as village on village.village_id = P.student_present_village '
+        'inner join public.tbl_student_evaluation as SE on SE.student_id = P.id '
         'WHERE P.id =%s',
         id).first()
     return render_template('/pages/view-student-table/std_detail.html', std=std_class)
@@ -137,6 +138,7 @@ def get_std_marks():
                      'class_test_two': user.class_test_two,
                      'annual_exam': user.annual_exam,
                      'cont_assessment': user.cont_assessment,
+                     'total': int(user.class_test_one) + int(user.mid_term) + int(user.class_test_two) + int(user.annual_exam) + int(user.cont_assessment),
                      'id': user.id})
         count = user.count_all
 

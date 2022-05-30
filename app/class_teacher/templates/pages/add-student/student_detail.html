@@ -23,199 +23,233 @@
                     <div class="card-body">
                         <h4 class="card-title">Student Detail</h4>
                         <hr>
-                        <div class="container mt-5">
-                            <div class="row d-flex justify-content-center"> 
-                                <div class="col-md-7"> 
-                                    <div class="card p-3 py-4">     
-                                        <div class="text-center">
-                                            <a href="{{ std.half_photo }}" class="image-popup" title="Passport Size Photo">
-                                                <img src="{{ std.half_photo }}" width="150px" height="140px" class="rounded-circle">
-                                            </a>
-                                        </div>
-                                        <div class="text-center mt-3">
-                                            <span class="bg-secondary p-1 px-4 rounded text-white"> {{std.first_name}} {{std.last_name}}</span> 
-                                            <div class="px-4 mt-1"> <br>
-                                                <p><b>Student CID:</b> {{std.student_cid}}</p>
-                                                <p><b>Index Number:</b> {{std.index_number}}</p>
-                                            </div>        
-                                        </div>   
-                                    </div> 
-                                </div>
-                            </div>  
-                        </div>  <hr>
 
-                        <div class="card-body">
-                            <h4 class="text-center">Student Marks</h4>
-                            <div class="row">
-                                <div class="table-responsive">
-                                    <table class="table align-items-center table-flush" id="customerList">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col" class="sort" data-sort="name">Subject</th>
-                                                <th scope="col" class="sort" data-sort="name">class test I</th>
-                                                <th scope="col" class="sort" data-sort="budget">Mid-term Exam</th>
-                                                <th scope="col" class="sort" data-sort="name">Class test II</th>
-                                                <th scope="col" class="sort" data-sort="name">Annual Exam</th>
-                                                <th scope="col" class="sort" data-sort="name">CA</th>
-                                                <th scope="col">action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="list">
-                                            
-                                            {% for usr in user %}
-                                            
-                                            <tr>
-                                                <th scope="row">
-                                                    {{ usr.subject }}
-                                                </th>
-                                                <th scope="row">
-                                                    {{ usr.class_test_one }}
-                                                </th>
-                                                <td class="budget">
-                                                    {{ usr.mid_term}}
-                                                </td>
-                                                <td class="budget">
-                                                    {{ usr.class_test_two}}
-                                                </td>
-                                                <td class="budget">
-                                                    {{ usr.annual_exam }}
-                                                </td>
-                                                <td class="budget">
-                                                    {{ usr.cont_assessment }}
-                                                </td>
+                        <div class="pos-rel">
+                            <!-- Nav pills -->
+                            <ul class="nav nav-pills justify-content-center nav-justified" role="tablist">
+                                <li class="nav-item">
+                                    <hr class="horizontal2" />
+                                    <a class="nav-link active btn btn-primary" data-toggle="pill"
+                                        href="#studentDetail">Student Detail</a>
+                                </li>
+                                <li class="nav-item">
+                                    <hr class="horizontal2" />
+                                    <a class="nav-link btn btn-primary" data-toggle="pill" href="#marks_std">Student
+                                        Marks</a>
+                                <li class="nav-item">
+                                    <a class="nav-link btn btn-primary" data-toggle="pill" href="#std_remarks">Student
+                                        Remarks</a>
+                                </li>
+                                </li>
 
-                                                <td class="text-right">
-                                                    <div class="dropdown">
-                                                        <a class="btn btn-sm btn-icon-only text-light" href="#"
-                                                            role="button" data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                            <i class="fas fa-ellipsis-v"></i>
+                            </ul>
+                            <div class="connected-line"></div>
+
+                            <div class="tab-content">
+                                <div id="studentDetail" class="container tab-pane active">
+                                    <div class="container mt-0">
+                                        <div class="row d-flex justify-content-center">
+                                            <div class="col-md-7">
+                                                <div class="card p-3 py-4">
+                                                    <div class="text-center">
+                                                        <a href="{{ std.half_photo }}" class="image-popup"
+                                                            title="Passport Size Photo">
+                                                            <img src="{{ std.half_photo }}" width="150px" height="140px"
+                                                                class="rounded-circle">
                                                         </a>
-                                                        <div
-                                                            class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                            <a class="dropdown-item"
-                                                                href="/view-std-marks/{{ sub_teacher.id }}">View</a>
-                                                            <a class="dropdown-item" href="javascript:void(0)"
-                                                                >Delete</a>
+                                                    </div>
+                                                    <div class="text-center mt-3">
+                                                        <span class="bg-secondary p-1 px-4 rounded text-white">
+                                                            {{std.first_name}} {{std.last_name}}</span>
+                                                        <div class="px-4 mt-1"> <br>
+                                                            <p><b>Student CID:</b> {{std.student_cid}}</p>
+                                                            <p><b>Index Number:</b> {{std.index_number}}</p>
                                                         </div>
                                                     </div>
-                                                </td>
-                                            </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
+                                <div id="marks_std" class="container tab-pane fade">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="table-responsive">
+                                                <table class="table align-items-center table-flush" id="customerList"
+                                                    style="width: 100%">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th scope="col" class="sort" data-sort="name">Subject</th>
+                                                            <th scope="col" class="sort" data-sort="name">class test I
+                                                            </th>
+                                                            <th scope="col" class="sort" data-sort="budget">Mid-term
+                                                                Exam
+                                                            </th>
+                                                            <th scope="col" class="sort" data-sort="name">Class test II
+                                                            </th>
+                                                            <th scope="col" class="sort" data-sort="name">Annual Exam
+                                                            </th>
+                                                            <th scope="col" class="sort" data-sort="name">CA</th>
+                                                            <th scope="col">action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="list">
+
+                                                        {% for usr in user %}
+
+                                                        <tr>
+                                                            <th scope="row">
+                                                                {{ usr.subject }}
+                                                            </th>
+                                                            <th scope="row">
+                                                                {{ usr.class_test_one }}
+                                                            </th>
+                                                            <td class="budget">
+                                                                {{ usr.mid_term}}
+                                                            </td>
+                                                            <td class="budget">
+                                                                {{ usr.class_test_two}}
+                                                            </td>
+                                                            <td class="budget">
+                                                                {{ usr.annual_exam }}
+                                                            </td>
+                                                            <td class="budget">
+                                                                {{ usr.cont_assessment }}
+                                                            </td>
+
+                                                            <td class="text-right">
+                                                                <div class="dropdown">
+                                                                    <a class="btn btn-sm btn-icon-only text-light"
+                                                                        href="#" role="button" data-toggle="dropdown"
+                                                                        aria-haspopup="true" aria-expanded="false">
+                                                                        <i class="fas fa-ellipsis-v"></i>
+                                                                    </a>
+                                                                    <div
+                                                                        class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                                        <a class="dropdown-item"
+                                                                            href="/view-std-marks/{{ sub_teacher.id }}">View</a>
+                                                                        <a class="dropdown-item"
+                                                                            href="javascript:void(0)">Delete</a>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="std_remarks" class="container tab-pane fade">
+                                    <form method="POST" id="update_form" action="" enctype="multipart/form-data">
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="control-label col-sm-4 text-right"
+                                                        for="punctuality">Punctuality
+                                                        :</label>
+                                                    <div class="col-sm-8">
+                                                        <select name="punctuality" id="punctuality"
+                                                            class="form-control">
+                                                            <option value="">---Select---</option>
+                                                            <option value="Outstanding">Outstanding</option>
+                                                            <option value="Very Goo">Very Good</option>
+                                                            <option value="Good">Good</option>
+                                                            <option value="Satisfactory">Satisfactory</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="control-label col-sm-4 text-right"
+                                                        for="discipline">Discipline
+                                                        :</label>
+                                                    <div class="col-sm-8">
+                                                        <select name="discipline" id="discipline" class="form-control">
+                                                            <option value="">---Select---</option>
+                                                            <option value="Outstanding">Outstanding</option>
+                                                            <option value="Very Goo">Very Good</option>
+                                                            <option value="Good">Good</option>
+                                                            <option value="Satisfactory">Satisfactory</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="control-label col-sm-4 text-right"
+                                                        for="socialservice">Social Service
+                                                        :</label>
+                                                    <div class="col-sm-8">
+                                                        <select name="socialservice" id="socialservice"
+                                                            class="form-control">
+                                                            <option value="">---Select---</option>
+                                                            <option value="Outstanding">Outstanding</option>
+                                                            <option value="Very Goo">Very Good</option>
+                                                            <option value="Good">Good</option>
+                                                            <option value="Satisfactory">Satisfactory</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="control-label col-sm-4 text-right"
+                                                        for="leadership">LeadershipQuality:</label>
+                                                    <div class="col-sm-8">
+                                                        <select name="leadership" id="leadership" class="form-control">
+                                                            <option value="">---Select---</option>
+                                                            <option value="Outstanding">Outstanding</option>
+                                                            <option value="Very Goo">Very Good</option>
+                                                            <option value="Good">Good</option>
+                                                            <option value="Satisfactory">Satisfactory</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label for="supw_grade"
+                                                        class="control-label col-sm-4 text-right">Supw Grade :</label>
+                                                    <div class="col-sm-8">
+                                                        <select name="supw_grade" id="supw_grade" class="form-control">
+                                                            <option value="">---Select SUPW Grade---</option>
+                                                            <option value="A">A</option>
+                                                            <option value="B">B</option>
+                                                            <option value="C">C</option>
+                                                            <option value="D">D</option>
+                                                        </select>
+                                                        <span class="invalid-feedback">Please select action type</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row text-center">
+                                            <div class="col-md-12">
+                                                <button type="button" id="update"
+                                                    class="btn btn-md btn-warning text-light">Submit</button>
+                                            </div>
+                                        </div>
+
+
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                        <br><br>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label for="class_test" class="control-label col-sm-4">Supw Grade :</label>
-                                    <div class="col-sm-8">
-                                        <select name="supw_grade" id="supw_grade" class="form-control form-control-sm">
-                                            <option value="">---Select SUPW Grade---</option>
-                                            <option value="A">A</option>
-                                            <option value="B">B</option>
-                                            <option value="C">C</option>
-                                            <option value="D">D</option>
-                                        </select>
-                                        <span class="invalid-feedback">Please select action type</span>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="class_test" class="control-label col-sm-4">Continuous Assessment :</label>
-                                    <div class="col-sm-8">
-                                       <input type="text" class="form-control" placeholder="Enter CA *"  name="CA" value=""/>
-                                    </div>    
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label for="class_test" class="control-label col-sm-4">Class Teacher Remarks :</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control"  placeholder="Enter Remarks *" name="class_test_1" value=""/>
-                                    </div>
-                                </div> 
-                            </div>
-                        </div>
-                        <form method="POST" id="update_form" action="" enctype="multipart/form-data">
-                            <hr>
-                            <h4 class="card-title">Student Remarks</h4>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <label class="control-label col-sm-4" for="punctuality">Punctuality :</label>
-                                        <div class="col-sm-8">
-                                        <select name="punctuality" id="punctuality" class="form-control">
-                                            <option value="">---Select---</option>
-                                            <option value="Outstanding">Outstanding</option>
-                                            <option value="Very Goo">Very Good</option>
-                                            <option value="Good">Good</option>
-                                            <option value="Satisfactory">Satisfactory</option>
-                    
-                                        </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <label class="control-label col-sm-4" for="discipline">Discipline :</label>
-                                        <div class="col-sm-8">
-                                        <select name="discipline" id="discipline" class="form-control">
-                                            <option value="">---Select---</option>
-                                            <option value="Outstanding">Outstanding</option>
-                                            <option value="Very Goo">Very Good</option>
-                                            <option value="Good">Good</option>
-                                            <option value="Satisfactory">Satisfactory</option>
-                                            
-                                        </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <label class="control-label col-sm-4" for="socialservice">Social Service :</label>
-                                        <div class="col-sm-8">
-                                        <select name="socialservice" id="socialservice" class="form-control">
-                                            <option value="">---Select---</option>
-                                            <option value="Outstanding">Outstanding</option>
-                                            <option value="Very Goo">Very Good</option>
-                                            <option value="Good">Good</option>
-                                            <option value="Satisfactory">Satisfactory</option>
-                                            
-                                        </select>
-                                     </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group row">
-                                        <label class="control-label col-sm-4" for="leadership">Leadership Quality :</label>
-                                        <div class="col-sm-8">
-                                        <select name="leadership" id="leadership" class="form-control">
-                                            <option value="">---Select---</option>
-                                            <option value="Outstanding">Outstanding</option>
-                                            <option value="Very Goo">Very Good</option>
-                                            <option value="Good">Good</option>
-                                            <option value="Satisfactory">Satisfactory</option>
-                                            
-                                        </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <button type="button" id="update" class="btn btn-md btn-primary">Submit</button>
-                                </div>
-                            </div>
-                           
-                                
-                        </form>
                     </div>
                 </div>
             </div>
@@ -236,7 +270,7 @@
     crossorigin="anonymous"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-  $(document).ready(function () {
+    $(document).ready(function () {
         loadUsers()
     });
     function loadUsers() {
@@ -255,12 +289,12 @@
                 { data: 'class_test_two' },
                 { data: 'annual_exam' },
                 { data: 'cont_assessment' },
-               
+
                 {
                     "render": function (data, type, full, meta) {
                         return '<div class="dropdown">' +
                             '<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background:orange">' +
-                            '<i class="fas fa-ellipsis-v"><b>Click</b></i>' +
+                            '<b>Click</b>' +
                             '</a>' +
                             '<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">' +
                             '<a class="dropdown-item" href="/view-std-marks/' + full.id + '">View</a>' +
@@ -314,7 +348,7 @@
         })
     }
 
-// ========================================================
+    // ========================================================
 
     $("#supw_grade").on('change', function () {
         if (this.value == '') {
@@ -331,11 +365,11 @@
         } else {
             var form_data = new FormData($('#update_form')[0])
             swal('Success', 'Assessment successfully done', 'success').then(function () {
-                        window.location = '/view-std-class-marks'
-                    })
+                window.location = '/view-std-class-marks'
+            })
         }
     });
-          
+
 </script>
 
 {% endblock javascripts %}

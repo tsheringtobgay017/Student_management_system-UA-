@@ -24,81 +24,123 @@
                         <h4 class="card-title">Student Individual Assesment</h4>
                         <hr>
 
-                        <div class="gal-detail thumb ">
-                            <h5>Student Photo</h5>
-                            <a href="{{ sub_teacher.half_photo }}" class="image-popup"
-                                title="Passport Size Photo">
-                                <img src="{{ sub_teacher.half_photo }}" class="thumb-img-mark" width="200"
-                                    height="150" alt="Passport Size Image">
-                            </a>
+                        <div class="pos-rel">
+                            <!-- Nav pills -->
+                            <ul class="nav nav-pills justify-content-center nav-justified" role="tablist">
+                                <li class="nav-item">
+                                    <hr class="horizontal2"/>
+                                    <a class="nav-link active btn btn-primary" data-toggle="pill"
+                                        href="#studentDetai2">Student Detail</a>
+                                </li>
+                                <li class="nav-item">
+                                    <hr class="horizontal2"/>
+                                    <a class="nav-link btn btn-primary" data-toggle="pill" href="#marks_std">Student
+                                        Marks</a>
+                                <li class="nav-item">
+                                    <a class="nav-link btn btn-primary" data-toggle="pill" href="#teacher_remarks">Teacher
+                                        Remarks</a>
+                                </li>
+                                </li>
 
-                        </div>
+                            </ul>
+                            <div class="connected-line"></div>
 
-                        <p><b>Student Name:</b> {{sub_teacher.first_name}}  {{sub_teacher.last_name}}</p>
-                        <p><b>Subject Teacher:</b> {{sub_teacher.username}}</p>
-                        <p><b>Subject:</b> {{sub_teacher.subject}}</p>
-                        
+                            <div class="tab-content">
+                                <div id="studentDetail" class="container tab-pane active">
+                                    <div class="container mt-0">
+                                        <div class="row d-flex justify-content-center">
+                                            <div class="col-md-7">
+                                                <div class="card p-3 py-4">
+                                                    <div class="text-center">
+                                                        <a href="{{ sub_teacher.half_photo }}" class="image-popup"
+                                                            title="Passport Size Photo">
+                                                            <img src="{{ sub_teacher.half_photo }}" width="150px"
+                                                                height="140px" class="rounded-circle">
+                                                        </a>
+                                                    </div>
+                                                    <div class="text-center mt-3">
+                                                        <span class="bg-secondary p-1 px-4 rounded text-white">
+                                                            {{sub_teacher.first_name}} {{sub_teacher.last_name}}</span>
+                                                        <div class="px-4 mt-1"> <br>
+                                                            <p><b>Subject Teacher:</b> {{sub_teacher.username}}</p>
+                                                            <p><b>Subject:</b> {{sub_teacher.subject}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <div class="card-body">
-                            <h6 class="text-center">Student Marks</h6>
-                            <div class="row">
-                                <div class="table-responsive">
-                                    <table class="table align-items-center table-flush" id="customerList">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col" class="sort" data-sort="name">Subject</th>
-                                                <th scope="col" class="sort" data-sort="name">class test I</th>
-                                                <th scope="col" class="sort" data-sort="budget">Mid-term Exam</th>
-                                                <th scope="col" class="sort" data-sort="name">Class test II</th>
-                                                <th scope="col" class="sort" data-sort="name">Annual Exam</th>
-                                                <th scope="col" class="sort" data-sort="name">CA</th>
-                                                <th scope="col" class="sort" data-sort="name">Total</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="list">
-                                            
-                                            {% for usr in user %}
-                                            
-                                            <tr>
-                                                <th scope="row">
-                                                    {{ usr.subject }}
-                                                </th>
-                                                <th scope="row">
-                                                    {{ usr.class_test_one }}
-                                                </th>
-                                                <td class="budget">
-                                                    {{ usr.mid_term}}
-                                                </td>
-                                                <td class="budget">
-                                                    {{ usr.class_test_two}}
-                                                </td>
-                                                <td class="budget">
-                                                    {{ usr.annual_exam }}
-                                                </td>
-                                                <td class="budget">
-                                                    {{ usr.cont_assessment }}
-                                                </td>
-                                                <td class="budget">
-                                                    {{ usr.total }}
-                                                </td>
 
-                                            </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-                                  
-                                    <hr>
-                                    <h4 class="card-title">Subject Teacher Remarks</h4>
+                                <div id="marks_std" class="container tab-pane fade">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="table-responsive">
+                                                <table class="table align-items-center table-flush" id="customerList" style="width:100%;">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th scope="col" class="sort" data-sort="name">Subject
+                                                            </th>
+                                                            <th scope="col" class="sort" data-sort="name">class test
+                                                                I
+                                                            </th>
+                                                            <th scope="col" class="sort" data-sort="budget">Mid-term
+                                                                Exam</th>
+                                                            <th scope="col" class="sort" data-sort="name">Class test
+                                                                II
+                                                            </th>
+                                                            <th scope="col" class="sort" data-sort="name">Annual
+                                                                Exam
+                                                            </th>
+                                                            <th scope="col" class="sort" data-sort="name">CA</th>
+                                                            <th scope="col" class="sort" data-sort="name">Total</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="list">
+
+                                                        {% for usr in user %}
+
+                                                        <tr>
+                                                            <th scope="row">
+                                                                {{ usr.subject }}
+                                                            </th>
+                                                            <th scope="row">
+                                                                {{ usr.class_test_one }}
+                                                            </th>
+                                                            <td class="budget">
+                                                                {{ usr.mid_term}}
+                                                            </td>
+                                                            <td class="budget">
+                                                                {{ usr.class_test_two}}
+                                                            </td>
+                                                            <td class="budget">
+                                                                {{ usr.annual_exam }}
+                                                            </td>
+                                                            <td class="budget">
+                                                                {{ usr.cont_assessment }}
+                                                            </td>
+                                                            <td class="budget">
+                                                                {{ usr.total }}
+                                                            </td>
+
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="teacher_remarks" class="container tab-pane fade">
                                     <p><b>Punctuality:</b> {{sub_teacher.punctuality}}</p>
                                     <p><b>Discipline:</b> {{sub_teacher.discipline}}</p>
                                     <p><b>Social Service:</b> {{sub_teacher.social_service}}</p>
                                     <p><b>Leadership Quality:</b> {{sub_teacher.leadership_quality}}</p>
-                                    
                                 </div>
 
                             </div>
                         </div>
-                       
                     </div>
                 </div>
             </div>
@@ -119,7 +161,7 @@
     crossorigin="anonymous"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-$(document).ready(function () {
+    $(document).ready(function () {
         loadUsers()
     });
     function loadUsers() {
@@ -139,8 +181,8 @@ $(document).ready(function () {
                 { data: 'annual_exam' },
                 { data: 'cont_assessment' },
                 { data: 'total' },
-               
-                
+
+
             ],
             language: {
                 paginate: {
@@ -151,7 +193,7 @@ $(document).ready(function () {
             "ordering": false
         });
     }
-// ==========================================
+    // ==========================================
 
 
     $("#action").on('change', function () {

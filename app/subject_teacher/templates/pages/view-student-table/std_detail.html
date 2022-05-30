@@ -26,16 +26,20 @@
                             <!-- Nav pills -->
                             <ul class="nav nav-pills justify-content-center nav-justified" role="tablist">
                                 <li class="nav-item">
+                                    <hr class="horizontal1" />
                                     <a class="nav-link active btn btn-primary" data-toggle="pill"
                                         href="#studentDetail">Student Detail</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link btn btn-primary" data-toggle="pill" href="#marks_std">Enter Marks</a>
+                                    <hr class="horizontal1" />
+                                    <a class="nav-link btn btn-primary" data-toggle="pill" href="#marks_std">Enter
+                                        Marks</a>
                                 <li class="nav-item">
-                                    <a class="nav-link btn btn-primary" data-toggle="pill" href="#parent-detail">View Marks</a>
+                                    <a class="nav-link btn btn-primary" data-toggle="pill" href="#marks_view">View
+                                        Marks</a>
                                 </li>
                                 </li>
-                            
+
                             </ul>
                             <div class="connected-line"></div>
                             <!-- Tab panes -->
@@ -217,6 +221,75 @@
                                 </div>
 
 
+                                <!-- table -->
+                                <div id="marks_view" class="container tab-pane fade">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="table-responsive">
+                                                <table class="table align-items-center table-flush" id="customerList"
+                                                    style="width:100%;">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th scope="col" class="sort" data-sort="name">Subject
+                                                            </th>
+                                                            <th scope="col" class="sort" data-sort="name">class test
+                                                                I
+                                                            </th>
+                                                            <th scope="col" class="sort" data-sort="budget">Mid-term
+                                                                Exam</th>
+                                                            <th scope="col" class="sort" data-sort="name">Class test
+                                                                II
+                                                            </th>
+                                                            <th scope="col" class="sort" data-sort="name">Annual
+                                                                Exam
+                                                            </th>
+                                                            <th scope="col" class="sort" data-sort="name">CA</th>
+                                                            <th scope="col" class="sort" data-sort="name">Total</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="list">
+
+                                                        {% for usr in user %}
+
+                                                        <tr>
+                                                            <th scope="row">
+                                                                {{ usr.subject }}
+                                                            </th>
+                                                            <th scope="row">
+                                                                {{ usr.class_test_one }}
+                                                            </th>
+                                                            <td class="budget">
+                                                                {{ usr.mid_term}}
+                                                            </td>
+                                                            <td class="budget">
+                                                                {{ usr.class_test_two}}
+                                                            </td>
+                                                            <td class="budget">
+                                                                {{ usr.annual_exam }}
+                                                            </td>
+                                                            <td class="budget">
+                                                                {{ usr.cont_assessment }}
+                                                            </td>
+                                                            <td class="budget">
+                                                                {{ usr.total }}
+                                                            </td>
+
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                                <hr>
+                                                <h4>Student Remarks:</h4>
+                                                <p><b>Punctuality:</b> {{std.punctuality}}</p>
+                                                <p><b>Discipline:</b> {{std.discipline}}</p>
+                                                <p><b>Social Service:</b> {{std.social_service}}</p>
+                                                <p><b>Leadership Quality:</b> {{std.leadership_quality}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end table -->
+
                             </div>
                         </div>
                     </div>
@@ -263,7 +336,7 @@
                 } else {
                     swal("Marks successfully updated", "Click Ok to continue", "success")
                         .then(function () {
-                            window.location = ""
+                            windows.location.href = "#marks_view"
                         })
                 }
             }
@@ -279,5 +352,41 @@
             $("#subjectTeacher_div").hide();
         }
     });
+
+
+    // table
+    $(document).ready(function () {
+        loadUsers()
+    });
+    function loadUsers() {
+        $('#customerList').DataTable({
+            'processing': true,
+            'serverSide': true,
+            'bDestroy': true,
+            'serverMethod': 'POST',
+            'ajax': {
+                'url': '/get-std-grade'
+            },
+            'columns': [
+                { data: 'subject' },
+                { data: 'class_test_one' },
+                { data: 'mid_term' },
+                { data: 'class_test_two' },
+                { data: 'annual_exam' },
+                { data: 'cont_assessment' },
+                { data: 'total' },
+
+
+            ],
+            language: {
+                paginate: {
+                    next: '&#8594;', // or '→'
+                    previous: '&#8592;' // or '←' 
+                }
+            },
+            "ordering": false
+        });
+    }
+
 </script>
 {% endblock javascripts %}
