@@ -21,7 +21,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
                         <div class="container mt-5">
                             <div class="row d-flex justify-content-center"> 
                                 <div class="col-md-7"> 
-                                    <div class="card p-3 py-4">     
+                                    <div class="card p-3 py-1">     
                                         <div class="text-center">
                                             <a href="{{ std.half_photo }}" class="image-popup" title="Passport Size Photo">
                                                 <img src="{{ std.half_photo }}" width="150px" height="140px" class="rounded-circle">
@@ -32,7 +32,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
                                             <div class="px-4 mt-1"> <br>
                                                 <p><b>Student CID:</b> {{std.student_cid}}</p>
                                                 <p><b>Index Number:</b> {{std.index_number}}</p>
-                                            </div>        
+                                            </div>
                                         </div>   
                                     </div> 
                                 </div>
@@ -52,20 +52,20 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label for="class_test" class="control-label col-sm-4">Class Test 01 :</label>
+                                                <label for="class_test" class="control-label col-sm-4 text-right">Class Test 01 :</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control"  placeholder="Enter Marks *" name="class_test_1" value=""/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="class_test" class="control-label col-sm-4">Continuous Assessment :</label>
+                                                <label for="class_test" class="control-label col-sm-4 text-right">Continuous Assessment :</label>
                                                 <div class="col-sm-8">
                                                    <input type="text" class="form-control" placeholder="Enter CA *"  name="CA" value=""/>
                                                 </div>
                                                 
                                             </div>
                                             <div class="form-group row">
-                                                <label for="class_test" class="control-label col-sm-4">Class Test 02 :</label>
+                                                <label for="class_test" class="control-label col-sm-4 text-right">Class Test 02 :</label>
                                                 <div class="col-sm-8">
                                                    <input type="text" class="form-control" placeholder="Enter Marks *"  name="class_test_2" value=""/>
                                                 </div>
@@ -73,24 +73,24 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label for="fname" class="control-label col-sm-4">Mid-Term Marks :</label>
+                                                <label for="fname" class="control-label col-sm-4 text-right">Mid-Term Marks :</label>
                                                 <div class="col-sm-8">
                                                    <input type="text" class="form-control" placeholder="Mid-term marks *"  name="mid_term" value=""/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="fname" class="control-label col-sm-4">Annual Exam :</label>
+                                                <label for="fname" class="control-label col-sm-4 text-right">Annual Exam :</label>
                                                 <div class="col-sm-8">
                                                    <input type="text" class="form-control" placeholder="Annual Exam Marks *"  name="annual_exam" value=""/>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="std_status" class="control-label col-sm-4">Status :</label>
+                                                <label for="std_status" class="control-label col-sm-4 text-right">Status :</label>
                                                 <div class="col-sm-8">
                                                     <select name="std_status" id="std_status" class="form-control">
                                                         <option value="">---Select Status---</option>
-                                                        <option value="PASS">PASS</option>
-                                                        <option value="FAIL">FAIL</option>   
+                                                        <option value="PASS">Pass</option>
+                                                        <option value="FAIL">Fail</option>   
                                                     </select>
                                                 </div>
                                                 
@@ -101,7 +101,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
                                             <h4 class="card-title">Student Remarks</h4>
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label class="control-label col-sm-4" for="punctuality">Punctuality :</label>
+                                                    <label class="control-label col-sm-4 text-right" for="punctuality">Punctuality:</label>
                                                     <div class="col-sm-8">
                                                         <select name="punctuality" id="punctuality" class="form-control">
                                                             <option value="">---Select---</option>
@@ -113,7 +113,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="control-label col-sm-4" for="discipline">Discipline</label>
+                                                    <label class="control-label col-sm-4 text-right" for="discipline">Discipline:</label>
                                                     <div class="col-sm-8">
                                                     <select name="discipline" id="discipline" class="form-control">
                                                         <option value="">---Select---</option>
@@ -128,7 +128,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label class="control-label col-sm-4" for="socialservice">Social Service</label>
+                                                    <label class="control-label col-sm-4 text-right" for="socialservice">Social Service:</label>
                                                     <div class="col-sm-8">
                                                     <select name="socialservice" id="socialservice" class="form-control">
                                                         <option value="">---Select---</option>
@@ -142,7 +142,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
                                                 </div>
 
                                                 <div class="form-group row">
-                                                    <label class="control-label col-sm-4" for="leadership">Leadership Quality :</label>
+                                                    <label class="control-label col-sm-4 text-right" for="leadership">Leadership Quality:</label>
                                                     <div class="col-sm-8">
                                                         <select name="leadership" id="leadership" class="form-control">
                                                             <option value="">---Select---</option>
