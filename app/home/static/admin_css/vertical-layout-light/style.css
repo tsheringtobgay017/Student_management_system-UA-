@@ -30620,4 +30620,29 @@ div.tagsinput span.tag a {
 	border: 0;
 	border-top: 1px solid #00ABE2;
 }
-  
+
+.horizontal1{
+	display: block;
+	position: absolute;
+	padding: 0px;
+	width:20%;
+	margin-top: 20px !important;
+	margin-bottom:0px !important;
+	margin-left: 195px;
+	margin-right: auto;
+	border: 0;
+	border-top: 1px solid #00ABE2;
+}
+
+.horizontal2{
+	display: block;
+	position: absolute;
+	padding: 0px;
+	width:10%;
+	margin-top: 20px !important;
+	margin-bottom:0px !important;
+	margin-left: 235px;
+	margin-right: auto;
+	border: 0;
+	border-top: 1px solid #00ABE2;
+}

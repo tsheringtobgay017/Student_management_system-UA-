@@ -132,7 +132,6 @@ const markfv = FormValidation.formValidation(MarkSubmission, {
 
     },
 }).on('core.form.valid', function () {
-    alert("hii")
     std_detail_validation();
 
 }).on('core.form.invalid', function () {
