@@ -131,10 +131,10 @@ const markfv = FormValidation.formValidation(MarkSubmission, {
         submitButton: new FormValidation.plugins.SubmitButton(),
 
     },
-}).on('core.form.valid', function (e) {
+}).on('core.form.valid', function () {
+    alert("hii")
     std_detail_validation();
-    alert('hi')
 
-}).on('core.form.invalid', function (e) {
+}).on('core.form.invalid', function () {
     swal("Validation failed !!!", "Some required fields are empty", "error")
 });
