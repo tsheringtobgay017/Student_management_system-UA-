@@ -2,7 +2,7 @@ from flask import render_template,request
 from flask_login import login_required
 from app.subject_teacher import blueprint
 from app.admin.service import is_subjectTeacher
-from app.subject_teacher.service import get_std_subject_teacher,get_std_subject_class, store_student_assessment_details,check_exist
+from app.subject_teacher.service import get_std_subject_teacher,get_std_marks,get_std_subject_class, store_student_assessment_details,check_exist
 
 
 @blueprint.route('/view-std-table')
@@ -35,3 +35,18 @@ def store_student_marks():
         return "Error"
     else:
        return store_student_assessment_details()
+
+
+
+@blueprint.route('/view-std-gradings')
+def view_std_gradings():
+    return render_template('/pages/view-student-table/view_std_marks.html')
+
+
+@blueprint.route('/get-std-grade', methods=['POST'])
+def get_student_grade():
+    if(is_subjectTeacher()):
+        student_grade = get_std_marks()
+    else:
+        student_grade = []
+    return student_grade

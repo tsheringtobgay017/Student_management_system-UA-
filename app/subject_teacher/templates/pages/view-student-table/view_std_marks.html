@@ -1,4 +1,4 @@
-{% extends 'layouts/class_teacher_main.html' %}
+{% extends 'layouts/subject_teacherMain.html' %}
 
 {% block title %} Student Management System {% endblock title %}
 <!-- Specific CSS goes HERE -->
@@ -24,20 +24,7 @@
                         <h4 class="card-title">Student Individual Assesment</h4>
                         <hr>
 
-                        <div class="gal-detail thumb ">
-                            <h5>Student Photo</h5>
-                            <a href="{{ sub_teacher.half_photo }}" class="image-popup"
-                                title="Passport Size Photo">
-                                <img src="{{ sub_teacher.half_photo }}" class="thumb-img-mark" width="200"
-                                    height="150" alt="Passport Size Image">
-                            </a>
-
-                        </div>
-
-                        <p><b>Student Name:</b> {{sub_teacher.first_name}}  {{sub_teacher.last_name}}</p>
-                        <p><b>Subject Teacher:</b> {{sub_teacher.username}}</p>
-                        <p><b>Subject:</b> {{sub_teacher.subject}}</p>
-                        
+                      
 
                         <div class="card-body">
                             <h6 class="text-center">Student Marks</h6>
@@ -46,54 +33,58 @@
                                     <table class="table align-items-center table-flush" id="customerList">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th scope="col" class="sort" data-sort="name">Subject</th>
-                                                <th scope="col" class="sort" data-sort="name">class test I</th>
-                                                <th scope="col" class="sort" data-sort="budget">Mid-term Exam</th>
-                                                <th scope="col" class="sort" data-sort="name">Class test II</th>
-                                                <th scope="col" class="sort" data-sort="name">Annual Exam</th>
-                                                <th scope="col" class="sort" data-sort="name">CA</th>
-                                                <th scope="col" class="sort" data-sort="name">Total</th>
+                                                <th scope="col" class="sort" data-sort="name">SL</th>
+                                                <th scope="col" class="sort" data-sort="name">Index Number</th>
+                                                <th scope="col" class="sort" data-sort="budget">CID</th>
+                                                <th scope="col" class="sort" data-sort="name">Student Name</th>
+                                                <th scope="col" class="sort" data-sort="name">Email</th>
+                                                <th scope="col">action</th>
                                             </tr>
                                         </thead>
                                         <tbody class="list">
-                                            
+
                                             {% for usr in user %}
-                                            
+
                                             <tr>
                                                 <th scope="row">
-                                                    {{ usr.subject }}
+                                                    {{ loop.index }}
                                                 </th>
                                                 <th scope="row">
-                                                    {{ usr.class_test_one }}
+                                                    {{ usr.username }}
                                                 </th>
                                                 <td class="budget">
-                                                    {{ usr.mid_term}}
+                                                    {{ usr.email}}
                                                 </td>
                                                 <td class="budget">
-                                                    {{ usr.class_test_two}}
+                                                    {{ usr.subject}}
                                                 </td>
                                                 <td class="budget">
-                                                    {{ usr.annual_exam }}
-                                                </td>
-                                                <td class="budget">
-                                                    {{ usr.cont_assessment }}
-                                                </td>
-                                                <td class="budget">
-                                                    {{ usr.total }}
+                                                    {{ usr.role }}
                                                 </td>
 
+                                                <td class="text-right">
+                                                    <div class="dropdown">
+                                                        <a class="btn btn-sm btn-icon-only text-light" href="#"
+                                                            role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            <i class="fas fa-ellipsis-v"></i>
+                                                        </a>
+                                                        <div
+                                                            class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                            <a class="dropdown-item"
+                                                                href="/view-std-info/{{ std.id }}">View</a>
+                                                            <a class="dropdown-item" href="javascript:void(0)"
+                                                                onclick="deleteUser('{{ std.id }}')">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             {% endfor %}
                                         </tbody>
                                     </table>
-                                  
                                     <hr>
                                     <h4 class="card-title">Subject Teacher Remarks</h4>
-                                    <p><b>Punctuality:</b> {{sub_teacher.punctuality}}</p>
-                                    <p><b>Discipline:</b> {{sub_teacher.discipline}}</p>
-                                    <p><b>Social Service:</b> {{sub_teacher.social_service}}</p>
-                                    <p><b>Leadership Quality:</b> {{sub_teacher.leadership_quality}}</p>
-                                    
+                                   
                                 </div>
 
                             </div>
@@ -119,38 +110,49 @@
     crossorigin="anonymous"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-$(document).ready(function () {
-        loadUsers()
-    });
-    function loadUsers() {
-        $('#customerList').DataTable({
-            'processing': true,
-            'serverSide': true,
-            'bDestroy': true,
-            'serverMethod': 'POST',
-            'ajax': {
-                'url': '/get-subject-marks'
-            },
-            'columns': [
-                { data: 'subject' },
-                { data: 'class_test_one' },
-                { data: 'mid_term' },
-                { data: 'class_test_two' },
-                { data: 'annual_exam' },
-                { data: 'cont_assessment' },
-                { data: 'total' },
-               
-                
-            ],
-            language: {
-                paginate: {
-                    next: '&#8594;', // or '→'
-                    previous: '&#8592;' // or '←' 
-                }
-            },
-            "ordering": false
+  $(document).ready(function () {
+            loadUsers()
         });
-    }
+        function loadUsers() {
+            $('#customerList').DataTable({
+                'processing': true,
+                'serverSide': true,
+                'bDestroy': true,
+                'serverMethod': 'POST',
+                'ajax': {
+                    'url': '/get-student-class-list'
+                },
+                'columns': [
+                    { data: 'sl' },
+                    { data: 'index_number' },
+                    { data: 'student_cid' },
+                    { data: 'first_name' },
+                    { data: 'student_email' },
+    
+                    {
+                        "render": function (data, type, full, meta) {
+                            return '<div class="dropdown">' +
+                                '<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background:orange">' +
+                                '<i class="fas fa-ellipsis-v"><b>Click</b></i>' +
+                                '</a>' +
+                                '<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">' +
+                                '<a class="dropdown-item" href="/view-std-info/' + full.id + '">View</a>' +
+                                '<a class="dropdown-item" href="javascript:void(0)" onclick="deleteUser(' + full.id + ')">Delete</a>' +
+                                '</div>' +
+                                '</div>'
+                        }
+                    },
+                ],
+                language: {
+                    paginate: {
+                        next: '&#8594;', // or '→'
+                        previous: '&#8592;' // or '←' 
+                    }
+                },
+                "ordering": false
+            });
+        }
+    
 // ==========================================
 
 

@@ -82,7 +82,6 @@ def update_tbl_academic():
     return user_id
 
 
-
 # fetching student list in class
 def get_std_in_class():
     draw = request.form.get('draw')
@@ -103,7 +102,6 @@ def get_std_in_class():
         row_per_page + " OFFSET " + row + ""
 
     add_std = connection.execute(str_query, user_id).fetchall()
-    
 
     data = []
     count = 0
@@ -136,3 +134,58 @@ def get_std_class(id):
         'WHERE P.id =%s',
         id).first()
     return render_template('/pages/add-student/student_detail.html', std=std_class)
+
+
+# fetching student marks given by class teacher
+def get_std_marks():
+    draw = request.form.get('draw')
+    row = request.form.get('start')
+    row_per_page = request.form.get('length')
+    search_value = request.form['search[value]']
+    user_id = request.form.get('user_id')
+    search_query = ' '
+    if (search_value != ''):
+        search_query = "AND (A.subject LIKE '%%" + search_value + "%%' "
+
+    str_query = 'SELECT *, count(*) OVER() AS count_all, se.id from public.tbl_student_evaluation as se, public.tbl_students_personal_info as sp, public."User" as U ,public.tbl_academic_detail as ad, '\
+                'public.user_detail as ud where se.id IS NOT NULL '\
+                '' + search_query + '' \
+                "AND sp.id = se.student_id AND U.id = se.subject_teacher_id AND sp.id = ad.std_personal_info_id AND U.id = ud.user_id  LIMIT " + \
+        row_per_page + " OFFSET " + row + ""
+
+    get_std_marks = connection.execute(str_query, user_id).fetchall()
+
+    data = []
+    count = 0
+    for index, user in enumerate(get_std_marks):
+        data.append({'sl': index + 1,
+                     'subject': user.subject,
+                     'class_test_one': user.class_test_one,
+                     'mid_term': user.mid_term,
+                     'class_test_two': user.class_test_two,
+                     'annual_exam': user.annual_exam,
+                     'cont_assessment': user.cont_assessment,
+                     'total': int(user.class_test_one) + int(user.mid_term) + int(user.class_test_two) + int(user.annual_exam) + int(user.cont_assessment),
+                     'id': user.id})
+        count = user.count_all
+
+    respose_get_marks = {
+        "draw": int(draw),
+        "iTotalRecords": count,
+        "iTotalDisplayRecords": count,
+        "aaData": data
+    }
+    return respose_get_marks
+
+
+# fetch student details from database
+def get_subject_teacher_info(id):
+    sub_teacher = connection.execute('SELECT *, se.id FROM public.tbl_student_evaluation AS se '
+                                     'INNER JOIN public."User" AS u ON u.id = se.subject_teacher_id '
+                                     'INNER JOIN public.user_detail AS ud ON u.id = ud.user_id '
+                                     'INNER JOIN public.tbl_students_personal_info AS sp ON sp.id = se.student_id '
+                                     'INNER JOIN public.tbl_academic_detail AS ad ON sp.id = ad.std_personal_info_id '
+                                     'WHERE se.id =%s',
+                                     id).first()
+
+    return render_template('/pages/add-student/view_std_mark.html', sub_teacher=sub_teacher)
