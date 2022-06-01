@@ -75,15 +75,6 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
-                                                        <label for="cid" class="control-label col-sm-4 text-right">CID
-                                                            :</label>
-                                                        <div class="col-sm-8">
-                                                            <input type="text" class="form-control"
-                                                                value="{{std.student_cid}}" name="cid" id="cid"
-                                                                disabled>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
                                                         <label for="FirstName"
                                                             class="control-label col-sm-4 text-right">First Name
                                                             :</label>
@@ -91,6 +82,16 @@
                                                             <input type="text" class="form-control"
                                                                 value="{{std.first_name}}" name="first_name"
                                                                 id="first_name" disabled>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group row">
+                                                        <label for="cid" class="control-label col-sm-4 text-right">CID
+                                                            :</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control"
+                                                                value="{{std.student_cid}}" name="cid" id="cid"
+                                                                disabled>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -272,6 +273,15 @@
                                                             class="form-control" name="supw" id="supw" disabled>
                                                     </div>
                                                 </div>
+                                                <div class="form-group row">
+                                                    <label for="Percentage"
+                                                        class="control-label col-sm-4 text-right">Percentage :</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" value="{{std.percentage_obtained}}%"
+                                                            class="form-control" name="percentage" id="percentage"
+                                                            disabled>
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <div class="col-md-6">
@@ -314,15 +324,7 @@
                                                             name="stream" id="stream" disabled>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
-                                                    <label for="Percentage"
-                                                        class="control-label col-sm-4 text-right">Percentage :</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" value="{{std.percentage_obtained}}%"
-                                                            class="form-control" name="percentage" id="percentage"
-                                                            disabled>
-                                                    </div>
-                                                </div>
+
                                             </div>
                                         </div> <br><br>
                                         <!-- modal -->
@@ -340,11 +342,7 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-<<<<<<< HEAD
-                                                        <h5 class="modal-title" id="exampleModalLabel">Marksheet</h5>
-=======
                                                         <h5 class="modal-title" id="exampleModalLabel">Student Marksheet</h5>
->>>>>>> f80276f21c6656da2e4d752976184f2b8735e8d1
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>

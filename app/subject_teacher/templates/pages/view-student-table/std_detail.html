@@ -52,9 +52,10 @@
                                                     <div class="text-center">
                                                         <a href="{{ std.half_photo }}" class="image-popup"
                                                             title="Passport Size Photo">
-                                                            <img src="{{ std.half_photo }}" width="150px" height="130px"
-                                                                class="rounded-circle">
+                                                            <img src="{{ std.half_photo }}" width="150px"
+                                                                height="140px" class="rounded-circle">
                                                         </a>
+                                                        <p>Student Photo</p>
                                                     </div>
                                                     <div class="text-center mt-3">
                                                         <span class="bg-secondary p-1 px-4 rounded text-white">
@@ -279,17 +280,45 @@
                                                     </tbody>
                                                 </table>
                                                 <hr>
-                                                <h4>Student Remarks:</h4>
-                                                <p><b>Punctuality:</b> {{std.punctuality}}</p>
-                                                <p><b>Discipline:</b> {{std.discipline}}</p>
-                                                <p><b>Social Service:</b> {{std.social_service}}</p>
-                                                <p><b>Leadership Quality:</b> {{std.leadership_quality}}</p>
+                                                <h5>Student Remarks :</h5> <br>
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>sl</th>
+                                                            <th>Personal Qualities</th>
+                                                            <th>Rating</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>Punctuality</td>
+                                                            <td>{{std.punctuality}}</td>
+                                                            
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>Discipline</td>
+                                                            <td>{{std.discipline}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>3</td>
+                                                            <td>Social Service</td>
+                                                            <td>{{std.social_service}}</td>
+                                                        </tr> 
+                                                        <tr>
+                                                            <td>4</td>
+                                                            <td>Leadership Quality</td>
+                                                            <td>{{std.leadership_quality}}</td>
+                                                            
+                                                        </tr>                                       
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- end table -->
-
                             </div>
                         </div>
                     </div>
@@ -375,13 +404,11 @@
                 { data: 'annual_exam' },
                 { data: 'cont_assessment' },
                 { data: 'total' },
-
-
             ],
             language: {
                 paginate: {
                     next: '&#8594;', // or '→'
-                    previous: '&#8592;' // or '←' 
+                    previous: '&#8592;' // or '←'
                 }
             },
             "ordering": false

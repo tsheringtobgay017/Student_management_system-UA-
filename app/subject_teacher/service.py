@@ -29,7 +29,7 @@ def get_std_subject_teacher():
         row_per_page + " OFFSET " + row + ""
 
     get_std = connection.execute(str_query, user_id).fetchall()
-    
+   
 
     data = []
     count = 0
@@ -60,14 +60,14 @@ def get_std_subject_class(id):
         'inner join public.tbl_dzongkhag_list as dzo on dzo.dzo_id = P.student_present_dzongkhag '
         'inner join public.tbl_gewog_list as gewog on gewog.gewog_id = P.student_present_gewog '
         'inner join public.tbl_village_list as village on village.village_id = P.student_present_village '
-        'inner join public.tbl_student_evaluation as SE on SE.student_id = P.id '
+        # 'inner join public.tbl_student_evaluation as SE on SE.student_id = P.id ' 
         'WHERE P.id =%s',
         id).first()
     return render_template('/pages/view-student-table/std_detail.html', std=std_class)
 
 
 
-# This is the route for storing student detials into tbl_student_personal_info 
+# This is the route for storing student detials into tbl_student_personal_info
 def store_student_assessment_details():
     id = uuid4()
     subject_teacher_id = request.form.get("sub_id")
@@ -85,12 +85,12 @@ def store_student_assessment_details():
     created_at = datetime.now()
     updated_at = datetime.now()
 
-    
+   
     engine.execute("INSERT INTO public.tbl_student_evaluation (id, subject_teacher_id, student_id, class_test_one,  class_test_two, mid_term, annual_exam, cont_assessment,"
                     "status, punctuality, discipline, social_service, leadership_quality, created_at, updated_at) "
                    "VALUES ("
                    "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s, %s)",
-                   (id, subject_teacher_id, student_id, class_test_one, class_test_two, mid_term, annual_exam, cont_assessment,status, punctuality, discipline, 
+                   (id, subject_teacher_id, student_id, class_test_one, class_test_two, mid_term, annual_exam, cont_assessment,status, punctuality, discipline,
                    social_service,leadership_quality,created_at,  updated_at  ))
 
     return "successfully"
@@ -98,7 +98,7 @@ def store_student_assessment_details():
 
 #checking for cid already exist in database
 def check_exist(id):
-    check_exist_data = 'SELECT COUNT(*) FROM public.tbl_student_evaluation WHERE student_id =%s'
+    check_exist_data = "SELECT COUNT(*) FROM public.tbl_student_evaluation WHERE student_id =%s"
     results = connection.execute(
         check_exist_data, id).fetchone()[0]
     output = int(results)
@@ -149,6 +149,3 @@ def get_std_marks():
         "aaData": data
     }
     return respose_get_marks
-
-
-
