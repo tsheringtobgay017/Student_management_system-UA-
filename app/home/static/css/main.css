@@ -491,3 +491,13 @@ img.pull-left {
 		}
 	}
 /* Conatct end */
+
+/* slider */
+.slider-border{
+	background-color:#FFFFFF;
+	border:8px solid;
+	border-style: outset;
+  border-width: 20px;
+  border-color: coral;
+} 
+
