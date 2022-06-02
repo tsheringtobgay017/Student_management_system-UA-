@@ -279,11 +279,12 @@
                                                     </tbody>
                                                 </table>
                                                 <hr>
+<!--                                                 
                                                 <h4>Student Remarks:</h4>
                                                 <p><b>Punctuality:</b> {{std.punctuality}}</p>
                                                 <p><b>Discipline:</b> {{std.discipline}}</p>
                                                 <p><b>Social Service:</b> {{std.social_service}}</p>
-                                                <p><b>Leadership Quality:</b> {{std.leadership_quality}}</p>
+                                                <p><b>Leadership Quality:</b> {{std.leadership_quality}}</p> -->
                                             </div>
                                         </div>
                                     </div>
@@ -336,7 +337,7 @@
                 } else {
                     swal("Marks successfully updated", "Click Ok to continue", "success")
                         .then(function () {
-                            windows.location.href = "#marks_view"
+                            window.location.reload()
                         })
                 }
             }
