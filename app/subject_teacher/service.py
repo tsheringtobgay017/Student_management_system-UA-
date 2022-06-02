@@ -60,7 +60,7 @@ def get_std_subject_class(id):
         'inner join public.tbl_dzongkhag_list as dzo on dzo.dzo_id = P.student_present_dzongkhag '
         'inner join public.tbl_gewog_list as gewog on gewog.gewog_id = P.student_present_gewog '
         'inner join public.tbl_village_list as village on village.village_id = P.student_present_village '
-        # 'inner join public.tbl_student_evaluation as SE on SE.student_id = P.id ' 
+        # 'inner join public.tbl_student_evaluation as SE on P.id = SE.student_id '
         'WHERE P.id =%s',
         id).first()
     return render_template('/pages/view-student-table/std_detail.html', std=std_class)
@@ -83,15 +83,15 @@ def store_student_assessment_details():
     social_service = request.form.get("socialservice")
     leadership_quality = request.form.get("leadership")
     created_at = datetime.now()
-    updated_at = datetime.now()
+    
 
    
     engine.execute("INSERT INTO public.tbl_student_evaluation (id, subject_teacher_id, student_id, class_test_one,  class_test_two, mid_term, annual_exam, cont_assessment,"
-                    "status, punctuality, discipline, social_service, leadership_quality, created_at, updated_at) "
+                    "status, punctuality, discipline, social_service, leadership_quality, created_at) "
                    "VALUES ("
-                   "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s, %s)",
-                   (id, subject_teacher_id, student_id, class_test_one, class_test_two, mid_term, annual_exam, cont_assessment,status, punctuality, discipline,
-                   social_service,leadership_quality,created_at,  updated_at  ))
+                   "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s)",
+                   (id, subject_teacher_id, student_id, class_test_one, class_test_two, mid_term, annual_exam, cont_assessment,status, punctuality, discipline, 
+                   social_service,leadership_quality,created_at  ))
 
     return "successfully"
 
