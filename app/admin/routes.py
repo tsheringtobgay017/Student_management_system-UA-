@@ -57,7 +57,7 @@ def usrfeedback():
 @login_required
 def admin_icons():
     return render_template('/pages/icons/mdi.html')
-
+ 
 
 @blueprint.route('/admin-login')
 @login_required
@@ -140,7 +140,6 @@ def update_app_status():
         return application_update()
     else:
         return "Failed"
-
 
 
 @blueprint.route('/users-queries', methods=['POST'])

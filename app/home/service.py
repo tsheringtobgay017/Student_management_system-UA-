@@ -55,7 +55,6 @@ def store_student_details():
 
     return id
 
-
 # This is the route for storing student detials into tbl_academic_detail 
 def store_academic_details(id_personal):
     id = uuid4()
