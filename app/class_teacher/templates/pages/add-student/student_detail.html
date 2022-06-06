@@ -144,10 +144,10 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                
                                 <div id="std_remarks" class="container tab-pane fade">
-                                    <form method="POST" id="update_form" action="" enctype="multipart/form-data">
-
+                                    <form method="POST" id="update_form_std" action="" enctype="multipart/form-data">
+                                        <input type="hidden" name="std_id" value="{{std.student_id}}">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
@@ -159,7 +159,7 @@
                                                             class="form-control">
                                                             <option value="">---Select---</option>
                                                             <option value="Outstanding">Outstanding</option>
-                                                            <option value="Very Goo">Very Good</option>
+                                                            <option value="Very Good">Very Good</option>
                                                             <option value="Good">Good</option>
                                                             <option value="Satisfactory">Satisfactory</option>
 
@@ -177,7 +177,7 @@
                                                         <select name="discipline" id="discipline" class="form-control">
                                                             <option value="">---Select---</option>
                                                             <option value="Outstanding">Outstanding</option>
-                                                            <option value="Very Goo">Very Good</option>
+                                                            <option value="Very Good">Very Good</option>
                                                             <option value="Good">Good</option>
                                                             <option value="Satisfactory">Satisfactory</option>
 
@@ -195,7 +195,7 @@
                                                             class="form-control">
                                                             <option value="">---Select---</option>
                                                             <option value="Outstanding">Outstanding</option>
-                                                            <option value="Very Goo">Very Good</option>
+                                                            <option value="Very Good">Very Good</option>
                                                             <option value="Good">Good</option>
                                                             <option value="Satisfactory">Satisfactory</option>
 
@@ -212,7 +212,7 @@
                                                         <select name="leadership" id="leadership" class="form-control">
                                                             <option value="">---Select---</option>
                                                             <option value="Outstanding">Outstanding</option>
-                                                            <option value="Very Goo">Very Good</option>
+                                                            <option value="Very Good">Very Good</option>
                                                             <option value="Good">Good</option>
                                                             <option value="Satisfactory">Satisfactory</option>
 
@@ -236,11 +236,25 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label for="supw_grade"
+                                                        class="control-label col-sm-4 text-right">Status :</label>
+                                                    <div class="col-sm-8">
+                                                        <select name="class_status" id="class_status" class="form-control">
+                                                            <option value="">---Select---</option>
+                                                            <option value="PASS">PASS</option>
+                                                            <option value="FAIL">FAIL</option>
+                                                        </select>
+                                                        <span class="invalid-feedback">Please select action type</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <hr>
                                         <div class="row text-center">
                                             <div class="col-md-12">
-                                                <button type="button" id="update"
+                                                <button type="button" id="update_std"
                                                     class="btn btn-md btn-warning text-light">Submit</button>
                                             </div>
                                         </div>
@@ -367,6 +381,38 @@
                 window.location = '/view-std-class-marks'
             })
         }
+    });
+
+
+    // update std evaluation
+    $("#update_std").click(function () {
+        var form_data = new FormData($('#update_form_std')[0])
+        $.ajax({
+            type: "POST",
+            url: "/update-std-evaluation",
+            data: form_data,
+            contentType: false,
+            cache: false,
+            processData: false,
+
+            success: function (data) {
+                if (data === "errorFound") {
+                    swal('Error', 'Update Failed', 'error').then(function () {
+                        location.reload()
+                    })
+                } else {
+                    swal('Success', ' Information Successfully Updated', 'success').then(function () {
+                        window.location = ""
+                    })
+                }
+
+            },
+            error: function () {
+                swal('Error', 'Update Failed', 'error').then(function () {
+                    location.reload()
+                })
+            }
+        });
     });
 
 </script>

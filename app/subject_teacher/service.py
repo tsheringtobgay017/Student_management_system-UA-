@@ -77,7 +77,7 @@ def store_student_assessment_details():
     mid_term = request.form.get("mid_term")
     annual_exam = request.form.get("annual_exam")
     cont_assessment = request.form.get('CA')
-    status = request.form.get('std_status')
+    status_remarks = request.form.get('std_status')
     punctuality = request.form.get('punctuality')
     discipline = request.form.get("discipline")
     social_service = request.form.get("socialservice")
@@ -87,10 +87,10 @@ def store_student_assessment_details():
 
    
     engine.execute("INSERT INTO public.tbl_student_evaluation (id, subject_teacher_id, student_id, class_test_one,  class_test_two, mid_term, annual_exam, cont_assessment,"
-                    "status, punctuality, discipline, social_service, leadership_quality, created_at) "
+                    "status_remarks, punctuality, discipline, social_service, leadership_quality, created_at) "
                    "VALUES ("
                    "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s)",
-                   (id, subject_teacher_id, student_id, class_test_one, class_test_two, mid_term, annual_exam, cont_assessment,status, punctuality, discipline, 
+                   (id, subject_teacher_id, student_id, class_test_one, class_test_two, mid_term, annual_exam, cont_assessment,status_remarks, punctuality, discipline, 
                    social_service,leadership_quality,created_at  ))
 
     return "successfully"

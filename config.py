@@ -47,10 +47,10 @@ class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = '{}://{}:{}@{}:{}/{}'.format(
         config('DB_ENGINE', default='postgresql'),
         config('DB_USERNAME', default='postgres'),
-        config('DB_PASS', default='1600one123'),
+        config('DB_PASS', default='secret'),
         config('DB_HOST', default='localhost'),
         config('DB_PORT', default=5432),
-        config('DB_NAME', default='student_management_system')
+        config('DB_NAME', default='student_db')
     )
 
 

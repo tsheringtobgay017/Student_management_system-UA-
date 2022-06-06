@@ -186,3 +186,51 @@ def check_exist(identification_number):
         return True
     else:
         return False
+
+
+# fetching results
+def result_declare():
+    draw = request.form.get('draw')
+    row = request.form.get('start')
+    row_per_page = request.form.get('length')
+    search_value = request.form['search[value]']
+    search_query = ' '
+    if (search_value != ''):
+        search_query = "AND (full_name LIKE '%%" + search_value + "%%' " \
+            "OR user_email LIKE '%%" + search_value + "%%' "\
+            "OR phone_no LIKE '%% " + search_value+"%%') "
+            
+
+    str_query = 'SELECT *, count(*) OVER() AS count_all, id FROM  public.tbl_student_evaluation WHERE id IS NOT NULL  '\
+                '' + search_query + '' \
+                "LIMIT " + \
+        row_per_page + " OFFSET " + row + ""
+
+    result_form = connection.execute(str_query).fetchall()
+
+    data = []
+    count = 0
+    for index, user in enumerate(result_form):
+        data.append({'sl': index + 1,
+                     'class_test_one': user.full_name,
+                     'class_test_two': user.user_email,
+                     'mid-term': user.phone_no,
+                     'annual_exam': user.comment,
+                     'cont_assessment': user.comment,
+                     'status_remarks': user.comment,
+                     'punctuality': user.comment,
+                     'discipline': user.comment,
+                     '': user.comment,
+                     'punctuality': user.comment,
+
+
+                     'id': user.id})
+        count = user.count_all
+
+    respose_query = {
+        "draw": int(draw),
+        "iTotalRecords": count,
+        "iTotalDisplayRecords": count,
+        "aaData": data
+    }
+    return respose_query

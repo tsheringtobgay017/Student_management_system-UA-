@@ -2,7 +2,7 @@ import re
 from flask import render_template
 from flask_login import login_required
 from app.class_teacher import blueprint
-from app.class_teacher.service import subject_teacher, search_std, update_tbl_academic, get_std_in_class, get_std_class, get_std_marks, get_subject_teacher_info
+from app.class_teacher.service import subject_teacher, search_std, update_tbl_academic, get_std_in_class, get_std_class, get_std_marks, get_subject_teacher_info,update_tbl_std_evaluation
 from app.admin.service import is_classTeacher
 
 @blueprint.route('/add-subject-teacher')
@@ -75,6 +75,15 @@ def update_std_class():
         return update_tbl_academic()
     else:
         return "error"
+
+
+@blueprint.route('/update-std-evaluation', methods=['POST'])
+@login_required
+def update_std_evaluation():
+    if(is_classTeacher()):
+        return update_tbl_std_evaluation()
+    else:
+        return "errorFound"
 
 
 

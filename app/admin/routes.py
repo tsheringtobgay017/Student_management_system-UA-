@@ -141,7 +141,7 @@ def update_app_status():
     else:
         return "Failed"
 
-
+# user doubt
 @blueprint.route('/users-queries', methods=['POST'])
 def queryList():
     if(is_admin()):

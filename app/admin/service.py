@@ -226,7 +226,7 @@ def send_application_mail(name, status, narration, user_mail):
     mail.send(msg)
     
 
-
+# user Enquires
 def user_quries():
     draw = request.form.get('draw')
     row = request.form.get('start')
