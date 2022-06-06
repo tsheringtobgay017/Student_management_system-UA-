@@ -6,8 +6,7 @@ from flask_login import (current_user, login_user, logout_user)
 from config import Config
 from app.admin.models import User
 from app.admin.forms import LoginForm
-from app.home.service import store_student_details, store_academic_details, get_dzo_list, get_gewog, get_village,track_std, store_contact_details
-from app.home.service import store_student_details, check_exist, store_academic_details, get_dzo_list, get_gewog, get_village, track_std
+from app.home.service import store_student_details, check_exist, store_academic_details, get_dzo_list, get_gewog, get_village,track_std, store_contact_details
 from flask_login import (current_user, login_required)
 from app.admin.util import get_user_by_id, verify_pass, check_user_login_info, update_login_info
 
@@ -38,7 +37,6 @@ def store_studentInfo_page():
         id_personal = store_student_details()
         store_academic_details(id_personal)
         return "success"
-
 
 # Route to fetch gewog list
 @blueprint.route("/get-gewog-list", methods=["GET", "POST"])
@@ -170,3 +168,4 @@ def checkCID():
         return "ErrorFound"
     else:
         return "Done"
+
