@@ -6,7 +6,7 @@ from config import Config
 from datetime import datetime
 from uuid import uuid4
 from random import randint
-# from decouple import config
+from decouple import config
 import io
 
 engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
