@@ -2,6 +2,7 @@ from operator import add
 from flask import request, render_template
 from config import Config
 from sqlalchemy import create_engine
+from datetime import datetime
 
 
 engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
@@ -82,6 +83,21 @@ def update_tbl_academic():
     return user_id
 
 
+def update_tbl_std_evaluation():
+    student_id = request.form.get('std_id')
+    punctuality = request.form.get('punctuality')
+    discipline = request.form.get('discipline')
+    social_service = request.form.get('socialservice')
+    leadership_quality = request.form.get('leadership')
+    supw_grade = request.form.get('supw_grade')
+    status_remarks = request.form.get('class_status')
+    updated_at = datetime.now()
+    connection.execute('UPDATE  public.tbl_student_evaluation SET punctuality=%s, discipline=%s, social_service=%s, leadership_quality=%s, supw_grade=%s, status_remarks=%s, updated_at=%s WHERE student_id=%s',
+                        punctuality, discipline, social_service, leadership_quality,supw_grade, status_remarks, updated_at, student_id)
+
+    return "ok"
+
+
 # fetching student list in class
 def get_std_in_class():
     draw = request.form.get('draw')
@@ -131,6 +147,7 @@ def get_std_class(id):
         'inner join public.tbl_dzongkhag_list as dzo on dzo.dzo_id = P.student_present_dzongkhag '
         'inner join public.tbl_gewog_list as gewog on gewog.gewog_id = P.student_present_gewog '
         'inner join public.tbl_village_list as village on village.village_id = P.student_present_village '
+        'inner join public.tbl_student_evaluation as se on P.id = se. student_id '
         'WHERE P.id =%s',
         id).first()
     return render_template('/pages/add-student/student_detail.html', std=std_class)
@@ -180,6 +197,7 @@ def get_std_marks():
 
 # fetch student details from database
 def get_subject_teacher_info(id):
+
     sub_teacher = connection.execute('SELECT *, se.id FROM public.tbl_student_evaluation AS se '
                                      'INNER JOIN public."User" AS u ON u.id = se.subject_teacher_id '
                                      'INNER JOIN public.user_detail AS ud ON u.id = ud.user_id '
@@ -187,5 +205,4 @@ def get_subject_teacher_info(id):
                                      'INNER JOIN public.tbl_academic_detail AS ad ON sp.id = ad.std_personal_info_id '
                                      'WHERE se.id =%s',
                                      id).first()
-
     return render_template('/pages/add-student/view_std_mark.html', sub_teacher=sub_teacher)

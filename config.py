@@ -50,7 +50,7 @@ class ProductionConfig(Config):
         config('DB_PASS', default='wangzom017'),
         config('DB_HOST', default='localhost'),
         config('DB_PORT', default=5432),
-        config('DB_NAME', default='student_management_system')
+        config('DB_NAME', default='student_db')
     )
 
 

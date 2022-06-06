@@ -112,7 +112,7 @@
             success: function (res) {
                 const { aaData } = res;
                 console.log(aaData);
-                $("#list").append('<tr><td>' + aaData[0].first_name + '</td><td>' + aaData[0].last_name + '</td><td>' + aaData[0].index_number + '</td><td>' + aaData[0].student_cid + '</td><td>' + aaData[0].student_email + '</td><td>' + '<a class="btn btn-sm btn-icon-only text-light" id="view_result" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background:orange">' +
+                $("#list").append('<tr><td>' + aaData[0].first_name + '</td><td>' + aaData[0].last_name + '</td><td>' + aaData[0].index_number + '</td><td>' + aaData[0].student_cid + '</td><td>' + aaData[0].student_email + '</td><td>' + '<a class="btn btn-sm btn-icon-only text-light" id="view_result" href="/get-std-result/{{}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background:orange">' +
                     '<b>View</b>' +
                     '</a>' + '</td></tr>')
 
