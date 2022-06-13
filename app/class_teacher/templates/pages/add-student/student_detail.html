@@ -13,36 +13,9 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"
         type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        .dowload_button {
-            background-color: DodgerBlue;
-            border: none;
-            color: white;
-            padding: 12px 30px;
-            cursor: pointer;
-            font-size: 20px;
-        }
-
-        /* Darker background on mouse-over */
-        .dowload_button:hover {
-            background-color: RoyalBlue;
-
-        }
-
-        @media print {
-            body *:not(#my_section):not(#my_section *) {
-                 visibility: hidden;
-            }
-
-            #my_section {
-                position: absolute;
-                top: 0;
-                left: 0;
-            }
-        }
-    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf/min.js"></script>
     {% endblock stylesheets %}
-
     {% block content %}
     <div class="main-panel">
         <div class="content-wrapper">
@@ -71,7 +44,7 @@
                                             href="#std_remarks">Student Remarks</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link btn btn-primary" data-toggle="pill" href="#view_result">View
+                                        <a class="nav-link btn btn-primary" id="view-res" data-toggle="pill" href="#view_result">View
                                             Result</a>
                                     </li>
                                     </li>
@@ -186,7 +159,7 @@
                                     <div id="std_remarks" class="container tab-pane fade">
                                         <form method="POST" id="update_form_std" action=""
                                             enctype="multipart/form-data">
-                                            <input type="hidden" name="std_id" value="{{std.student_id}}">
+                                            <input type="hidden" name="std_id" value="{{std.id}}">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group row">
@@ -308,122 +281,131 @@
 
                                         </form>
                                     </div>
-
-                                    <div id="view_result" class="container tab-pane fade">
-                                        <section id="my_section">
-                                            <div class="table-wrapper">
-                                                <div class="table-title">
-                                                    <div class="row">
-                                                        <div class="col-sm-8">
-                                                            <h6>STATEMENT OF MARKS</h6> <br>
-                                                            <p><b>Index Number :</b> 12180068</p> <br>
+                                   
+                                        <div id="view_result" class="container tab-pane fade">
+                                            <div id="downloadpdf">
+                                                <div id="division">
+                                                    <div class="table-wrapper">
+                                                        <div class="table-title">
+                                                            <div class="row">
+                                                                <div class="col-sm-8">
+                                                                    <h6>STATEMENT OF MARKS</h6> <br>
+                                                                    <p><b>Student Name :</b> {{std.first_name}} {{std.last_name}}</p> <br>
+                                                                    <p><b>Index Number :</b> {{std.index_number}}</p> <br>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                        <table class="table align-items-center table-flush"
+                                                        id="viewtableresuslt" style="width: 100%">
+                                                        <thead class="thead-light">
+                                                            <tr>
+                                                                <th scope="col" class="sort" data-sort="name">Subject
+                                                                </th>
+                                                                <th scope="col" class="sort" data-sort="name">class test
+                                                                    I
+                                                                </th>
+                                                                <th scope="col" class="sort" data-sort="budget">Mid-term
+                                                                    Exam
+                                                                </th>
+                                                                <th scope="col" class="sort" data-sort="name">Class test
+                                                                    II
+                                                                </th>
+                                                                <th scope="col" class="sort" data-sort="name">Annual
+                                                                    Exam
+                                                                </th>
+                                                                <th scope="col" class="sort" data-sort="name">CA</th>
+                                                                
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="list1">
+
+                                                            {% for usrs in user %}
+
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    {{ usrs.subject }}
+                                                                </th>
+                                                                <th scope="row">
+                                                                    {{ usrs.class_test_one }}
+                                                                </th>
+                                                                <td class="budget">
+                                                                    {{ usrs.mid_term}}
+                                                                </td>
+                                                                <td class="budget">
+                                                                    {{ usrs.class_test_two}}
+                                                                </td>
+                                                                <td class="budget">
+                                                                    {{ usrs.annual_exam }}
+                                                                </td>
+                                                                <td class="budget">
+                                                                    {{ usrs.cont_assessment }}
+                                                                </td>
+
+                                                               
+                                                            </tr>
+                                                            {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                    
+                                                        <hr>
+                                                        <h4 class="card-title">Student Individual Remarks :</h4>
+                                                            <table class="table table-bordered">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>sl</th>
+                                                                        <th>Personal Qualities</th>
+                                                                        <th>Rating</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td>Punctuality</td>
+                                                                        <!-- <td>{{std.punctuality}}</td> -->
+                                                                        <td>Outstanding</td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>2</td>
+                                                                        <td>Discipline</td>
+                                                                        <!-- <td>{{std.discipline}}</td> -->
+                                                                        <td>Outstanding</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>3</td>
+                                                                        <td>Social Service</td>
+                                                                        <!-- <td>{{std.social_service}}</td> -->
+                                                                        <td>Outstanding</td>
+                                                                    </tr> 
+                                                                    <tr>
+                                                                        <td>4</td>
+                                                                        <td>Leadership Quality</td>
+                                                                        <!-- <td> {{std.leadership_quality}}</td> -->
+                                                                        <td>Outstanding</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>5</td>
+                                                                        <td>Supw Grade</td>
+                                                                        <td> {{std.supw_grade}}</td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>6</td>
+                                                                        <td>Status</td>
+                                                                        <!-- <td> {{std.status_remarks}}</td> -->
+                                                                        <td>PASS</td>
+                                                                    </tr>                                       
+                                                                </tbody>
+                                                            </table>
+                                                    </div><br>                                                
                                                 </div>
-                                                <table class="table table-bordered">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>SUBJECT</th>
-                                                            <th>CA (20)</th>
-                                                            <th>PRACTICAL(20)</th>
-                                                            <th>THEORY(60)</th>
-                                                            <th>TOTAL</th>
-
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>English</td>
-                                                            <td>19</td>
-                                                            <td>19</td>
-                                                            <td>50</td>
-                                                            <td>70</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Dzongkha</td>
-                                                            <td>19</td>
-                                                            <td>19</td>
-                                                            <td>50</td>
-                                                            <td>70</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Business math</td>
-                                                            <td>19</td>
-                                                            <td>19</td>
-                                                            <td>50</td>
-                                                            <td>70</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Accountancy</td>
-                                                            <td>19</td>
-                                                            <td>19</td>
-                                                            <td>50</td>
-                                                            <td>70</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Commerce</td>
-                                                            <td>19</td>
-                                                            <td>19</td>
-                                                            <td>50</td>
-                                                            <td>70</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Economics</td>
-                                                            <td>19</td>
-                                                            <td>19</td>
-                                                            <td>50</td>
-                                                            <td>70</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <hr>
-                                                <h4 class="card-title">Student Individual Remarks :</h4>
-                                                <table class="table table-bordered">
-                                                    <tr>
-                                                        <th>Personal Qualities</th>
-                                                        <th>Rating</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Punctuality</td>
-                                                        <td>Outstanding</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>Discipline</td>
-                                                        <td>Very Good</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Discipline</td>
-                                                        <td>Very Good</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Social Service:</td>
-                                                        <td>Very Good</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Leadership Quality:</td>
-                                                        <td>Very Good</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>SUPW Grade:</td>
-                                                        <td>A+</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Result</td>
-                                                        <td>PASS</td>
-                                                    </tr>
-                                                </table>
-                                            </div><br>
-                                            <!-- download and print button -->
-                                            <div style="text-align: center;">
-                                                <button class="dowload_button"><i class="fa fa-download"></i>
-                                                    Download</button>
-                                                <button onclick="window.print()" class="dowload_button"><i
-                                                        class="fa fa-print"></i> print Result</button>
                                             </div>
-                                        </section>
-                                    </div>
-
+                                            <div style="text-align: center; ">
+                                                <button class="btn btn-primary"><a href="javascript:generatePDF()" id="downloadpages" style="color:white ; text-decoration: none;"><i class="fa fa-download"></i> Download</a></button>
+                                                <button onclick="printContent ('division')" class="btn btn-primary"><i class="fa fa-print"></i> Print Result</button>
+                                            </div>
+                                        </div>
+     
                                 </div>
                             </div>
 
@@ -442,11 +424,8 @@
 
 <!-- Specific JS goes HERE -->
 {% block javascripts %}
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"crossorigin="anonymous"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $(document).ready(function () {
@@ -492,6 +471,38 @@
         });
     }
 
+
+
+    // ==================================================
+  
+ $('#view-res').click(function(){
+        $('#viewtableresuslt').DataTable({
+            'processing': true,
+            'serverSide': true,
+            'bDestroy': true,
+            'serverMethod': 'POST',
+            'ajax': {
+                'url': '/get-std-result'
+            },
+            'columns': [
+                { data: 'subject' },
+                { data: 'class_test_one' },
+                { data: 'mid_term' },
+                { data: 'class_test_two' },
+                { data: 'annual_exam' },
+                { data: 'cont_assessment' },
+            
+            ],
+            language: {
+                paginate: {
+                    next: '&#8594;', // or '→'
+                    previous: '&#8592;' // or '←' 
+                }
+            },
+            "ordering": false
+        });
+    
+    })
 
     // for deleting
     function deleteUser(id) {
@@ -580,8 +591,41 @@
         });
     });
 
+
+// script for print
+
+function printContent(el){
+    var restorepage = document.body.innerHTML;
+    var printcontent = document.getElementById(el).innerHTML;
+    document.body.innerHTML = printcontent;
+    window.print();
+    document.body.innerHTML = restorepage;
+}
+
+        // DOWNLOAD
+async function generatePDF() {
+    document.getElementById("downloadpages").innerHTML = " Downloading";
+        // download
+    var downloading = document.getElementById("downloadpdf");
+    var doc = new jsPDF('l', 'pt');
+
+    await html2canvas(downloading, {
+       allowTaint: true,
+       useCORS: true,
+    }).then((canvas) =>{
+       doc.addImage(canvas.toDataURL("image/png"), 'PNG', 100, 10, 600, 600) 
+    })
+    doc.save("Document.pdf");
+    // DOWNLOADING CODE
+    document.getElementById("downloadButton").innerHTML = "click to download";
+
+}
 </script>
 
 {% endblock javascripts %}
 
 </body>
+
+<!-- HTML + css ->PNG(html2canvas) -->
+<!-- PNG ->add to pdf (jspdf) -->
+<!-- Download PDF (jsPDF) -->

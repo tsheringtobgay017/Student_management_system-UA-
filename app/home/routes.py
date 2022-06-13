@@ -6,7 +6,7 @@ from flask_login import (current_user, login_user, logout_user)
 from config import Config
 from app.admin.models import User
 from app.admin.forms import LoginForm
-from app.home.service import store_student_details, check_exist, store_academic_details, get_dzo_list, get_gewog, get_village,track_std, store_contact_details
+from app.home.service import store_student_details, check_exist, store_academic_details, get_dzo_list, get_gewog, get_village,track_std, store_contact_details, printing_result
 from flask_login import (current_user, login_required)
 from app.admin.util import get_user_by_id, verify_pass, check_user_login_info, update_login_info
 
@@ -130,15 +130,11 @@ def studentFee():
     return render_template("std_fee.html")
 
 # track student
-
-
 @blueprint.route('/track-student')
 def trackapplication():
     return render_template("track_std.html")
 
 # track students
-
-
 @blueprint.route('/search', methods=["POST"])
 def search():
     return track_std()
@@ -147,7 +143,7 @@ def search():
 # student result
 @blueprint.route('/student-result')
 def result():
-    return render_template("std_result.html")
+    return render_template ("std_result.html")
 
 @blueprint.route('/Contact-us')
 def contact():
@@ -169,3 +165,8 @@ def checkCID():
     else:
         return "Done"
 
+# printing student result
+
+@blueprint.route('/get-student-result', methods=['POST'])
+def student_result():
+         return printing_result()

@@ -43,12 +43,6 @@ def get_student_list():
     return render_template('/pages/add-student/student_list_class.html')
 
 
-# @blueprint.route('/view-std-detail')
-# @login_required
-# def view_student_detail():
-#     return render_template('/pages/add-student/student_detail.html')
-
-
 # fetch student details
 @blueprint.route('/view-std-detail/<id>', methods=['GET'])
 def view_student_detail(id):
@@ -98,6 +92,15 @@ def student_classList():
 
 @blueprint.route('/get-subject-marks', methods=['POST'])
 def subject_marks():
+    if(is_classTeacher()):
+        subject_marks = get_std_marks()
+    else:
+        subject_marks = []
+    return subject_marks
+
+
+@blueprint.route('/get-std-result', methods=['POST'])
+def std_results():
     if(is_classTeacher()):
         subject_marks = get_std_marks()
     else:

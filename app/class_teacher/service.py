@@ -33,6 +33,8 @@ def subject_teacher():
                      'username': user.username,
                      'email': user.email,
                      'subject': user.subject,
+                     'grade': user.grade,
+                     'section': user.section,
                      'role': user.role,
                      'id': user.user_id})
         count = user.count_all
@@ -147,13 +149,13 @@ def get_std_class(id):
         'inner join public.tbl_dzongkhag_list as dzo on dzo.dzo_id = P.student_present_dzongkhag '
         'inner join public.tbl_gewog_list as gewog on gewog.gewog_id = P.student_present_gewog '
         'inner join public.tbl_village_list as village on village.village_id = P.student_present_village '
-        'inner join public.tbl_student_evaluation as se on P.id = se. student_id '
+        # 'inner join public.tbl_student_evaluation as se on P.id = se. student_id '
         'WHERE P.id =%s',
         id).first()
     return render_template('/pages/add-student/student_detail.html', std=std_class)
 
 
-# fetching student marks given by class teacher
+# fetching student marks given by subject teacher
 def get_std_marks():
     draw = request.form.get('draw')
     row = request.form.get('start')
@@ -197,7 +199,6 @@ def get_std_marks():
 
 # fetch student details from database
 def get_subject_teacher_info(id):
-
     sub_teacher = connection.execute('SELECT *, se.id FROM public.tbl_student_evaluation AS se '
                                      'INNER JOIN public."User" AS u ON u.id = se.subject_teacher_id '
                                      'INNER JOIN public.user_detail AS ud ON u.id = ud.user_id '

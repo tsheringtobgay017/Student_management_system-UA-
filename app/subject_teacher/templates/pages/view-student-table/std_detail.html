@@ -293,24 +293,27 @@
                                                         <tr>
                                                             <td>1</td>
                                                             <td>Punctuality</td>
-                                                            <td>{{std.punctuality}}</td>
+                                                            <!-- <td>{{std.punctuality}}</td> -->
+                                                            <td>Very Good</td>
                                                             
                                                         </tr>
                                                         <tr>
                                                             <td>2</td>
                                                             <td>Discipline</td>
-                                                            <td>{{std.discipline}}</td>
+                                                            <!-- <td>{{std.discipline}}</td> -->
+                                                            <td>Outstanding</td>
                                                         </tr>
                                                         <tr>
                                                             <td>3</td>
                                                             <td>Social Service</td>
-                                                            <td>{{std.social_service}}</td>
+                                                            <!-- <td>{{std.social_service}}</td> -->
+                                                            <td>Very Good</td>
                                                         </tr> 
                                                         <tr>
                                                             <td>4</td>
                                                             <td>Leadership Quality</td>
-                                                            <td>{{std.leadership_quality}}</td>
-                                                            
+                                                            <!-- <td>{{std.leadership_quality}}</td> -->
+                                                            <td>Outstanding</td>                                                            
                                                         </tr>                                       
                                                     </tbody>
                                                 </table>
@@ -365,7 +368,7 @@
                 } else {
                     swal("Marks successfully updated", "Click Ok to continue", "success")
                         .then(function () {
-                            windows.location.href = "#marks_view"
+                            location.reload()
                         })
                 }
             }

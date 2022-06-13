@@ -1,7 +1,7 @@
 from flask import render_template
 from flask_login import login_required
 from app.admin import blueprint
-from app.admin.service import save_user_table, save_user_detail_table, application_update, all_users, is_admin,is_classTeacher, get_user_by_id, delete_user_by_id, get_std_by_id, all_std, user_quries
+from app.admin.service import save_user_table, save_user_detail_table, application_update, all_users, is_admin,is_classTeacher, get_user_by_id, delete_user_by_id, get_std_by_id, all_std, user_quries, update_userlist
 
 
 @blueprint.route('/dashboard')
@@ -151,4 +151,12 @@ def queryList():
 
     return users_query
 
- 
+
+@blueprint.route('/update-userlist', methods=['POST'])
+@login_required
+def update_std_class():
+    if(is_classTeacher()):
+        return update_userlist()
+    else:
+        return "error"
+

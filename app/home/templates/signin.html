@@ -15,69 +15,42 @@
 
 	<ol class="breadcrumb">
 		<li><a href="{{url_for('home_blueprint.route_default')}}"><i class="fa fa-home"> Home</i></a></li>
-		<li class="active">Login as admin </li>
+		<li class="active"> User Login </li>
 	</ol>
-
-	<div class="row">
-
-		<!-- Article main content -->
-		<article class="col-xs-12 maincontent">
-			<hr>
-			<div class="col-md-6 col-md-offset-3 col-sm-6	 col-sm-offset-2">
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<h1 style="font-family: 'Neuton', serif; text-align: center; margin-top: 10px;">
-							Admin Login
-
-						</h1>
-						<p style="text-align: center; margin-top: 10px;">Please enter your credentials to login to
-							the
-							system</p>
-						<hr>
-						<div class="well">
-							<span class="mb-0 text-muted text-center">
-
-							</span>
-							<div class="alert alert-danger" id="invalid" role="alert" style="display: none;"></div>
-							<form role="form" method="post" action="" id="login-form">
-
+	<hr style="position: relative; top: 3px; border: none; height: 2px; background: black;">				
+	<!-- new login -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6">
+					<div class="form-container">
+						<h3 class="title" style="color:black;">User Login</h3>
+						<form class="form-horizontal" role="form" method="post" action="" id="login-form">
+							<div class="form-icon">
+								<i class="fa fa-user-circle"></i>
+							</div>
+							<div class="form-group">
 								{{ form.hidden_tag() }}
+									<div class="row">
+										<div class="col-md-12">
+											{{ form.username(placeholder="Username", class="form-control form-control") }}
+										</div>
+									</div>
+							</div>
+							<div class="form-group">
 								<div class="row">
 									<div class="col-md-12">
-										{{ form.username(placeholder="Username", class="form-control form-control")
-										}}
+										{{ form.password(placeholder="Password", class="form-control form-control-sm") }}
 									</div>
-								</div>
-								<br>
-								<div class="row">
-									<div class="col-md-12">
-										{{ form.password(placeholder="Password", class="form-control
-										form-control-sm")
-										}}
-									</div>
-								</div>
-
-								<div class="form-group text-left">
-									<span id="passwordHelpBook" class="help-block"><a href="javascript:void(0);">Forgot
-											password?</a></span>
-								</div>
-								<button type="submit" name="login"
-									class="btn btn-primary shadow-2 mb-4 btn-sm">Login</button>
-							</form>
-						</div>
+								</div>	 <br>
+								<span class="forgot" style="text-align:center"><a href="">Forgot Password?</a></span>
+							</div>
+							<button class="btn signin" name="login">Login</button>
+						</form>
 					</div>
 				</div>
-
 			</div>
-
-		</article>
-		<!-- /Article -->
-
-	</div>
-</div> <!-- /container -->
-
-
-
+		</div>
+</div> 
 <!-- /social links -->
 {% endblock content %}
 

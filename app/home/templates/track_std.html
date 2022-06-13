@@ -6,12 +6,13 @@
 {% endblock stylesheets %}
 
 {% block content %}
+<div class="container">
 <ol class="breadcrumb ">
     <li><a href="{{url_for('home_blueprint.route_default')}}"><i class="fa fa-home" style="font-size:15px;">Home</i></a>
     </li>
     <li class="active" style="font-size: 13px;">Track Your Student</li>
 </ol>
-<hr>
+<hr style="position: relative; top: 3px; border: none; height: 2px; background: black;">				
 <br>
 <div class="container">
     <div class="row justify-content-center">
@@ -47,7 +48,7 @@
         </div>
     </div>
 </div>
-</div>
+
 <br><br><br>
 <!-- to show student details  -->
 <div class="container">
@@ -88,6 +89,7 @@
         </div>
     </div>
 </div>
+</div>
 
 {% endblock content %}
 
@@ -112,7 +114,7 @@
             success: function (res) {
                 const { aaData } = res;
                 console.log(aaData);
-                $("#list").append('<tr><td>' + aaData[0].first_name + '</td><td>' + aaData[0].last_name + '</td><td>' + aaData[0].index_number + '</td><td>' + aaData[0].student_cid + '</td><td>' + aaData[0].student_email + '</td><td>' + '<a class="btn btn-sm btn-icon-only text-light" id="view_result" href="/get-std-result/{{}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background:orange">' +
+                $("#list").append('<tr><td>' + aaData[0].first_name + '</td><td>' + aaData[0].last_name + '</td><td>' + aaData[0].index_number + '</td><td>' + aaData[0].student_cid + '</td><td>' + aaData[0].student_email + '</td><td>' + '<a class="btn btn-sm btn-icon-only text-light" id="view_result" role="button" data-toggle="dropdown" aria-haspopup="true" href="" aria-expanded="false" style="background:orange">' +
                     '<b>View</b>' +
                     '</a>' + '</td></tr>')
 

@@ -93,7 +93,7 @@ def get_user_by_id(id):
 def delete_user_by_id(id):
     # check self delete
     delete = connection.execute('DELETE FROM public."User" WHERE id=%s', id)
-    return True
+    return delete
 
 
 # defining user roles
@@ -151,7 +151,7 @@ def all_std():
         data.append({'sl': index + 1,
                      'index_number': user.index_number,
                      'student_cid': user.student_cid,
-                     'first_name': user.first_name,
+                     'first_name': user.first_name + " " + user.last_name,
                      'student_email': user.student_email,
                      'status' : user.status,
                      'id': user.id})
@@ -264,3 +264,12 @@ def user_quries():
         "aaData": data
     }
     return respose_query
+
+def update_userlist():
+    id = request.form.get('user_id')
+    connection.execute('UPDATE public.user_detail WHERE index_number=%s',
+                       id)
+    return id
+
+
+

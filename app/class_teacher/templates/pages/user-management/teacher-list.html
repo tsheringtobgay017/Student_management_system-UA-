@@ -21,7 +21,7 @@
             <div class="col-lg-12 grid-margin">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Class</h4>
+                        <h4 class="card-title">Class Teacher Detail</h4>
                         
                         <hr>
                         <div class="card-body">
@@ -31,12 +31,14 @@
                                     <table class="table align-items-center table-flush" id="customerList">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th scope="col" class="sort" data-sort="name">SL</th>
-                                                <th scope="col" class="sort" data-sort="name">Username</th>
-                                                <th scope="col" class="sort" data-sort="name">Email</th>
-                                                <th scope="col" class="sort" data-sort="name">Subject</th>
-                                                <th scope="col" class="sort" data-sort="budget">roles</th>
-                                                <th scope="col">action</th>
+                                                <th scope="col" >SL</th>
+                                                <th scope="col" >Username</th>
+                                                <th scope="col" >Email</th>
+                                                <th scope="col" >Subject</th>
+                                                <th scope="col" >Class</th>
+                                                <th scope="col" >section</th>
+                                                <th scope="col" >roles</th>
+                                                <th scope="col" style="text-align:center">action</th>
                                             </tr>
                                         </thead>
                                         <tbody class="list">
@@ -57,32 +59,25 @@
                                                     {{ usr.subject}}
                                                 </td>
                                                 <td class="budget">
+                                                    {{usr.grade}} 
+                                                </td>
+                                                <td class="budget">
+                                                    {{usr.section}} 
+                                                </td>
+                                                <td class="budget">
                                                     {{ usr.role }}
                                                 </td>
-
                                                 <td class="text-right">
                                                     <div class="dropdown">
-                                                        <a class="btn btn-sm btn-icon-only text-light" href="#"
-                                                            role="button" data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                            <i class="fas fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div
-                                                            class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                            <a class="dropdown-item"
-                                                                href="">View</a>
-                                                            <a class="dropdown-item" href="javascript:void(0)"
-                                                                >Delete</a>
-                                                        </div>
+                                                        <a class="btn btn-primary text-light" data-toggle="modal" data-target="#exampleModalCenter" role="button"> <i class="fas fa-ellipsis-v" >Edit</i></a>
+                                                        <a class="btn btn-sm btn-danger text-light" role="button" title="Delete" data-toggle="tooltip" id="{{row.id}}"> <i class="fas fa-ellipsis-v">Delete</i></a>
                                                     </div>
                                                 </td>
                                             </tr>
                                             {% endfor %}
                                         </tbody>
                                     </table>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -90,16 +85,83 @@
             </div>
         </div>
     </div>
-    <!-- content-wrapper ends -->
-    <!-- partial:../../partials/_footer.html -->
-
-    <!-- partial -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                        <div class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-control-label"
+                                                    for="username">Username</label>
+                                                <input type="text" name="username" id="username"
+                                                    class="form-control" placeholder="Username"
+                                                    autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="email">Email
+                                                    address</label>
+                                                <input type="email" name="email" id="email" class="form-control"
+                                                    placeholder="email address" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-control-label"
+                                                    for="subject">Subject</label>
+                                                <input type="text" name="subject" id="subject"
+                                                    class="form-control" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="class"> Class</label>
+                                                <select name="grade" id="class" class="form-control">
+                                                    <option value="">XII</option>
+                                                    <option value="">XI</option>
+                                                    <option value="">X</option>
+                                                    <option value="">IX</option>
+                                                    <option value="">VIII</option>
+                                                    <option value="">VII</option>   
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="class"> Section</label>
+                                                <select name="section" id="section" class="form-control">
+                                                    <option value="">A</option>
+                                                    <option value="">B</option>
+                                                    <option value="">C</option>
+                                                    <option value="">D</option>
+                                                    <option value="">E</option>
+                                                    <option value="">F</option>   
+                                                </select>
+                                            </div>
+                                        </div>  
+                            </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+            </div>
+        </div>
 </div>
-<!-- main-panel ends -->
 
-<!-- page-body-wrapper ends -->
-<!-- container-scroller -->
-<!-- plugins:js -->
 {% endblock content %}
 
 <!-- Specific JS goes HERE -->
@@ -127,18 +189,19 @@
                 { data: 'username' },
                 { data: 'email' },
                 { data: 'subject' },
+                { data: 'grade' },
+                { data: 'section' },
                 { data: 'role' },
                
                 {
                     "render": function (data, type, full, meta) {
                         return '<div class="dropdown">' +
-                            '<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background:orange">' +
-                            '<b>Click</b>' +
-                            '</a>' +
-                            '<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">' +
-                            '<a class="dropdown-item" href="">View</a>' +
-                            '<a class="dropdown-item" href="">Delete</a>' +
-                            '</div>' +
+                                '<a class="btn btn-primary btn-icon-only text-light" href="#" role="button" style="height: auto; display: inline-block;" data-toggle="modal" data-target="#exampleModalCenter" >' +
+                                '<b> Edit </b >'  +
+                                '</a>' + 
+                                '   <a class="btn btn-danger btn-icon-only text-light" href="#" role="button">' +
+                                '<b>Delete</b>' +
+                                '</a>' +
                             '</div>'
                     }
                 },
