@@ -38,32 +38,6 @@
                                             </tr>
                                         </thead>
                                         <tbody class="list">
-                                            {% for users in user %}
-                                            <tr>
-                                                <td scope="row">
-                                                    {{ users.index }}
-                                                </td>
-                                                <td scope="row">
-                                                    {{ users.username }}
-                                                </td>
-                                                <td class="budget">
-                                                    {{ users.email}}
-                                                </td>
-                                                <td class="budget">
-                                                    {{ users.role }}
-                                                </td>
-                                                <td class="text-right">
-                                                    <div class="dropdown">
-                                                        <a class="btn btn-primary text-light"  title="Edit"
-                                                            data-toggle="modal" data-target="#exampleModal"
-                                                            role="button"> <i class="fas fa-ellipsis-v">Edit</i></a>
-                                                        <a class="btn btn-sm btn-danger text-light" role="button"
-                                                            title="Delete" data-toggle="tooltip" href="/delete_user/{{users.user_id}}"  onclick="deleteUser('{{users.user_id}}')">
-                                                            <i class="fas fa-ellipsis-v">Delete</i></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>
@@ -74,66 +48,68 @@
             </div>
         </div>
     </div>
-</div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="pl-lg-4">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label class="form-control-label" for="username">Username</label>
-                                <input type="text" name="username" id="username" class="form-control"
-                                    placeholder="Username" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label class="form-control-label" for="email">Email address</label>
-                                <input type="email" name="email" id="email" class="form-control"
-                                    placeholder="email address" autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="username">Role</label>
-                                    <select name="grade" id="class" class="form-control">
-                                        <option value="">---select---</option>
-                                        <option value="">Class Teacher</option>
-                                        <option value="">Administrator</option>
-                                    </select>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="" id="updating_info">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <input type="hidden" id="u_id" name="u_id">
+                                        <label class="form-control-label" for="username">Username</label>
+                                        <input type="text" name="username" id="username" class="form-control"
+                                            placeholder="Username" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="email">Email address</label>
+                                        <input type="email" name="email" id="email" class="form-control"
+                                            placeholder="email address" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="role">Role</label>
+                                            <select name="role" id="role" class="form-control">
+                                                <option value="class_teacher">Class Teacher</option>
+                                                <option value="admin">Administrator</option>
+                                                <option value="subject_teacher">Subject Teacher</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="update_editButton" class="btn btn-primary">Update</button>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Update</button>
-            </div>
+            </form>
         </div>
     </div>
+
 </div>
+
 {% endblock content %}
 
 <!-- Specific JS goes HERE -->
 {% block javascripts %}
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
-<script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript">
     $(document).ready(function () {
         loadUsers()
     });
@@ -154,10 +130,10 @@
                 {
                     "render": function (data, type, full, meta) {
                         return '<div class="dropdown">' +
-                            '<a class="btn btn-primary btn-icon-only text-light" href="' + full.id + '" onclick="edit_userlist" role="button" style="height: auto; display: inline-block;" data-toggle="modal" data-target="#exampleModal" >' +
+                            '<a class="btn btn-primary btn-icon-only text-light" href="#" onclick="editUser(\'' + full.id + '\')" role="button" style="height: auto; display: inline-block;" >' +
                             '<b> Edit </b >' +
                             '</a>' +
-                            '   <a class="btn btn-danger btn-icon-only text-light" href=""  onclick="deleteUser('+full.id+')" role="button">' +
+                            '   <a class="btn btn-danger btn-icon-only text-light" href="#"  onclick="deleteUser(\'' + full.id + '\) role="button">' +
                             '<b>Delete</b>' +
                             '</a>' +
                             '</div>'
@@ -174,27 +150,39 @@
             "ordering": false
         });
     }
+    function editUser(id) {
+        $.get('/edit-user/' + id, function (res) {
+            const { data } = res
+            // if response is json load modal and show data in field
+            $("#exampleModal").modal('show');
+            $("#username").val(data[0].username);
+            $("#email").val(data[0].email);
+            $("#role").val(data[0].role);
+            $("#u_id").val(data[0].id);
 
+        })
+    }
 
-    // update user list----------------
-    $("#edit_userlist").click(function () {
-        var form_data = new FormData($('#add_student')[0])
+    // updating the edit button
+
+    $("#update_editButton").click(function () {
+        var form_data = new FormData($('#updating_info')[0])
         $.ajax({
             type: "POST",
-            url: "/update-user-list",
+            url: "/updating_users",
             data: form_data,
             contentType: false,
             cache: false,
             processData: false,
 
             success: function (data) {
-                if (data === "error") {
-                    swal('Error', 'Could Not Add Student', 'error').then(function () {
+                if (data === "errorFound") {
+                    swal('Error', 'Could Not Update ', 'error').then(function () {
                         location.reload()
                     })
                 } else {
-                    swal('Success', 'Student Successfully Added', 'success').then(function () {
-                        window.location = "/get-std-list"
+                    swal('Success', 'Successfully Updated', 'success').then(function () {
+                        window.location = ""
                     })
                 }
 
@@ -210,7 +198,7 @@
 
     // for deleting
     function deleteUser(id) {
-        alert("hui")
+        alert('jiii')
         swal({
             title: "Are you sure?",
             text: "You will not be able to recover this data!",
@@ -241,7 +229,6 @@
             }
         })
     }
-
 
 </script>
 {% endblock javascripts %}

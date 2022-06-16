@@ -1,5 +1,6 @@
+import json
 from os import stat
-from flask import request, render_template
+from flask import request, render_template,jsonify
 from flask_login import current_user
 from datetime import datetime
 from config import Config
@@ -39,6 +40,8 @@ def save_user_detail_table(user_id):
     connection.execute('INSERT INTO public.user_detail ("id", "user_id", "role","grade", "section", "stream", "subject", "ip_address", "browser", "created_at") VALUES (%s,%s, %s, %s, %s, %s, %s, %s, %s, %s)',
                        (id, user_id, role, grade,section,stream,subject, ip, browser, datetime.now()))
     return "saved"
+
+
 
 # for users search
 
@@ -81,19 +84,11 @@ def all_users():
 
 # fetch user details
 
-
 def get_user_by_id(id):
     user = connection.execute(
         'SELECT *, U.id as user_id FROM public."User" AS U, public.user_detail as UD WHERE U.id = UD.user_id AND user_id = %s',
         id).first()
     return user
-
-
-# delete user details
-def delete_user_by_id(id):
-    # check self delete
-    delete = connection.execute('DELETE FROM public."User" WHERE id=%s', id)
-    return delete
 
 
 # defining user roles
@@ -264,12 +259,36 @@ def user_quries():
         "aaData": data
     }
     return respose_query
+ 
+#  editing the userlist
+def edit_the_user(id):
+    data = connection.execute('SELECT *, U.id FROM public."User" as U '\
+        'inner join public.user_detail as ud on U.id = ud.user_id WHERE U.id=%s', id).fetchone()
+   
+    final = []
+    final.append({'username': data.username,
+                    'email': data.email,
+                    'role':data.role,
+                    'id': data.id})
+    return jsonify({"data": final})
 
-def update_userlist():
-    id = request.form.get('user_id')
-    connection.execute('UPDATE public.user_detail WHERE index_number=%s',
-                       id)
-    return id
+# update the modal
+def update_editfunction():
+    username = request.form.get('username')
+    email = request.form.get('email')
+    id = request.form.get('u_id')
+    connection.execute('UPDATE  public."User"  SET username=%s, email=%s   WHERE  id=%s; ',
+                        username, email, id )
 
+    return "success"
+
+
+
+
+# delete user details
+def delete_user_by_id(id):
+    # check self delete
+    connection.execute('DELETE FROM public."User" WHERE id=%s', id)
+    return "deteted"
 
 

@@ -1,7 +1,7 @@
 from flask import render_template
 from flask_login import login_required
 from app.admin import blueprint
-from app.admin.service import save_user_table, save_user_detail_table, application_update, all_users, is_admin,is_classTeacher, get_user_by_id, delete_user_by_id, get_std_by_id, all_std, user_quries, update_userlist
+from app.admin.service import save_user_table, save_user_detail_table, application_update, all_users, is_admin,is_classTeacher, get_user_by_id, delete_user_by_id, get_std_by_id, all_std, user_quries, edit_the_user, update_editfunction
 
 
 @blueprint.route('/dashboard')
@@ -103,6 +103,7 @@ def save_user():
         return save_user_detail_table(user_id)
 
 
+
 # fetch user details
 @blueprint.route('/user/<id>', methods=['GET'])
 def users(id):
@@ -125,15 +126,6 @@ def std_details(id):
     return get_std_by_id(id)
     
 
-@blueprint.route('/delete/<id>', methods=['POST'])
-def delete_user(id):
-    delete = delete_user_by_id(id)
-    if(delete):
-        return 'success', 200
-    else:
-        return 'error', 500
-
-
 @blueprint.route('/update-status', methods=['POST'])
 def update_app_status():
     if(is_admin()):
@@ -150,13 +142,30 @@ def queryList():
         users_query = []
 
     return users_query
-
-
-@blueprint.route('/update-userlist', methods=['POST'])
+# edit modal
+@blueprint.route('/edit-user/<id>', methods=['GET'])
 @login_required
-def update_std_class():
-    if(is_classTeacher()):
-        return update_userlist()
+def edit_user(id):
+    return edit_the_user(id)
+  
+
+# updating modal
+@blueprint.route('/updating_users', methods=['POST'])
+@login_required
+def updating_the_user():
+    if(is_admin()):
+        return update_editfunction()
     else:
-        return "error"
+        return "errorFound"
+
+
+# delete 
+@blueprint.route('/delete/<id>', methods=['POST'])
+def delete_user(id):
+    if(is_admin()):
+        return delete_user_by_id(id)
+    else:
+        return "deletedDone"
+
+
 
