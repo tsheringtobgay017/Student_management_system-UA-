@@ -26,8 +26,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Student List</h4>
-                        <hr>
-                       
+                        <hr>  
                         <div class="card-body">
                             <div class="row">
                                 <div class="table-responsive">
@@ -42,46 +41,7 @@
                                                 <th scope="col">action</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="list">
-
-                                            {% for usr in user %}
-
-                                            <tr>
-                                                <th scope="row">
-                                                    {{ loop.index }}
-                                                </th>
-                                                <th scope="row">
-                                                    {{ usr.username }}
-                                                </th>
-                                                <td class="budget">
-                                                    {{ usr.email}}
-                                                </td>
-                                                <td class="budget">
-                                                    {{ usr.subject}}
-                                                </td>
-                                                <td class="budget">
-                                                    {{ usr.role }}
-                                                </td>
-
-                                                <td class="text-right">
-                                                    <div class="dropdown">
-                                                        <a class="btn btn-sm btn-icon-only text-light" href="#"
-                                                            role="button" data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                            
-                                                        </a>
-                                                        <div
-                                                            class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                            <a class="dropdown-item"
-                                                                href="/view-std-info/{{ std.id }}">View</a>
-                                                            <a class="dropdown-item" href="javascript:void(0)"
-                                                                onclick="deleteUser('{{ std.id }}')">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            {% endfor %}
-                                        </tbody>
+                                        
                                     </table>
                                 </div>
                             </div>
@@ -132,13 +92,10 @@
             {
                 "render": function (data, type, full, meta) {
                     return '<div class="dropdown">' +
-                        '<a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background:orange">' +
-                        '<b>Click</b>' +
-                        '</a>' +
-                        '<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">' +
-                        '<a class="dropdown-item" href="/std-detials/' + full.id + '">View</a>' +
-                        '<a class="dropdown-item" href="javascript:void(0)" onclick="deleteUser(' + full.id + ')">Delete</a>' +
-                        '</div>' +
+                            '<a class="btn btn-primary btn-icon-only text-light" role="button" href="/std-detials/' + full.id + '">'+
+                            '<b> View </b>' +'</a>'+
+                            ' <a class="btn btn-danger btn-icon-only text-light" href="javascript:void(0)" onclick="deleteUser(' + full.id + ')">'+
+                            '<b>Delete</b>' + '</a>' +
                         '</div>'
                 }
             },
@@ -153,7 +110,6 @@
     });
 
 $("#add_std").click( function () {
-alert("hi")
 $.ajax({
 url: "/search-for-std",
 type: "POST",

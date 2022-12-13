@@ -1,8 +1,8 @@
 from flask import render_template
 from flask_login import login_required
 from app.admin import blueprint
-from app.admin.service import save_user_table, save_user_detail_table, application_update, all_users, is_admin,is_classTeacher, get_user_by_id, delete_user_by_id, get_std_by_id, all_std, user_quries, edit_the_user, update_editfunction
-
+from app.admin.service import save_user_table, save_user_detail_table, application_update, all_users, is_admin,is_classTeacher, is_subjectTeacher, get_user_by_id, get_std_by_id, all_std, user_quries, edit_the_user, update_editfunction
+from app.admin.service import deleteUser as __DU__
 
 @blueprint.route('/dashboard')
 @login_required
@@ -11,10 +11,13 @@ def dashboard():
         return render_template('admin.html')
 
     elif(is_classTeacher()):
-        return render_template('class_teacherDash.html')  
+        return render_template('class_teacherDash.html') 
+
+    elif(is_subjectTeacher()):
+        return render_template('subject_teacherDash.html')  
     
     else:
-        return render_template('subject_teacherDash.html')
+        return render_template('hr_dashboard.html')
    
 
 @blueprint.route('/admin-add-user')
@@ -39,6 +42,7 @@ def admin_typography():
 @login_required
 def admin_std_app_list():
     return render_template('/pages/student-applications/student_application_list.html')
+
 
 
 @blueprint.route('/admin-basic-tables')
@@ -158,14 +162,11 @@ def updating_the_user():
     else:
         return "errorFound"
 
-
 # delete 
-@blueprint.route('/delete/<id>', methods=['POST'])
-def delete_user(id):
-    if(is_admin()):
-        return delete_user_by_id(id)
-    else:
-        return "deletedDone"
+@blueprint.route('/delete_list/<id>', methods=['POST'])
+def delete_user(id):return __DU__.delete_user_by_id(id)
+        
+   
 
-
+    
 

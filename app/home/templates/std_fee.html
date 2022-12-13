@@ -3,123 +3,247 @@
 {% block title %} Student Management System {% endblock title %}
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}
+
 {% endblock stylesheets %}
 
 {% block content %}
 <div class="container">
-<ol class="breadcrumb ">
-	<li><a href="{{url_for('home_blueprint.route_default')}}"><i class="fa fa-home" style="font-size: 15px;">
-				Home</i></a></li>
-	<li class="active" style="font-size: 13px;"> Fees Structure 2022</li>
-</ol>
-<hr style="position: relative; top: 3px; border: none; height: 2px; background: black;">				
-<br><br>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 mx-auto bg-white rounded shadow">
-                <!-- Fixed header table-->
-                <div class="table-responsive">
-                    <table class="table table-fixed">
-                        <tbody>
-                            <br>
-                            <th scope="col" class="col-1">Class</th>
-                                <th scope="col" class="col-2">Stream</th>
-                                <th scope="col" class="col-2">Day student</th>
-                                <th scope="col" class="col-2">Boarding</th>
-                                <th scope="col" class="col-5">Full Academic Session (Term I & Term II)</th>
-                            </th>
-                            <tr>
-                                <td scope="row" class="col-1"> VII-VIII</td>
-                                <td class="col-2">-</td>
-                                <td class="col-2">Nu.32,000</td>
-                                <td class="col-2">Nu.64,000</td>
-                                <td class="col-md-5">Nu. 96,000 (Ninety six thousand)</td>
+    <ol class="breadcrumb ">
+        <li><a href="{{url_for('home_blueprint.route_default')}}"><i class="fa fa-home" style="font-size: 15px;">
+                    Home</i></a></li>
+        <li class="active" style="font-size: 13px;"> Fees Structure 2022</li>
+    </ol>
+    <hr style="position: relative; top: 3px; border: none; height: 2px; background: black;">				
+    <br><br>
+    <!-- uploading Jornal number  -->
+    <div class="row">
+            <div class="col-lg-1" >           
+            </div>
+            <div class="col-lg-10" >
+                <div class="card text-center">
+                    <div class="card-header" style="font-size: 16px;">
+                            Upload Account Information
+                    </div> <br><br>
+                    <div class="card-body">
+                        <form action="" id="account_dtl">  
+                            <div class="row"> 
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="std_name" class="control-label col-sm-4 text-right" class="form-control-label">Student Name :</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" placeholder="Enter Student Name" class="form-control" name="std_name"id="std_name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="std_class" class="control-label col-sm-4 text-right" class="form-control-label">Class :</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control form-select" name="std_class" id="std_class">
+                                                <option value="">---Select One---</option>
+                                                <option value="VII">VII</option>
+                                                <option value="VIII">VIII</option>
+                                                <option value="IX">IX</option>
+                                                <option value="X">X</option>
+                                                <option value="XI">XI</option>
+                                                <option value="XII">XII</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="jrn_number" class="control-label col-sm-4 text-right" >Jornal Number :</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" placeholder="Enter Jornal Number" class="form-control" name="jrn_number"id="jrn_number">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="std_section" class="control-label col-sm-4 text-right" > Section :</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control form-select" name="std_section" id="std_section">
+                                                <option value="">---Select One---</option>
+                                                <option value="A">A</option>
+                                                <option value="B">B</option>
+                                                <option value="C">C</option>
+                                                <option value="D">D</option>
+                                                <option value="E">E</option>
+                                                <option value="F">F</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row"> 
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="bank_type" class="control-label col-sm-4 text-right" class="form-control-label">Bank Type :</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control form-select" name="bank_type" id="bank_type">
+                                                <option value="">---Select One---</option>
+                                                <option value="BOBL">Bank Of Bhutan Limited</option>
+                                                <option value="BNBL">Bhutan National Bank Limited</option>
+                                                <option value="BDBL">Bhutan Development Bank Limited</option>
+                                                <option value="PNBL">Druk Punjab Bank Limited</option>
+                                                <option value="T-BANK">Tashi Bank</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="acc_holder" class="control-label col-sm-4 text-right" >Account Holder :</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" placeholder="Enter Account Holder" class="form-control" name="acc_holder"id="acc_holder">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>   
+                    <div class="button-center">
+                        <button type="button" id="acc_summiting" class="btn btn-sm btn-warning student_reg" style="color: white;width: 101px;height: 40px;font-size: 16px;">Submit</button>
+                    </div>
+                    </div>
+                </div>         
+            </div>
+            <div class="col-lg-1" >
+                        
+            </div>
+        </div>
+    <br><br>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto bg-white rounded shadow"> <br>
+                    <h3 style="text-align:center ;">Fees Structure :</h3>
+                    <br>
+                    <!-- Fixed header table-->
+                    <div class="table-responsive">
+                        <table class="table table-fixed">
+                            <tbody><br>
+                                <th scope="col" class="col-1">Class</th>
+                                    <th scope="col" class="col-2">Stream</th>
+                                    <th scope="col" class="col-2">Day student</th>
+                                    <th scope="col" class="col-2">Boarding</th>
+                                    <th scope="col" class="col-5">Full Academic Session (Term I & Term II)</th>
+                                </th>
+                                <tr>
+                                    <td scope="row" class="col-1"> VII-VIII</td>
+                                    <td class="col-2">-</td>
+                                    <td class="col-2">Nu.32,000</td>
+                                    <td class="col-2">Nu.64,000</td>
+                                    <td class="col-md-5">Nu. 96,000 (Ninety six thousand)</td>
 
-                            </tr>
-                            <tr>
-                                <td scope="row" class="col-1">IX</td>
-                                <td class="col-2">-</td>
-                                <td class="col-2">Nu. 40,000</td>
-                                <td class="col-2">Nu. 56,000</td>
-                                <td class="col-md-5">Nu. 96,000 (Ninety six thousand)</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row" class="col-1">IX</td>
+                                    <td class="col-2">-</td>
+                                    <td class="col-2">Nu. 40,000</td>
+                                    <td class="col-2">Nu. 56,000</td>
+                                    <td class="col-md-5">Nu. 96,000 (Ninety six thousand)</td>
 
-                            </tr>
-                            <tr>
-                                <td scope="row" class="col-1">X</td>
-                                <td class="col-2">-</td>
-                                <td class="col-2">Nu. 44,000</td>
-                                <td class="col-2">Nu. 54,000</td>
-                                <td class="col-md-5">Nu. 98,000 (Ninety eight thousand)</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row" class="col-1">X</td>
+                                    <td class="col-2">-</td>
+                                    <td class="col-2">Nu. 44,000</td>
+                                    <td class="col-2">Nu. 54,000</td>
+                                    <td class="col-md-5">Nu. 98,000 (Ninety eight thousand)</td>
 
-                            </tr>
-                            <tr>
-                                <td scope="row" class="col-1">XI & XII</td>
-                                <td class="col-2">Arts/Com</td>
-                                <td class="col-2">Nu. 48,000</td>
-                                <td class="col-2">Nu. 50,000</td>
-                                <td class="col-md-5">Nu. 98,000 (Ninety eight thousand)</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row" class="col-1">XI & XII</td>
+                                    <td class="col-2">Arts/Com</td>
+                                    <td class="col-2">Nu. 48,000</td>
+                                    <td class="col-2">Nu. 50,000</td>
+                                    <td class="col-md-5">Nu. 98,000 (Ninety eight thousand)</td>
 
-                            </tr>
-                          
-                            <tr>
-                                <td scope="row" class="col-1">XI</td>
-                                <td class="col-2">Science</td>
-                                <td class="col-2">Nu. 49,500</td>
-                                <td class="col-2">Nu. 50,000</td>
-                                <td class="col-md-5">Nu. 99,500 (Ninety nine thousand five hundred)</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td scope="row" class="col-1">XI</td>
+                                    <td class="col-2">Science</td>
+                                    <td class="col-2">Nu. 49,500</td>
+                                    <td class="col-2">Nu. 50,000</td>
+                                    <td class="col-md-5">Nu. 99,500 (Ninety nine thousand five hundred)</td>
 
-                            </tr>
-                            <tr>
-                                <td scope="row" class="col-1">XII</td>
-                                <td class="col-2">Science</td>
-                                <td class="col-2">Nu. 52,000</td>
-                                <td class="col-2">Nu. 50,000</td>
-                                <td class="col-md-5">Nu. 102,000 (One hundred and two thousand)</td>
-                            </tr>
-                            <tr>
-                                <td scope="row" class="col-12">
-                                    <br><br>
-                                   <h3><b>Note:</b> The government scholarship amount (if selected) is adjustable in the above mention fees 
-                                    - only the remaining will have to be paid by the parent(s)/guardian(s)<h3><br> 
-                                    <h4>*Admission Confirmation Fees  as mentioned below is applicable to all new students (both school and boarding) except
-                                         UA scholarship and “kidu” students</h4><br>
-                                    <h4> <b>School:</b>  Nu.1000/- one thousand only (to meet overtime expenses of Admission Desk Committee members on duty)</h4><br>
-                                    <h4><b> Boarding:</b>Nu.5000/- five thousand only (no separate collection for mattress and bed-cover)</h4><br>
-                                    <h3> <u>There will be no separate collection for admission forms.</u> </h3><br>
-                                    <h4>*Starting from 2022 academic session, all day students will have to pay an additional Nu.5000/- (five thousand) per Term for lunch; <u>no student will be allowed to move out during class days unless authorized by SAT.</u> </h4><br>
-                                    <h4>The school also runs two Paying Guest (PG) Hostels: <br>
-                                        <br>
-                                        *Wolokha PG (for boys) – UA Campus II is 3 Km away but has a congenial study environment <br>   <br>
-                                        A separate transport fee of Nu.2500/- (Two thousand five hundred) per Term is collected for the daily bus service</h4><br>
-                                        <br>
-                                        <h4>Gomo Delux PG (for girls) <br><br>
+                                </tr>
+                                <tr>
+                                    <td scope="row" class="col-1">XII</td>
+                                    <td class="col-2">Science</td>
+                                    <td class="col-2">Nu. 52,000</td>
+                                    <td class="col-2">Nu. 50,000</td>
+                                    <td class="col-md-5">Nu. 102,000 (One hundred and two thousand)</td>
+                                </tr>
+                                <tr>
+                                    <td scope="row" class="col-12">
+                                        <br><br>
+                                    <h3><b>Note:</b> The government scholarship amount (if selected) is adjustable in the above mention fees 
+                                        - only the remaining will have to be paid by the parent(s)/guardian(s)<h3><br> 
+                                        <h4>*Admission Confirmation Fees  as mentioned below is applicable to all new students (both school and boarding) except
+                                            UA scholarship and “kidu” students</h4><br>
+                                        <h4> <b>School:</b>  Nu.1000/- one thousand only (to meet overtime expenses of Admission Desk Committee members on duty)</h4><br>
+                                        <h4><b> Boarding:</b>Nu.5000/- five thousand only (no separate collection for mattress and bed-cover)</h4><br>
+                                        <h3> <u>There will be no separate collection for admission forms.</u> </h3><br>
+                                        <h4>*Starting from 2022 academic session, all day students will have to pay an additional Nu.5000/- (five thousand) per Term for lunch; <u>no student will be allowed to move out during class days unless authorized by SAT.</u> </h4><br>
+                                        <h4>The school also runs two Paying Guest (PG) Hostels: <br>
+                                            <br>
+                                            *Wolokha PG (for boys) – UA Campus II is 3 Km away but has a congenial study environment <br>   <br>
+                                            A separate transport fee of Nu.2500/- (Two thousand five hundred) per Term is collected for the daily bus service</h4><br>
+                                            <br>
+                                            <h4>Gomo Delux PG (for girls) <br><br>
                                             A separate fee of Nu.3000/- (three thousand) per Term is collected as girls are kept in rooms with better facilities. It is located adjacent to the school and enjoys an autonomous mess arrangement also.</h4><br>
                                             <br>
                                             <h4>*A separate <u>security deposit of Nu.3000/-</u>  (Three thousand) for boarding students and Nu.2000/- (two thousand) day students (refundable if not deducted for damages/fines) will have to be paid once at the time of admission.</h4><br> <br>
                                             <h4>Also, Nu.3000/- (Three thousand) ICT Fees per annum is charged separately and an additional Nu1000/- for <u>tablet/smart phone </u>care for boarding students. As mentioned every student must bring his/her own <u>tablet/smart phone</u> for blended approach in NNC/eResources – a requirement as per the Learning Management System (LMS). The school is equipped with free intranet facilities – upgraded from 100 to 500 concurrent users in 2022 academic session
-                                                <br><br>
+                                            <br><br>
                                                 *For more details, like installments/mode of payment, please contact our <b>Finance Officer Ms Dechen Peldon on 17671602</b> </h4>
                                             <td scope="row" class="col-12">
                                                 <h4>*There are also licensed private PG Hostels near UA (for both girls and boys) for parents/guardians  in case they are not able to get boarding or choose something different. <br><br>
-                                                   <b>Comments:</b>  Kindly note that the above fee in the table was approved in October of 2017 by PSD, DSE & MoE.</h4>
+                                                    <b>Comments:</b>  Kindly note that the above fee in the table was approved in October of 2017 by PSD, DSE & MoE.</h4>
                                             </td>
-
                                         </td>
-                            </tr>
-                        </tbody>   
-                    </table>
-                </div><!-- End -->
-                 <br><br>
+                                </tr>
+                            </tbody>   
+                        </table>
+                    </div><!-- End -->
+                    <br><br>
+                </div>
             </div>
         </div>
-    </div>
 </div>
-    <br><br>
+<br><br>
    
-
 {% endblock content %}
 
 <!-- Specific JS goes HERE -->
 {% block javascripts %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $("#acc_summiting").on("click", function () {
+        var form = document.getElementById("account_dtl");
+        var data = new FormData(form);
+        $.ajax({
+            type: 'POST',
+            url: '/account_submitting',
+            data: data,
+            contentType: false,
+            cache: false,
+            processData: false,
+
+            success: function (res) {
+                swal("Information successfully saved", "Click Ok to continue", "success")
+                    .then(function () {
+                        $('#acc_summiting').trigger('reset')
+                        window.location = "/fees-detail"
+                    })
+            },
+        });
+    });
+
+</script>
 
 {% endblock javascripts %}

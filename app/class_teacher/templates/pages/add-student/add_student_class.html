@@ -27,29 +27,31 @@
                     <div class="card-body">
                         <h4 class="card-title">Add Student In Class</h4>
                         <hr>
-                        <form action="" id="add_student" method="POST">
-                            <div class="row">
-                                <div class="col-sm-4 form-group">
-                                    <label>CID</label>
-                                    <input type="text" placeholder="Enter CID" class="form-control" name="cid" id="cid">
+                        <form action="" id="add_student" method="POST"><br>
+                            <div class="row"> 
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-4 text-right">Citizenship Identity Card :</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" placeholder="Enter cid number" class="form-control" name="cid" id="cid">
+                                        </div>
+                                    </div>
                                 </div>
                                 <input type="hidden" id="user_id" name="user_id" value="{{current_user.id}}">
-                                <div class="col-sm-4 form-group">
-                                    <label>Index Number</label>
-                                    <input type="text" placeholder="Enter Index Number" class="form-control"
-                                        name="index_num" id="index_num">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label col-sm-4 text-right">Index Number :</label>
+                                        <div class="col-sm-8">
+                                             <input type="text" placeholder="enter index number" class="form-control"name="index_num" id="index_num">
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div class="col-md-4 mt-2">
                                     <br>
-
-                                    <button type="submit" class="btn btn-warning text-light" style="font-size:15px;">
-                                        Search
-                                    </button> <br>
-                                </div>
+                                <div class="col-md-12 mt-10" style="text-align:center;">
+                                    <button type="submit" class="btn btn-warning text-light"> Search</button> 
+                                </div> <br><br>
                             </div>
                         </form>
-
                         
                         <div class="card-body">
                             <div class="row">
@@ -66,10 +68,6 @@
                                             </tr>
                                         </thead>
                                         <tbody class="list" id="add_std">
-
-
-
-
                                         </tbody>
                                     </table>
 
@@ -77,36 +75,6 @@
 
                             </div>
                         </div>
-
-                        <!-- <div class="card-body">
-                            <h4 class="card-title">Student List </h4>
-                            <hr>
-                            <div class="row">
-                                <div class="table-responsive">
-                                    <table class="table align-items-center table-flush" id="customerList">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col" class="sort" data-sort="name">SL</th>
-                                                <th scope="col" class="sort" data-sort="name">Index Number</th>
-                                                <th scope="col" class="sort" data-sort="budget">CID</th>
-                                                <th scope="col" class="sort" data-sort="name">Student Name</th>
-                                                <th scope="col" class="sort" data-sort="name">Email</th>
-                                                <th scope="col" class="sort" data-sort="name">Status</th>
-                                                <th scope="col">action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="list" id="class_std">
-
-                                           
-                                           
-
-                                        </tbody>
-                                    </table>
-
-                                </div>
-
-                            </div>
-                        </div> -->
                     </div>
 
                 </div>
@@ -153,12 +121,6 @@
                     '<b>Add</b>' +
                     '</a>' + '</td></tr>')
 
-
-                //     swal("Student successfully added", "Click Ok to continue", "success")
-                //         .then(function () {
-                //             window.location = "/get-std-list"
-                //         })
-                // })
                 $("#add_new_std").click(function () {
                     var form_data = new FormData($('#add_student')[0])
                     $.ajax({

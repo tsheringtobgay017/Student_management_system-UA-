@@ -1,5 +1,5 @@
 import json
-from os import stat
+import os
 from flask import request, render_template,jsonify
 from flask_login import current_user
 from datetime import datetime
@@ -9,10 +9,13 @@ from app import mail
 from sqlalchemy import create_engine
 from app.admin.util import hash_pass
 from uuid import uuid4
+from random import randint
 
 
 engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
 connection = engine.connect()
+random_id = randint(000, 999)
+
 
 
 def save_user_table():
@@ -119,7 +122,12 @@ def is_subjectTeacher():
         return True
     else:
         return False
-
+        
+def is_human_resource():
+    if(user_role() == 'human_resource'):
+        return True
+    else:
+        return False
 
 def all_std():
     draw = request.form.get('draw')
@@ -276,19 +284,16 @@ def edit_the_user(id):
 def update_editfunction():
     username = request.form.get('username')
     email = request.form.get('email')
+    role = request.form.get('role')
     id = request.form.get('u_id')
-    connection.execute('UPDATE  public."User"  SET username=%s, email=%s   WHERE  id=%s; ',
+    connection.execute('UPDATE  public."User" SET username=%s, email=%s WHERE id=%s',
                         username, email, id )
-
+    connection.execute('UPDATE  public.user_detail SET role=%s WHERE user_id=%s',
+                        role,id )
     return "success"
 
 
-
-
-# delete user details
-def delete_user_by_id(id):
-    # check self delete
-    connection.execute('DELETE FROM public."User" WHERE id=%s', id)
-    return "deteted"
-
-
+class deleteUser:
+    def delete_user_by_id(id):
+        delete=connection.execute('DELETE FROM public."User" WHERE id=%s', id)
+        return "done"

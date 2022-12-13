@@ -1,12 +1,16 @@
 from operator import add
-from flask import request, render_template
+from uuid import uuid4
+from flask import request, render_template,jsonify
 from config import Config
 from sqlalchemy import create_engine
 from datetime import datetime
+from random import randint
+import os
 
 
 engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
 connection = engine.connect()
+random_id = randint(000, 999)
 
 
 def subject_teacher():
@@ -127,7 +131,7 @@ def get_std_in_class():
         data.append({'sl': index + 1,
                      'index_number': user.index_number,
                      'student_cid': user.student_cid,
-                     'first_name': user.first_name,
+                    'first_name': user.first_name + " " + user.last_name,
                      'student_email': user.student_email,
                      'id': user.id})
         count = user.count_all
@@ -207,3 +211,69 @@ def get_subject_teacher_info(id):
                                      'WHERE se.id =%s',
                                      id).first()
     return render_template('/pages/add-student/view_std_mark.html', sub_teacher=sub_teacher)
+
+# edit teachers
+def editTheTeacher(id):
+    data = connection.execute('SELECT *, U.id FROM public."User" as U '\
+        'inner join public.user_detail as ud on U.id = ud.user_id WHERE U.id=%s', id).fetchone()
+   
+    final = []
+    final.append({'username': data.username,
+                    'email': data.email,
+                    'subject': data.subject,
+                    'grade': data.grade,
+                    'section': data.section,
+                    'role':data.role,
+                    'id': data.id})
+    return jsonify({"data": final})
+
+# update the modal
+def update_editteacher():
+    username = request.form.get('username')
+    email = request.form.get('email')
+    subject = request.form.get('subject')
+    grade = request.form.get('grade')
+    section = request.form.get('section')
+    id = request.form.get('uu_id')
+    connection.execute('UPDATE  public."User" SET username=%s, email=%s WHERE id=%s',
+                        username, email, id )
+    connection.execute('UPDATE  public.user_detail SET subject=%s, grade=%s, section=%s WHERE user_id=%s',
+                        subject, grade,section, id )
+
+    return "success"
+    
+# delete
+def delete_Teacher(id):
+    delete=connection.execute('DELETE FROM public."User" WHERE id=%s', id)
+    return "done"
+
+   
+# delete student list
+def students(id):
+    delete=connection.execute('DELETE FROM public.tbl_academic_detail WHERE id=%s', id)
+    return "done"
+
+# upload time table
+
+# timetable upload
+def std_time_table():
+    id = uuid4()
+    for_class = request.form.get('for_class')
+    class_section = request.form.get('class_section')
+    timetable_photo = request.files.get('timetable_photo', '')
+    img_url = os.path.join('./app/home/static/uploads/timetable/',
+                         'for_class' + str(random_id) + timetable_photo.filename)
+    timetable_photo.save(img_url)
+    timetable_photo_url = '/static/uploads/timetable/'+ 'for_class' + \
+            str(random_id) + timetable_photo.filename
+    
+    connection.execute('INSERT INTO public.tbl_time_table("id","class_section", "for_class","timetable_photo") VALUES (%s,%s,%s, %s)',
+                       (id, for_class,class_section, timetable_photo_url))
+
+    return "success"
+
+def get_time_table():
+    std_time_table = connection.execute(
+        'SELECT *, t.id FROM public.tbl_time_table AS t WHERE t.id IS NOT NULL ')
+    return render_template('/pages/user-management/view_time_table.html', student_timeing_table = std_time_table)
+

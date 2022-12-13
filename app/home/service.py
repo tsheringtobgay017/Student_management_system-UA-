@@ -27,7 +27,7 @@ def store_student_details():
     student_village = request.form.get("permanent_village")
     created_at = datetime.now()
     parent_cid = request.form.get('parent_cid')
-    parent_full_name = request.form.get('parent_name')
+    parent_full_name    = request.form.get('parent_name')
     parent_contact_number = request.form.get('parent_number')
     parent_email = request.form.get("parent_email")
     student_present_dzongkhag = request.form.get("present_dzongkhag")
@@ -69,7 +69,7 @@ def store_academic_details(id_personal):
     marksheet.save(img_url)
     marksheet_url = '/static/uploads/marksheet/'+ index_number + \
             str(random_id) + marksheet.filename
-    supw_grade = request.form.get("supw")
+    supw_grade = request.form.get("supw") 
     percentage_obtained = request.form.get("percent")
     created_at = datetime.now()
     admission_for_class = request.form.get('admission_for')
@@ -136,15 +136,6 @@ def get_village():
         village_list = connection.execute(village_list, village_id).fetchall()
     return jsonify({"villageList": [dict(row) for row in village_list]})
 
-
-# def track_std():
-#     if request.method == 'POST':
-#         student_cid = request.form.get('std_cid')
-#         index_number = request.form.get('std_index')
-#         get_std = 'SELECT * FROM public.tbl_students_personal_info as sp inner join public.tbl_academic_detail as ac ON ac.std_personal_info_id = sp.id  WHERE student_cid =%s AND index_number =%s'
-#         std_list = connection.execute(get_std, student_cid, index_number ).fetchall()
-#         print('::::',std_list)
-#     return str(std_list)
 
 
 def track_std():
@@ -231,6 +222,19 @@ def printing_result():
     }
     return respose_get_marks
 
+# paying student fee
+def pay_std_fee():
+    id = uuid4()
+    std_name = request.form.get('std_name')
+    std_class = request.form.get('std_class')
+    std_section = request.form.get('std_section')
+    jrn_number = request.form.get('jrn_number')
+    bank_type = request.form.get('bank_type')
+    acc_holder = request.form.get('acc_holder')
+    connection.execute('INSERT INTO public.tbl_acc_detail("id","std_name", "jrn_number", "bank_type", "acc_holder", "std_class", "std_section") VALUES (%s,%s,%s,%s,%s,%s, %s)',
+                       (id, std_name, jrn_number, bank_type, acc_holder, std_class, std_section))
+
+    return "success"
 
   
 

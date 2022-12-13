@@ -6,7 +6,7 @@ from flask_login import (current_user, login_user, logout_user)
 from config import Config
 from app.admin.models import User
 from app.admin.forms import LoginForm
-from app.home.service import store_student_details, check_exist, store_academic_details, get_dzo_list, get_gewog, get_village,track_std, store_contact_details, printing_result
+from app.home.service import store_student_details, check_exist, store_academic_details, get_dzo_list, get_gewog, get_village,track_std, store_contact_details, printing_result,pay_std_fee
 from flask_login import (current_user, login_required)
 from app.admin.util import get_user_by_id, verify_pass, check_user_login_info, update_login_info
 
@@ -170,3 +170,9 @@ def checkCID():
 @blueprint.route('/get-student-result', methods=['POST'])
 def student_result():
          return printing_result()
+
+# account submitting
+
+@blueprint.route('/account_submitting', methods=['POST'])
+def fee_submmition():
+    return pay_std_fee()
